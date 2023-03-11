@@ -24,6 +24,7 @@ class ClothingCategories(models.Model):
 
 class CategoryProduct(models.Model):
     name = models.CharField(max_length=100, verbose_name='Категория одежды')
+    photo = models.ImageField(verbose_name='Фото категрии', null=True, blank=True)
     client_category = models.ForeignKey('ClothingCategories', on_delete=models.CASCADE)
 
     class Meta:
@@ -40,11 +41,11 @@ class Stock(models.Model):
         verbose_name = 'Наличие на складе'
 
     def __str__(self):
-        return self.name
+        return self.quantity
 
 
 class Collection(models.Model):
-    name = models.CharField(max_length=150, verbose_name='НАзвание коллекции')
+    name = models.CharField(max_length=150, verbose_name='Название коллекции')
 
     class Meta:
         verbose_name = 'Коллекция'
@@ -69,7 +70,8 @@ class Product(models.Model):
     compound = models.TextField(verbose_name='Состав и уход')
     size_on_model = models.TextField(verbose_name='Размер модели\размер на модели')
     collection = models.ForeignKey('Collection', on_delete=models.CASCADE, verbose_name='Коллекция')
-    #TODO возможно докинуть поля связанные с категриями CategoryProduct, ClothingCategories, ClientCategory
+    category_product = models.ForeignKey('CategoryProduct', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Категория одежды')
+    #TODO возможно докинуть поля связанные с категриями ClothingCategories, ClientCategory
 
     class Meta:
         verbose_name = 'Товар'

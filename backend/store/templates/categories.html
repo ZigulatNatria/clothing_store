@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+    <body>
+    {% block content %}
+        <div class="container">
+            <div class="row">
+              {% for category in categories %}
+              <div class="col-md-3 mb-4">
+                  <div class="card h-100" style="width: 100%;">
+                      <img src="{{MEDIA_URL}}{{category.photo.url}}" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <p class="card-text">{{category.name}}</p>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+    {% endblock content %}
+    </body>
+</html>
