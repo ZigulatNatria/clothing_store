@@ -71,9 +71,13 @@
              </div>
         </div>
     <div class="container">
-        {% for i in view.all_images %}
-        <img src="{{MEDIA_URL}}{{i.photo_1.url}}" class="d-block w-100" alt="...">
+        <div class="row align-items-start">
+        {% for i in view.all_product_collection %}
+            <div class="card h-100" style="width: 20%;">
+                <img src="{{MEDIA_URL}}{{i.photo_1.url}}" class="d-block w-100" alt="...">
+            </div>
         {% endfor %}
+        </div>
     </div>
     {% endblock content %}
     </body>

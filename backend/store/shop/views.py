@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, CategoryProduct
+from .models import Product, CategoryProduct, Collection
 from django.views.generic import ListView, DetailView
 
 # class ProductsListView(ListView):
@@ -29,12 +29,9 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
     queryset = Product.objects.all()
 
-    # @staticmethod
-    # def all_images():
-    #     collection = Product.objects.filter(collection='Лето 2023')
-    #     return collection
-
-
+    def all_product_collection(self): #Получение всех коллекций
+        product = self.get_object()   #Берём объект
+        return self.get_queryset().filter(collection=product.collection.id)   #можно писать collection или collection_id
 
 
 class CategoryProductListView(ListView):
