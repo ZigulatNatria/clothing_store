@@ -29,6 +29,13 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
     queryset = Product.objects.all()
 
+    # @staticmethod
+    # def all_images():
+    #     collection = Product.objects.filter(collection='Лето 2023')
+    #     return collection
+
+
+
 
 class CategoryProductListView(ListView):
     model = CategoryProduct
