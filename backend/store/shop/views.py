@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Product, CategoryProduct, Collection
+from .models import Product, CategoryProduct, ClothingCategories, Collection
 from django.views.generic import ListView, DetailView
 
 # class ProductsListView(ListView):
@@ -34,8 +34,23 @@ class ProductDetail(DetailView):
         return self.get_queryset().filter(collection=product.collection.id)   #можно писать collection или collection_id
 
 
-class CategoryProductListView(ListView):
-    model = CategoryProduct
-    template_name = 'categories.html'
-    context_object_name = 'categories'
-    queryset = CategoryProduct.objects.all()
+# class CategoryProductListView(ListView):
+#     model = CategoryProduct
+#     template_name = 'categories.html'
+#     context_object_name = 'categories'
+#     queryset = CategoryProduct.objects.all()
+
+
+def category_product_list_view(request, category_clothing_id):
+    category_clothing = ClothingCategories.objects.get(pk=category_clothing_id)
+    category_products = CategoryProduct.objects.filter(client_category=category_clothing.id)
+    context = {'category_products': category_products}
+    return render(request, 'categories.html', context)
+
+
+
+class ClothingCategoriesView(ListView):
+    model = ClothingCategories
+    template_name = 'categories_global.html'
+    context_object_name = 'categories_clothing'
+    queryset = ClothingCategories.objects.all()

@@ -14,6 +14,7 @@ class ClientCategory(models.Model):
 class ClothingCategories(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название раздела категории одежды')
     client_category = models.ForeignKey('ClientCategory', on_delete=models.CASCADE)
+    photo = models.ImageField(verbose_name='Фото категрии', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Раздел категории одежды'
