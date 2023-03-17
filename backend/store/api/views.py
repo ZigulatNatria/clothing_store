@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from rest_framework import generics
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from .serializers import ProductSerializer, CollectionSerializer, CategoryProductSerializer, \
-    ClothingCategoriesSerializer, ClientCategorySerializer
-from shop.models import Product, Collection, CategoryProduct, ClothingCategories, ClientCategory
+    ClothingCategoriesSerializer, ClientCategorySerializer, StockSerializer
+from shop.models import Product, Collection, CategoryProduct, ClothingCategories, \
+    ClientCategory, Stock
 
 # Create your views here.
 class ProductAPIVew(generics.ListAPIView):
@@ -28,3 +31,16 @@ class ClothingCategoriesAPIVew(generics.ListAPIView):
 class ClientCategoryAPIVew(generics.ListAPIView):
     queryset = ClientCategory.objects.all()
     serializer_class = ClientCategorySerializer
+
+
+class StockAPIVew(generics.ListAPIView):
+    queryset = Stock.objects.all()
+    serializer_class = StockSerializer
+
+""" Вывод одного объекта Product из базы данных """
+class ProductDetailAPIVew(APIView):
+
+    def get(self, request, pk):                  # В get передаём параметры pk - это id выбранной модели
+        product = Product.objects.get(id=pk)     # забираем нужный объект
+        serializer = ProductSerializer(product)  # передаём его для серализации
+        return Response(serializer.data)         # возвращаем в ответ сериализованные данные
