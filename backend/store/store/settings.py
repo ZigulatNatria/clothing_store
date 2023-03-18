@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'shop',
     'rest_framework',
     'api',
+    'sign',
+    'protect',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +149,6 @@ STATICFILES_DIRS = (
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = 'sign/login/'
+LOGIN_REDIRECT_URL = '/'

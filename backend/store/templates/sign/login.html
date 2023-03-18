@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+    <body>
+    {% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <h2> Войти </h2>
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <p>{{ form.username.label_tag }} {{ form.username }}</p>
+                    <p>{{ form.password.label_tag }}{{ form.password }}</p>
+                    <input type="submit" value="Войти">
+                </form>
+                <button>
+                    <a href="/sign/signup"> Регистрация </a>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+    </body>
+</html>
