@@ -17,7 +17,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Главная</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'categories_global' %}">Главная</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Ссылка</a>
@@ -33,22 +33,8 @@
     </div>
   </div>
 </nav>
-        <div class="bg-body-tertiary">
-            <ul class="nav justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Нижнее бельё</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Домашняя одежда</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Купальники</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Спортивная одежда</a>
-              </li>
-            </ul>
-        </div>
+        {% block nav %}
+        {% endblock nav %}
         <div class="bg-body-tertiary">
             <ul class="nav justify-content-center">
               <li class="nav-item">

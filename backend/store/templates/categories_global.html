@@ -2,11 +2,21 @@
 {% extends 'base.html' %}
 <html lang="en">
     <body>
+    {% block nav %}
+     <div class="bg-body-tertiary">
+            <ul class="nav justify-content-center">
+                {% for category in categories_clothing %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' category.id %}">{{category.name}}</a>
+              </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock nav %}
     {% block content %}
         <div class="container">
             <div class="row">
               {% for category in categories_clothing %}
-
               <div class="col-md-3 mb-4">
                   <div class="card h-100" style="width: 100%;">
                       <a href="{% url 'category_clothing' category.id %}">

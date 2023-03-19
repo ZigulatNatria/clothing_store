@@ -20,7 +20,10 @@ from django.views.generic import ListView, DetailView
 def product_categories(request, category_product_id):
     category = CategoryProduct.objects.get(pk=category_product_id)
     products = Product.objects.filter(category_product=category.id)
-    context = {'products': products}
+    clothing = ClothingCategories.objects.all()
+    context = {'products': products,
+               'clothing': clothing,
+               }
     return render(request, 'products_categories.html', context)
 
 
@@ -33,6 +36,10 @@ class ProductDetail(DetailView):
         product = self.get_object()   #Берём объект
         return self.get_queryset().filter(collection=product.collection.id)   #можно писать collection или collection_id
 
+    def nav(self):
+        clothing = ClothingCategories.objects.all()
+        return clothing
+
 
 # class CategoryProductListView(ListView):
 #     model = CategoryProduct
@@ -44,7 +51,10 @@ class ProductDetail(DetailView):
 def category_product_list_view(request, category_clothing_id):
     category_clothing = ClothingCategories.objects.get(pk=category_clothing_id)
     category_products = CategoryProduct.objects.filter(client_category=category_clothing.id)
-    context = {'category_products': category_products}
+    clothing = ClothingCategories.objects.all()
+    context = {'category_products': category_products,
+               'clothing': clothing,
+               }
     return render(request, 'categories.html', context)
 
 
