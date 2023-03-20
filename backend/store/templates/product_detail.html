@@ -97,26 +97,36 @@
             });
         });
         </script>
-
-    <div id="newsticker-demo">
-        <div class="title">Товары из коллекции</div>
-        <div class="newsticker-jcarousellite">
-            <ul>
-                 {% for i in view.all_product_collection %}
-                <li>
-                    <div class="thumbnail">
-                        <div class="card h-100" style="width: 100%;">
-                            <a href="{% url 'product' i.id %}">
-                                <img src="{{MEDIA_URL}}{{i.photo_1.url}}" class="d-block w-100" alt="...">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </li>
-                 {% endfor %}
-            </ul>
+     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-2">
+                <p>Товары из коллекции</p>
+            </div>
         </div>
-    </div>
+         <div class="row justify-content-center">
+            <div class="col-6">
+                <div id="newsticker-demo">
+                    <div class="newsticker-jcarousellite">
+                        <ul>
+                             {% for i in view.all_product_collection %}
+                            <li>
+                                <div class="thumbnail">
+                                    <div class="card h-100" style="width: 100%;">
+                                        <a href="{% url 'product' i.id %}">
+                                            <img src="{{MEDIA_URL}}{{i.photo_1.url}}" class="d-block w-100" alt="...">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </li>
+                             {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+         </div>
+     </div>
+
 
 
     <!-- pcvector.net -->
