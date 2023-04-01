@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .models import Product, CategoryProduct, ClothingCategories, Collection
-from django.views.generic import ListView, DetailView
+from .models import Product, CategoryProduct, ClothingCategories, Collection, News
+from django.views.generic import ListView, DetailView, TemplateView
 
 # class ProductsListView(ListView):
 #     model = Product
@@ -64,3 +64,18 @@ class ClothingCategoriesView(ListView):
     template_name = 'categories_global.html'
     context_object_name = 'categories_clothing'
     queryset = ClothingCategories.objects.all()
+
+
+class FirstPage(TemplateView):
+    template_name = 'first_page.html'
+
+    def get_context_data(self, **kwargs):
+        set_categories_clothing = {client_category: client_category.categoryproduct_set.all() for client_category in ClothingCategories.objects.filter()}
+        context = super().get_context_data(**kwargs)
+        # context['all_categories'] = set_categories_clothing
+        news = News.objects.all()
+        context = {
+            'all_categories': set_categories_clothing,
+            'news': news,
+        }
+        return context

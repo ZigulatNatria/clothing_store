@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+    <body>
+    {% block nav %}
+     <div class="bg-body-tertiary">
+            <ul class="nav justify-content-center">
+                {% for category in all_categories %}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' category.id %}">{{category.name}}</a>
+              </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endblock nav %}
+    {% block content %}
+        <div class="container">
+            <div class="row justify-content-center">
+                {% for category, sub_category in all_categories.items %}
+                <div class="h3 text-bold">{{ category }}</div>
+              {% for sub in sub_category %}
+              <div class="col-md-3 mb-4">
+                  <div class="card h-100" style="width: 100%;">
+                      <a href="{% url 'products' sub.id %}">
+                          <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">
+                      </a>
+                      <div class="card-body">
+                        <p class="card-text">{{sub.name}}</p>
+                      </div>
+                  </div>
+              </div>
+              {% endfor %}
+              {% endfor %}
+            </div>
+            <div class="row justify-content-start">
+                {% for new in news %}
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ new.header }}</h5>
+                            <p class="card-text">{{ new.text }}</p>
+                            <a href="#" class="btn btn-primary">Подробнее</a>
+                          </div>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock content %}
+    </body>
+</html>

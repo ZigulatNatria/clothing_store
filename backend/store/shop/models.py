@@ -80,3 +80,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
+class News(models.Model):
+    header = models.CharField(max_length=100, verbose_name='Заголовок новости')
+    text = models.TextField()
+    author = models.CharField(max_length=50, verbose_name='Автор новости')
+    date_add = models.DateField(auto_now=True)
+    image = models.ImageField()
+
+    class Meta:
+        verbose_name = 'Новости'
+
+    def __str__(self):
+        return self.header
