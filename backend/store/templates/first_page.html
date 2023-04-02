@@ -33,16 +33,23 @@
               {% endfor %}
             </div>
             <div class="row justify-content-start">
+                {% if news %}
+                <h1>Новости бренда</h1>
                 {% for new in news %}
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 50rem; padding-top: 12px; padding-bottom: 12px; border-color: rgb(171, 120, 17)">
                         <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
                         <div class="card-body">
+                            <div class="row justify-content-start">
+                            <div class="col-6 col-sm-3" style="color: rgb(171, 120, 17)">{{ new.author }} </div>
+                                <div class="col-6 col-sm-3">| {{ new.date_add }}</div>
+                            </div>
                             <h5 class="card-title">{{ new.header }}</h5>
                             <p class="card-text">{{ new.text }}</p>
                             <a href="#" class="btn btn-primary">Подробнее</a>
-                          </div>
                         </div>
+                    </div>
                 {% endfor %}
+                {% endif %}
             </div>
         </div>
     {% endblock content %}
