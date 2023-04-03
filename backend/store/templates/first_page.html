@@ -6,12 +6,13 @@
      <div class="bg-body-tertiary">
             <ul class="nav justify-content-center">
                 {% for category in all_categories %}
-              <li class="nav-item">
+              <li class="nav-item" style="z-index:2">
                 <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' category.id %}">{{category.name}}</a>
               </li>
                 {% endfor %}
             </ul>
         </div>
+    <img src="/static/img/top_fon.jpg" class="img-fluid">
     {% endblock nav %}
     {% block content %}
         <div class="container">
