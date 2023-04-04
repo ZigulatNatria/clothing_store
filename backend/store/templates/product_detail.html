@@ -14,7 +14,7 @@
         </div>
     {% endblock nav %}
     {% block content %}
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
 			 <style type="text/css">
 			 #thumbs { padding-top: 10px; overflow: hidden; }
 			 #thumbs #largeImage { border: 1px solid gray; padding: 4px; background-color: white; cursor: pointer; }
@@ -67,9 +67,10 @@
         </div>
 
 <!-- слайдер -->
-         <link rel="stylesheet" href="/static/slider/style.css" type="text/css" media="screen" />
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script src="/static/slider/jcarousellite_1.0.1.min.js" type="text/javascript"></script>
+    {% load static %}
+         <link rel="stylesheet" href="{% static 'slider/style.css' %}" type="text/css" media="screen" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="{% static 'slider/jcarousellite_1.0.1.min.js' %}" type="text/javascript"></script>
         <script type="text/javascript">
         $(function() {
             $(".newsticker-jcarousellite").jCarouselLite({
