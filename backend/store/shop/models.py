@@ -66,11 +66,11 @@ class Product(models.Model):
     price = models.FloatField(verbose_name='цена')
     colors = models.TextField(verbose_name='цвет') #TODO ссылки/картинки на другой аналогичный товар
     size = models.TextField(verbose_name='размер') #TODO выпадающий список
-    stock_availability = models.ForeignKey('Stock', on_delete=models.CASCADE, verbose_name='Наличие на складе')
+    stock_availability = models.ForeignKey('Stock', on_delete=models.CASCADE, verbose_name='Наличие на складе', null=True, blank=True)
     description = models.TextField(verbose_name='Описание товара')
     compound = models.TextField(verbose_name='Состав и уход')
     size_on_model = models.TextField(verbose_name='Размер модели\размер на модели')
-    collection = models.ForeignKey('Collection', on_delete=models.CASCADE, verbose_name='Коллекция')
+    collection = models.ForeignKey('Collection', on_delete=models.CASCADE, verbose_name='Коллекция', null=True, blank=True)
     category_product = models.ForeignKey('CategoryProduct', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Категория одежды')
     #TODO возможно докинуть поля связанные с категриями ClothingCategories, ClientCategory
 
