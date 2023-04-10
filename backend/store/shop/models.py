@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class ClientCategory(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название категории')
+    name = models.CharField(max_length=100, unique=True, verbose_name='Название категории')
 
     class Meta:
         verbose_name = 'Категория клиентов (М Ж)'
@@ -12,7 +12,7 @@ class ClientCategory(models.Model):
 
 
 class ClothingCategories(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Название раздела категории одежды')
+    name = models.CharField(max_length=100, unique=True, verbose_name='Название раздела категории одежды')
     client_category = models.ForeignKey('ClientCategory', on_delete=models.CASCADE)
     photo = models.ImageField(verbose_name='Фото категрии', null=True, blank=True)
 
@@ -24,7 +24,7 @@ class ClothingCategories(models.Model):
 
 
 class CategoryProduct(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Категория одежды')
+    name = models.CharField(max_length=100, unique=True, verbose_name='Категория одежды')
     photo = models.ImageField(verbose_name='Фото категрии', null=True, blank=True)
     client_category = models.ForeignKey('ClothingCategories', on_delete=models.CASCADE)
 
@@ -36,7 +36,7 @@ class CategoryProduct(models.Model):
 
 
 class Stock(models.Model):
-    quantity = models.CharField(max_length=50, verbose_name='количество на складе')
+    quantity = models.CharField(max_length=50, unique=True, verbose_name='количество на складе')
 
     class Meta:
         verbose_name = 'Наличие на складе'
@@ -46,7 +46,7 @@ class Stock(models.Model):
 
 
 class Collection(models.Model):
-    name = models.CharField(max_length=150, verbose_name='Название коллекции')
+    name = models.CharField(max_length=150, unique=True, verbose_name='Название коллекции')
 
     class Meta:
         verbose_name = 'Коллекция'
@@ -70,7 +70,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Описание товара')
     compound = models.TextField(verbose_name='Состав и уход')
     size_on_model = models.TextField(verbose_name='Размер модели\размер на модели')
-    collection = models.ForeignKey('Collection', on_delete=models.CASCADE, verbose_name='Коллекция', null=True, blank=True)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, verbose_name='Коллекция', null=True, blank=True)
     category_product = models.ForeignKey('CategoryProduct', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Категория одежды')
     #TODO возможно докинуть поля связанные с категриями ClothingCategories, ClientCategory
 

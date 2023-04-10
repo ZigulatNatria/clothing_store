@@ -5,9 +5,9 @@ from shop.models import Product, Collection, CategoryProduct, ClothingCategories
 
 class ProductSerializer(serializers.ModelSerializer):
     # Вывод имени полей ForeignKey
-    # collection = serializers.SlugRelatedField(slug_field='name', read_only=True)
-    # stock_availability = serializers.SlugRelatedField(slug_field='quantity', read_only=True)
-    # category_product = serializers.SlugRelatedField(slug_field='name', read_only=True)
+    collection = serializers.SlugRelatedField(slug_field='name', queryset=Collection.objects.all())
+    stock_availability = serializers.SlugRelatedField(slug_field='quantity', queryset=Stock.objects.all())
+    category_product = serializers.SlugRelatedField(slug_field='name', queryset=CategoryProduct.objects.all())
 
     class Meta:
         model = Product
