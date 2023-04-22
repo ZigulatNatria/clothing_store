@@ -62,6 +62,11 @@
                      <p>Описание: {{ product.description }}</p>
                      <p>Состав и уход: {{ product.compound }}</p>
                      <p>Размер на модели: {{ product.size_on_model }}</p>
+                     <form action="{% url 'cart_add' product.id %}" method="post">
+                        {{ view.product_add_cart }}
+                        {% csrf_token %}
+                        <input type="submit" value="Add to cart">
+                    </form>
                  </div>
              </div>
         </div>

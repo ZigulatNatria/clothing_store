@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product, CategoryProduct, ClothingCategories, Collection, News
 from django.views.generic import ListView, DetailView, TemplateView
+from cart.forms import CartAddProductForm
 
 # class ProductsListView(ListView):
 #     model = Product
@@ -31,6 +32,10 @@ class ProductDetail(DetailView):
     template_name = 'product_detail.html'
     context_object_name = 'product'
     queryset = Product.objects.all()
+
+    def product_add_cart(self):
+        cart_product_form = CartAddProductForm()
+        return cart_product_form
 
     def all_product_collection(self): #Получение всех коллекций
         product = self.get_object()   #Берём объект
