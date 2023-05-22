@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'sign',
     'protect',
     'cart',
+    'orders',
 ]
 
 MIDDLEWARE = [

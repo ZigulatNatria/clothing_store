@@ -28,4 +28,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('sign/', include('sign.urls')),
     path('', include('protect.urls')),
+    path('orders/', include('orders.urls', namespace='orders')),
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # без этой настройки не будет отображения картинки
