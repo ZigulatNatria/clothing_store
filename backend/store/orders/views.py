@@ -21,8 +21,10 @@ def order_create(request):
             # очистить корзину
             cart.clear()
             return render(request,
-                          'orders/created.html',
-                          {'order': order}
+                          'orders/pay.html',
+                          {'order': order,
+                           'cart': cart,
+                           }
                           )
     else:
         form = OrderCreateForm()
