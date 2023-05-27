@@ -33,18 +33,18 @@
         <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
         <button class="btn btn-outline-success" type="submit">Поиск</button>
       </form>
-        <div>
-            {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                    Корзина:
-                    <a href="{% url 'cart_detail' %}">
-                        Товары {{ cart.get_total_price }} ₽
-                    </a>
-                {% else %}
-                    Корзина пуста
-                {% endif %}
-            {% endwith %}
-        </div>
+        <img src="/static/img/sign.png" style="width: 2.5%">
+        <img src="/static/img/favorite.png" style="width: 4%">
+        {% with total_items=cart|length %}
+            {% if cart|length > 0 %}
+                <img src="/static/img/cart_false.png" style="width: 3%">
+                <a href="{% url 'cart_detail' %}">
+                    {{ cart.get_total_price }} ₽
+                </a>
+            {% else %}
+                <img src="/static/img/cart_false.png" style="width: 3%">
+            {% endif %}
+        {% endwith %}
     </div>
   </div>
 </nav>

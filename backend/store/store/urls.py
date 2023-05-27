@@ -29,4 +29,7 @@ urlpatterns = [
     path('sign/', include('sign.urls')),
     path('', include('protect.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
-] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # без этой настройки не будет отображения картинки
+] #+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # без этой настройки не будет отображения картинки
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

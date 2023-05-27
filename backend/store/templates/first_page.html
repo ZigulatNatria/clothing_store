@@ -12,45 +12,69 @@
                 {% endfor %}
             </ul>
         </div>
-    <img src="/static/img/top_fon.jpg" class="img-fluid">
+            <div>
+                <img src="/static/img/top_fon.jpg" class="img-fluid" style="width: 100%">
+            </div>
     {% endblock nav %}
     {% block content %}
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row justify-content-start">
                 {% for category, sub_category in all_categories.items %}
                 <div class="h3 text-bold">{{ category }}</div>
               {% for sub in sub_category %}
-              <div class="col-md-3 mb-4">
+              <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
                   <div class="card h-100" style="width: 100%;">
                       <a href="{% url 'products' sub.id %}">
                           <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">
                       </a>
-                      <div class="card-body">
-                        <p class="card-text">{{sub.name}}</p>
+                      <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
+                          <center><p class="card-text-center">{{sub.name}}</p></center>
                       </div>
                   </div>
               </div>
               {% endfor %}
               {% endfor %}
             </div>
+            {% if news %}
             <div class="row justify-content-start">
-                {% if news %}
-                <h1>Новости бренда</h1>
-                {% for new in news %}
-                    <div class="card" style="width: 50rem; padding-top: 12px; padding-bottom: 12px; border-color: rgb(171, 120, 17)">
-                        <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="row justify-content-start">
-                            <div class="col-6 col-sm-3" style="color: rgb(171, 120, 17)">{{ new.author }} </div>
-                                <div class="col-6 col-sm-3">| {{ new.date_add }}</div>
+                <div class="col-auto me-auto align-self-end">
+                    <h3>Новости бренда</h3>
+                </div>
+                <div class="col-auto align-self-end">
+                    <h5><a href="#" style="color: rgb(171, 120, 17)">смотреть все</a></h5>
+                </div>
+            </div>
+            <div class="row justify-content-start">
+                <div class="col">
+                    {% for new in news %}
+                        <div class="card" style="width: 50rem; padding-top: 12px; padding-bottom: 12px; border-color: rgb(171, 120, 17); margin-bottom: 3rem">
+                            <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                <div class="col-6 col-sm-3" style="color: rgb(171, 120, 17)">{{ new.author }} </div>
+                                    <div class="col-6 col-sm-3">| {{ new.date_add }}</div>
+                                </div>
+                                <h5 class="card-title">{{ new.header }}</h5>
+                                <p class="card-text">{{ new.text }}</p>
+                                <a href="#" class="btn btn-primary">Подробнее</a>
                             </div>
-                            <h5 class="card-title">{{ new.header }}</h5>
-                            <p class="card-text">{{ new.text }}</p>
-                            <a href="#" class="btn btn-primary">Подробнее</a>
                         </div>
-                    </div>
-                {% endfor %}
-                {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="col">
+                    {% for new in news %}
+                        <div class="card" style="border: 0">
+                            <div class="card-body">
+                                <div class="row justify-content-start">
+                                    <div class="col" style="color: rgb(171, 120, 17)">{{ new.author }}| {{ new.date_add }} </div>
+                                </div>
+                                <h5 class="card-title">{{ new.header }}</h5>
+                                <p class="card-text">{{ new.text }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     {% endblock content %}
