@@ -3,27 +3,31 @@
 <html lang="en">
     <body>
     {% block nav %}
-     <div class="bg-body-tertiary">
+    <div>
+         <div class="bg-body-tertiary" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; font-size: larger">
             <ul class="nav justify-content-center">
                 {% for category in all_categories %}
               <li class="nav-item" style="z-index:2">
-                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' category.id %}">{{category.name}}</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' category.id %}" style="color: white">{{category.name}}</a>
               </li>
                 {% endfor %}
             </ul>
+         </div>
+        <div>
+            <img src="/static/img/top_fon.jpg" class="img-fluid" style="width: 100%">
         </div>
-            <div>
-                <img src="/static/img/top_fon.jpg" class="img-fluid" style="width: 100%">
-            </div>
+    </div>
     {% endblock nav %}
     {% block content %}
         <div class="container">
             <div class="row justify-content-start">
                 {% for category, sub_category in all_categories.items %}
+                {% if sub_category %}
                 <div class="h3 text-bold">{{ category }}</div>
+                {% endif %}
               {% for sub in sub_category %}
               <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
-                  <div class="card h-100" style="width: 100%;">
+                  <div class="card h-100" style="width: 100%; --bs-card-border-color: 0;">
                       <a href="{% url 'products' sub.id %}">
                           <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">
                       </a>
@@ -37,17 +41,18 @@
             </div>
             {% if news %}
             <div class="row justify-content-start">
-                <div class="col-auto me-auto align-self-end">
+                <div class="col-md-4 align-self-end">
                     <h3>Новости бренда</h3>
                 </div>
-                <div class="col-auto align-self-end">
+                <div class="col-md-4 ms-auto align-self-end">
                     <h5><a href="#" style="color: rgb(171, 120, 17)">смотреть все</a></h5>
                 </div>
             </div>
             <div class="row justify-content-start">
                 <div class="col">
                     {% for new in news %}
-                        <div class="card" style="width: 50rem; padding-top: 12px; padding-bottom: 12px; border-color: rgb(171, 120, 17); margin-bottom: 3rem">
+                        <div class="card" style="max-width: 40vw; min-width: 18rem; padding-top: 12px; padding-bottom: 12px;
+                        border-color: rgb(171, 120, 17); margin-bottom: 3rem">
                             <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <div class="row justify-content-start">
