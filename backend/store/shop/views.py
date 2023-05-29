@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Product, CategoryProduct, ClothingCategories, Collection, News
 from django.views.generic import ListView, DetailView, TemplateView
 from cart.forms import CartAddProductForm
+from django.db.models import Q
 
 # class ProductsListView(ListView):
 #     model = Product
@@ -88,3 +89,28 @@ class FirstPage(TemplateView):
             'next_news': next_news,
         }
         return context
+
+
+def search(request):
+    search_query = request.GET.get('search', '') # передаётся имя ввода (строка поиска)
+
+   #TODO Переписать на теги
+    all_categories = {client_category: client_category.categoryproduct_set.all() for client_category in ClothingCategories.objects.filter()}
+    news = News.objects.all()
+    last_news = list(news[:1])
+    next_news = list(news[1:4])
+
+# если значение search_query существует (в строку поиска введён текст) ищем в нужных полях введённый текст
+    if search_query:
+        # Q(позволяет илспользовать "И", "ИЛИ")
+        products = Product.objects.filter(Q(name__icontains=search_query) | Q(name__icontains=search_query.capitalize())
+                                   | Q(name__icontains=search_query.casefold()))
+    else:
+        products = Product.objects.all()
+    context = {'products': products,
+               'all_categories': all_categories,
+               'last_news': last_news,
+               'next_news': next_news,
+               'news': news,
+               }
+    return render(request, 'search.html', context)
