@@ -90,6 +90,7 @@ class News(models.Model):
 
     class Meta:
         verbose_name = 'Новости'
+        ordering = ['-id']
 
     def __str__(self):
         return self.header

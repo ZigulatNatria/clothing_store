@@ -79,8 +79,12 @@ class FirstPage(TemplateView):
         context = super().get_context_data(**kwargs)
         # context['all_categories'] = set_categories_clothing
         news = News.objects.all()
+        last_news = list(news[:1])
+        next_news = list(news[1:4])
         context = {
             'all_categories': set_categories_clothing,
             'news': news,
+            'last_news': last_news,
+            'next_news': next_news,
         }
         return context
