@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 <html lang="en">
     <body>
-    {% block nav %}
+    {% block content %}
     <div style="position: relative">
          <div class="bg-body-tertiary" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; font-size: larger">
             <ul class="nav justify-content-center">
@@ -13,10 +13,16 @@
                 {% endfor %}
             </ul>
          </div>
-        <div class="row justify-content-center" style="position: absolute; top: 20%; left: 15%">
-            <div class="col-lg-4" style="text-align: start; font-size: xx-large;">
-                <p style="color: white;">Бренд нижнего белья</p>
-                <p style="color: white;">и домашней одежды</p>
+        <div>
+            <img src="/static/img/top_fon.jpg" class="img-fluid" style="width: 100%">
+        </div>
+        <div class="container">
+        <div class="row justify-content-center" style="position: absolute; top: 20%">
+            <div class="col-lg-4" style="text-align: center">
+                <h3>
+                    <p style="color: white;">Бренд нижнего белья</p>
+                    <p style="color: white;">и домашней одежды</p>
+                </h3>
                 <div class="row justify-content-start">
                     <div class="col">
                         <a class="btn btn-light" style="border-radius: 20px">ПЕРЕЙТИ -----></a>
@@ -24,15 +30,9 @@
                 </div>
             </div>
             <div class="col-lg-7">
-                <img src="/static/img/img_top.jpg" style="width: 70%">
+                <img src="/static/img/img_top.jpg" style="width: 100%">
             </div>
-        </div>
-        <div>
-            <img src="/static/img/top_fon.jpg" class="img-fluid" style="width: 100%">
-        </div>
-    </div>
-    {% endblock nav %}
-    {% block content %}
+
         <div class="container">
             <div class="row justify-content-start">
                 {% for category, sub_category in all_categories.items %}
@@ -96,6 +96,12 @@
                 </div>
             </div>
         </div>
+
+        </div>
+
+    </div>
+    </div>
     {% endblock content %}
+
     </body>
 </html>
