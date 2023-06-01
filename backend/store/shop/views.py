@@ -30,7 +30,8 @@ def product_categories(request, category_product_id):
 
 
 class ProductDetail(DetailView):
-    template_name = 'product_detail.html'
+    # template_name = 'product_detail.html'
+    template_name = 'detail.html'
     context_object_name = 'product'
     queryset = Product.objects.all()
 
