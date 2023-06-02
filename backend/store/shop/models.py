@@ -64,8 +64,8 @@ class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='Наименование товара')
     vendor_code = models.CharField(max_length=100, unique=True, verbose_name='Артикул')
     price = models.FloatField(verbose_name='цена')
-    colors = models.TextField(verbose_name='цвет') #TODO ссылки/картинки на другой аналогичный товар
-    size = models.TextField(verbose_name='размер') #TODO выпадающий список
+    colors = models.TextField(verbose_name='цвет')
+    size = models.TextField(verbose_name='размер')
     stock_availability = models.ForeignKey('Stock', on_delete=models.CASCADE, verbose_name='Наличие на складе', null=True, blank=True)
     description = models.TextField(verbose_name='Описание товара')
     compound = models.TextField(verbose_name='Состав и уход')

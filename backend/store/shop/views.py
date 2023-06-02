@@ -43,6 +43,14 @@ class ProductDetail(DetailView):
         product = self.get_object()   #Берём объект
         return self.get_queryset().filter(collection=product.collection.id)   #можно писать collection или collection_id
 
+    def color(self):
+        product = self.get_object()
+        return self.get_queryset().filter(name=product.name)
+
+    def all_size_color(self):
+        product = self.get_object()
+        return self.get_queryset().filter(colors=product.colors)
+
     def nav(self):
         clothing = ClothingCategories.objects.all()
         return clothing

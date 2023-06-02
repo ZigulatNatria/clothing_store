@@ -37,10 +37,18 @@
                      <h3>{{ product.name }}</h3>
                      <p style="color: darkgrey;">Арт.{{ product.vendor_code }}</p>
                      <h3 style="color: saddlebrown;">{{ product.price }} ₽</h3>
-                     <p>Цвет: {{ product.colors }}</p>
-                     <p>Размер: {{ product.size }}</p>
-                     <button type="button" class="btn btn-primary">Купить</button>
-                     <button type="button" class="btn btn-warning">Избранное</button>
+                     <div class="row">
+                         Цвет:
+                         {% for col in view.color %}
+                            <a style="width: 20%" href="{% url 'product' col.id %}"><img style="width: 100%" src="{{MEDIA_URL}} {{col.photo_1.url}}" /></a>
+                         {% endfor %}
+                     </div>
+                     <div class="row">
+                        Размер:
+                         {% for size_color in view.all_size_color %}
+                            {{ size_color.size }}
+                         {% endfor %}
+                     </div>
                      <p>Описание: {{ product.description }}</p>
                      <p>Состав и уход: {{ product.compound }}</p>
                      <p>Размер на модели: {{ product.size_on_model }}</p>
