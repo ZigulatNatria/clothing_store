@@ -39,14 +39,16 @@
                      <h3 style="color: saddlebrown;">{{ product.price }} ₽</h3>
                      <div class="row">
                          Цвет:
-                         {% for col in view.color %}
-                            <a style="width: 20%" href="{% url 'product' col.id %}"><img style="width: 100%" src="{{MEDIA_URL}} {{col.photo_1.url}}" /></a>
-                         {% endfor %}
+                          {% for color in view.color %}
+                            {% if color %}
+                            <img style="width: 20%" src="{{MEDIA_URL}} {{color.photo_1.url}}">
+                            {% endif %}
+                          {% endfor %}
                      </div>
                      <div class="row">
                         Размер:
-                         {% for size_color in view.all_size_color %}
-                            {{ size_color.size }}
+                         {% for size_product in view.size %}
+                            {{ size_product.size }}
                          {% endfor %}
                      </div>
                      <p>Описание: {{ product.description }}</p>

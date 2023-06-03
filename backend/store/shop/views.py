@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import Product, CategoryProduct, ClothingCategories, Collection, News
+from .models import Product, CategoryProduct, ClothingCategories, Collection, News, Color, \
+    Size
 from django.views.generic import ListView, DetailView, TemplateView
 from cart.forms import CartAddProductForm
 from django.db.models import Q
+from itertools import groupby
 
 # class ProductsListView(ListView):
 #     model = Product
@@ -45,11 +47,30 @@ class ProductDetail(DetailView):
 
     def color(self):
         product = self.get_object()
-        return self.get_queryset().filter(name=product.name)
+        color_product = Color.objects.filter(vendor_code=product.vendor_code)
+        return color_product
 
-    def all_size_color(self):
+    def size(self):
         product = self.get_object()
-        return self.get_queryset().filter(colors=product.colors)
+        size_product = Size.objects.filter(vendor_code=product.vendor_code)
+        return size_product
+
+    # def color(self):
+    #     product = self.get_object()
+    #     all_color = self.get_queryset().filter(name=product.name)
+    #     colors = []
+    #     for color in all_color:
+    #         item = color.colors
+    #         colors.append(item)
+    #     # unique_color = [el for el, _ in groupby(colors)]
+    #     unique_color = set(colors)
+    #     print(unique_color)
+    #     # return unique_color
+    #     return all_color
+    #
+    # def all_size_color(self):
+    #     product = self.get_object()
+    #     return self.get_queryset().filter(colors=product.colors)
 
     def nav(self):
         clothing = ClothingCategories.objects.all()
