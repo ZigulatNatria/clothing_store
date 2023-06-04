@@ -46,19 +46,35 @@
                           {% endfor %}
                      </div>
                      <div class="row">
-                        Размер:
+                         <p>Размер:<br>
                          {% for size_product in view.size %}
                             {{ size_product.size }}
                          {% endfor %}
+                         </p>
                      </div>
-                     <p>Описание: {{ product.description }}</p>
-                     <p>Состав и уход: {{ product.compound }}</p>
-                     <p>Размер на модели: {{ product.size_on_model }}</p>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Как выбрать размер?</a>
+                     <div class="row">
+                        <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
+                          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Описание</a>
+                          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile">Характеристики</a>
+                          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Состав и уход</a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="tab-content" id="nav-tabContent">
+                          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">{{ product.description }}</div>
+                          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">{{ product.size_on_model }}</div>
+                          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">{{ product.compound }}</div>
+                        </div>
+                      </div>
+
+                    <div class="row">
                      <form action="{% url 'cart_add' product.id %}" method="post">
                         {{ view.product_add_cart }}
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary" style="margin-top: 10px">Добавить в корзину</button>
                     </form>
+                    </div>
                  </div>
             </div>
             <div class="row">
@@ -147,6 +163,28 @@
             $('#description').html($(this).attr('alt'));
         });
         </script>
+
+        <!-- Модальное окно -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Выбор размера</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+              </div>
+              <div class="modal-body">
+                    <p>
+                        Очень интересный рассказ о том ак выбрать размер одежды
+                    </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
 
         {% endblock content %}
     </body>
