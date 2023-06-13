@@ -36,8 +36,8 @@
                 <div class="col">
                      <h3>{{ product.name }}</h3>
                      <p style="color: darkgrey;">Арт.{{ product.vendor_code }}</p>
-                     <h3 style="color: saddlebrown;">{{ product.price }} ₽</h3>
-                     <div class="row">
+                     <h3 style="color: saddlebrown; margin-bottom: 1rem">{{ product.price }} ₽</h3>
+                     <div class="row" style="margin-bottom: 1rem">
                          Цвет:
                           {% for color in view.color %}
                             {% if color %}
@@ -52,7 +52,9 @@
                          {% endfor %}
                          </p>
                      </div>
-                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Как выбрать размер?</a>
+                     <div class="row" style="margin-bottom: 1rem">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Как выбрать размер?</a>
+                     </div>
                      <div class="row">
                         <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
                           <a class="list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Описание</a>
@@ -60,7 +62,7 @@
                           <a class="list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">Состав и уход</a>
                         </div>
                       </div>
-                      <div class="row">
+                     <div class="row" style="margin-bottom: 1rem">
                         <div class="tab-content" id="nav-tabContent">
                           <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">{{ product.description }}</div>
                           <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
@@ -89,9 +91,9 @@
                           </div>
                           <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">{{ product.compound }}</div>
                         </div>
-                      </div>
+                     </div>
 
-                    <div class="row">
+                    <div class="row align-items-center">
                         <div class="col">
                              <form action="{% url 'cart_add' product.id %}" method="post">
                                  <div hidden>{{ view.product_add_cart }}</div>
@@ -114,8 +116,8 @@
                                 >Добавить в корзину</button>
                             </form>
                         </div>
-                        <div class="col">
-                            избранное
+                        <div class="col" >
+                           В избранное <img src="/static/img/favorite.png" style="width: 10%">
                         </div>
                     </div>
                  </div>
