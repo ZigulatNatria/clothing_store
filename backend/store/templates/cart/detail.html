@@ -10,6 +10,7 @@
                 <th>Фото</th>
                 <th>Товар</th>
                 <th>Колличество</th>
+                <th>Цвет</th>
                 <th>Стоимость</th>
                 <th>Общая стоимость</th>
             </tr>
@@ -21,6 +22,7 @@
                         <td style="width: 10%"><img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."></td>
                         <td>{{ product.name }}</td>
                         <td>{{ item.quantity }}</td>
+                        <td>{{ item.color }}</td>
                         <td class="num">₽ {{ item.price }}</td>
                         <td class="num">₽ {{ item.total_price }}</td>
                         <td><a class="btn btn-primary btn-sm" href="{% url 'cart_remove' product.id %}">Убрать из корзины</a></td>

@@ -96,7 +96,7 @@
                     <div class="row align-items-center">
                         <div class="col">
                              <form action="{% url 'cart_add' product.id %}" method="post">
-                                 <div hidden>{{ view.product_add_cart }}</div>
+                                 <div >{{ view.product_add_cart }}</div>
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-primary" style="margin-top: 10px;
                                                                                     --bs-btn-color: #fff;
