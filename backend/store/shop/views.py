@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import Product, CategoryProduct, ClothingCategories, Collection, News, Color, \
     Size
 from django.views.generic import ListView, DetailView, TemplateView
-from cart.forms import CartAddProductForm
+# from cart.forms import CartAddProductForm
+from django import forms
 from django.db.models import Q
 from itertools import groupby
 
@@ -37,18 +38,46 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
     queryset = Product.objects.all()
 
+    # def product_add_cart(self):
+    #     cart_product_form = CartAddProductForm()
+    #     return cart_product_form
+
+    def color(self):
+        product = self.get_object()
+        color_product = Color.objects.filter(vendor_code=product.vendor_code)
+        return color_product
+
+    def forma(self):
+        class CartAddProductForm(forms.Form):
+            PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
+            colors = self.color()
+            c = []
+            for col in colors:
+                c.append(col.name_color)
+
+            print(c)
+            PRODUCT_COLOR_CHOICES = [(k, k) for k in c]
+            print(PRODUCT_QUANTITY_CHOICES)
+            print(PRODUCT_COLOR_CHOICES)
+
+            quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+            color = forms.TypedChoiceField(label='Цвет', choices=PRODUCT_COLOR_CHOICES, coerce=str)
+            # color = forms.TypedChoiceField(label='Цвет', choices=self.choices(), coerce=str)
+            update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+        return CartAddProductForm()
+
     def product_add_cart(self):
-        cart_product_form = CartAddProductForm()
+        cart_product_form = self.forma()
         return cart_product_form
 
     def all_product_collection(self): #Получение всех коллекций
         product = self.get_object()   #Берём объект
         return self.get_queryset().filter(collection=product.collection.id)   #можно писать collection или collection_id
 
-    def color(self):
-        product = self.get_object()
-        color_product = Color.objects.filter(vendor_code=product.vendor_code)
-        return color_product
+    # def color(self):
+    #     product = self.get_object()
+    #     color_product = Color.objects.filter(vendor_code=product.vendor_code)
+    #     return color_product
 
     def size(self):
         product = self.get_object()
