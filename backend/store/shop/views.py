@@ -33,36 +33,51 @@ def product_categories(request, category_product_id):
 
 
 class ProductDetail(DetailView):
-    # template_name = 'product_detail.html'
     template_name = 'detail.html'
     context_object_name = 'product'
     queryset = Product.objects.all()
-
-    # def product_add_cart(self):
-    #     cart_product_form = CartAddProductForm()
-    #     return cart_product_form
 
     def color(self):
         product = self.get_object()
         color_product = Color.objects.filter(vendor_code=product.vendor_code)
         return color_product
 
+    def size(self):
+        product = self.get_object()
+        size_product = Size.objects.filter(vendor_code=product.vendor_code)
+        return size_product
+
+    # def my_size(self):
+    #     size_product = self.size()
+    #     size_list = []
+    #     for size in size_product:
+    #         size_list.append(size.size)
+    #
+    #     PRODUCT_SIZE_CHOICES = [(s, s) for s in size_list]
+    #
+    #     return PRODUCT_SIZE_CHOICES
+
     def forma(self):
         class CartAddProductForm(forms.Form):
             PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
-            colors = self.color()
-            c = []
-            for col in colors:
-                c.append(col.name_color)
 
-            print(c)
-            PRODUCT_COLOR_CHOICES = [(k, k) for k in c]
-            print(PRODUCT_QUANTITY_CHOICES)
-            print(PRODUCT_COLOR_CHOICES)
+            colors_product = self.color()
+            color_list = []
+            for col in colors_product:
+                color_list.append(col.name_color)
+
+            PRODUCT_COLOR_CHOICES = [(k, k) for k in color_list]
+
+            size_product = self.size()
+            size_list = []
+            for size in size_product:
+                size_list.append(size.size)
+
+            PRODUCT_SIZE_CHOICES = [(s, s) for s in size_list]
 
             quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
             color = forms.TypedChoiceField(label='Цвет', choices=PRODUCT_COLOR_CHOICES, coerce=str)
-            # color = forms.TypedChoiceField(label='Цвет', choices=self.choices(), coerce=str)
+            size = forms.TypedChoiceField(label='Размер', choices=PRODUCT_SIZE_CHOICES, coerce=str)
             update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
         return CartAddProductForm()
 
@@ -73,33 +88,6 @@ class ProductDetail(DetailView):
     def all_product_collection(self): #Получение всех коллекций
         product = self.get_object()   #Берём объект
         return self.get_queryset().filter(collection=product.collection.id)   #можно писать collection или collection_id
-
-    # def color(self):
-    #     product = self.get_object()
-    #     color_product = Color.objects.filter(vendor_code=product.vendor_code)
-    #     return color_product
-
-    def size(self):
-        product = self.get_object()
-        size_product = Size.objects.filter(vendor_code=product.vendor_code)
-        return size_product
-
-    # def color(self):
-    #     product = self.get_object()
-    #     all_color = self.get_queryset().filter(name=product.name)
-    #     colors = []
-    #     for color in all_color:
-    #         item = color.colors
-    #         colors.append(item)
-    #     # unique_color = [el for el, _ in groupby(colors)]
-    #     unique_color = set(colors)
-    #     print(unique_color)
-    #     # return unique_color
-    #     return all_color
-    #
-    # def all_size_color(self):
-    #     product = self.get_object()
-    #     return self.get_queryset().filter(colors=product.colors)
 
     def nav(self):
         clothing = ClothingCategories.objects.all()
