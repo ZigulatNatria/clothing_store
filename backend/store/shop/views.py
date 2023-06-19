@@ -58,22 +58,23 @@ class ProductDetail(DetailView):
     #     return PRODUCT_SIZE_CHOICES
 
     def forma(self):
+
         class CartAddProductForm(forms.Form):
-            PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
+            PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 2)]
 
             colors_product = self.color()
             color_list = []
             for col in colors_product:
                 color_list.append(col.name_color)
 
-            PRODUCT_COLOR_CHOICES = [(k, k) for k in color_list]
+            PRODUCT_COLOR_CHOICES = [(str(k), str(k)) for k in color_list]
 
             size_product = self.size()
             size_list = []
             for size in size_product:
                 size_list.append(size.size)
 
-            PRODUCT_SIZE_CHOICES = [(s, s) for s in size_list]
+            PRODUCT_SIZE_CHOICES = [(str(s), str(s)) for s in size_list]
 
             quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
             color = forms.TypedChoiceField(label='Цвет', choices=PRODUCT_COLOR_CHOICES, coerce=str)

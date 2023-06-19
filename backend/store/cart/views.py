@@ -3,13 +3,11 @@ from django.views.decorators.http import require_POST
 from shop.models import Product
 from .cart import Cart
 from .forms import CartAddProductForm
-from shop.views import ProductDetail
 
 @require_POST
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Product, id=product_id)
-    # form = ProductDetail.forma(request.POST)
     form = CartAddProductForm(request.POST)
     if form.is_valid():
         cd = form.cleaned_data
