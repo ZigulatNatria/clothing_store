@@ -43,8 +43,8 @@
                      <p>Состав и уход: {{ product.compound }}</p>
                      <p>Размер на модели: {{ product.size_on_model }}</p>
                      <form action="{% url 'cart_add' product.id %}" method="post">
+                         {% csrf_token %}
                         {{ view.product_add_cart }}
-                        {% csrf_token %}
                         <button type="submit" class="btn btn-primary" style="margin-top: 10px">Добавить в корзину</button>
                      </form>
                  </div>

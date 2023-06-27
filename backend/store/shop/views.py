@@ -47,16 +47,6 @@ class ProductDetail(DetailView):
         size_product = Size.objects.filter(vendor_code=product.vendor_code)
         return size_product
 
-    # def my_size(self):
-    #     size_product = self.size()
-    #     size_list = []
-    #     for size in size_product:
-    #         size_list.append(size.size)
-    #
-    #     PRODUCT_SIZE_CHOICES = [(s, s) for s in size_list]
-    #
-    #     return PRODUCT_SIZE_CHOICES
-
     def forma(self):
 
         class CartAddProductForm(forms.Form):
