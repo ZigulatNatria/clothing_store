@@ -43,7 +43,9 @@
             <img src="/static/img/sign.png" style="width: 100%">
         </li>
         <li style="width: 4%">
-            <img src="/static/img/favorite.png" style="width: 100%">
+            <a href="{% url 'favorites_detail' %}">
+                <img src="/static/img/favorite.png" style="width: 100%">
+            </a>
         </li>
         <li style="width: 4%">
             {% with total_items=cart|length %}
