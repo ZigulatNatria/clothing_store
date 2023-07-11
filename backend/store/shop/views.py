@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
 from .models import Product, CategoryProduct, ClothingCategories, Collection, News, Color, \
-    Size
+    Size, Favorites
 from django.views.generic import ListView, DetailView, TemplateView
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 # from cart.forms import CartAddProductForm
 from django import forms
 from django.db.models import Q
@@ -152,3 +156,30 @@ def search(request):
                'news': news,
                }
     return render(request, 'search.html', context)
+
+
+@require_POST
+@login_required
+def user_follow(request):
+    user_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if user_id and action:
+        try:
+            user = User.objects.get(id=user_id)
+            if action == 'follow':
+                Favorites.objects.get_or_create(user=request.user, product=Product)
+            else:
+                Favorites.objects.filter(user=request.user, product=Product).delete()
+            return JsonResponse({'status': 'ok'})
+        except Product.DoesNotExist:
+            return JsonResponse({'status': 'error'})
+    return JsonResponse({'status': 'error'})
+
+
+@login_required
+def add_subscribe(request):
+    user = request.user
+    product = Product.objects.get(pk=request.POST['id_cat'])
+    subscribe = Favorites(user=user, product=product)
+    subscribe.save()
+    return redirect(f'/shop/product/{product.id}/')

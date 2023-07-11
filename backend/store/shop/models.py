@@ -1,6 +1,7 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
-# Create your models here.
+
 class ClientCategory(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='Название категории')
 
@@ -83,7 +84,7 @@ class Collection(models.Model):
 
 class Color(models.Model):
     vendor_code = models.CharField(max_length=100, verbose_name='Артикул товара')
-    name_color = models.CharField(max_length=100, unique=True, verbose_name='Название цвета')
+    name_color = models.CharField(max_length=100, verbose_name='Название цвета')
     photo_1 = models.ImageField(verbose_name='Фото 1')
     photo_2 = models.ImageField(verbose_name='Фото 2')
     photo_3 = models.ImageField(verbose_name='Фото 3')
@@ -147,3 +148,28 @@ class News(models.Model):
 
     def __str__(self):
         return self.header
+
+
+class Favorites(models.Model):
+    user = models.ForeignKey('auth.User', related_name='Пользователь', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', related_name='Товар', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['-created']),
+        ]
+        ordering = ['-created']
+
+    def __str__(self):
+        return f'{self.user} follows {self.product}'
+
+
+# user_model = get_user_model()
+# user_model.add_to_class(
+#     'following',
+#     models.ManyToManyField('self',
+#                            through=Favorites,
+#                            related_name='Избранное',
+#                            symmetrical=False)
+# )
