@@ -12,15 +12,25 @@
             </tr>
             </thead>
             <tbody>
-            {% for item in cart %}
-                {% with product=item.product %}
-                    <tr>
-                        <td style="width: 10%"><img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."></td>
-                        <td>{{ product.name }}</td>
-                        <td><a class="btn btn-primary btn-sm" href="{% url 'favorites_remove' product.id %}">Убрать из избранного</a></td>
-                    </tr>
-                {% endwith %}
-            {% endfor %}
+                {% if products %}
+                    {% for product in products %}
+                        {% if request.user == product.user %}
+                            <tr>
+                                <td style="width: 10%"><img src="{{MEDIA_URL}}{{product.product.photo_1.url}}" class="d-block w-100" alt="..."></td>
+                                <td>{{ product.product.name }}</td>
+                                <td>
+                                    <form action="{% url 'delete_subscribe' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="id_favor" value={{product.id}}>
+                                    <button type="submit" style="background-color: #fff0; border: #fff0; width: 50px">Удалить</button>
+                                </form>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    Нет товаров
+                {% endif %}
             </tbody>
         </table>
         <p class="text-right">

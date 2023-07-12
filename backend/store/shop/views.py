@@ -51,6 +51,14 @@ class ProductDetail(DetailView):
         size_product = Size.objects.filter(vendor_code=product.vendor_code)
         return size_product
 
+
+    def favorite(self):
+        product = self.get_object()
+        favor = Favorites.objects.filter(product=product)
+        # favor = Favorites.objects.filter(user=request.user)
+        print(favor)
+        return favor
+
     def forma(self):
 
         class CartAddProductForm(forms.Form):
@@ -183,3 +191,17 @@ def add_subscribe(request):
     subscribe = Favorites(user=user, product=product)
     subscribe.save()
     return redirect(f'/shop/product/{product.id}/')
+
+
+@login_required
+def delete_subscribe(request):
+    favor = Favorites.objects.get(pk=request.POST['id_favor'])
+    subscribe = Favorites.objects.filter(id=favor.id).delete()
+    return redirect(f'/shop/product/favorite/')
+
+
+class FavoriteListView(ListView):
+    model = Favorites
+    template_name = 'favorites/detail.html'
+    context_object_name = 'products'
+    queryset = Favorites.objects.all()
