@@ -153,8 +153,8 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = 'sign/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/sign/login/'
+LOGIN_REDIRECT_URL = '/profile/'
 
 
 CART_SESSION_ID = 'cart'    #Сессия для корзины покупок

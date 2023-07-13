@@ -22,12 +22,12 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shop/', include('shop.urls')),
+    path('', include('shop.urls')),
     path('cart/', include('cart.urls')),
     path('api/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('sign/', include('sign.urls')),
-    path('', include('protect.urls')),
+    path('profile/', include('protect.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
 ] #+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # без этой настройки не будет отображения картинки
 
