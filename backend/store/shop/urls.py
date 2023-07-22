@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import category_product_list_view, ProductDetail, product_categories, \
     ClothingCategoriesView, FirstPage, FavoriteListView, search, user_follow, add_subscribe, delete_subscribe
+from .pay import Pay
 
 
 urlpatterns =[
@@ -14,5 +15,6 @@ urlpatterns =[
     path('categories_global/<int:category_clothing_id>/', category_product_list_view, name='category_clothing'),
     # path('categories/', CategoryProductListView.as_view(), name='categories'),
     path('', FirstPage.as_view(), name='categories_global'),
-    path('search/', search, name='search')
+    path('search/', search, name='search'),
+    path('pay/', Pay.as_view(), name='pay'),
 ]
