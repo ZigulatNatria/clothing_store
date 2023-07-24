@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "base.html" %}
+    <body>
+        {% block content %}
+        <div class="container">
+             <table class="table">
+                <thead>
+                    <tr>
+                        <th>Заказ</th>
+                        <th>Продукт</th>
+                        <th>Цена</th>
+                        <th>Колличство</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for order in view.all_items_order %}
+                    <tr>
+                        <th>{{ order.order }}</th>
+                        <th>{{ order.product.name }}</th>
+                        <th>{{ order.price }}</th>
+                        <th>{{ order.quantity }}</th>
+                        <th><a href="{% url 'orders:order_update' order.id %}">{{ order.order.paid }}</a></th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+             </table>
+        </div>
+        {% endblock content %}
+    </body>
+</html>
