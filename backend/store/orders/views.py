@@ -22,7 +22,9 @@ def order_create(request):
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
-                                         quantity=item['quantity']
+                                         quantity=item['quantity'],
+                                         color=item['color'],
+                                         size=item['size']
                                          )
 
             total = cart.get_total_price()

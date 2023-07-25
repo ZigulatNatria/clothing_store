@@ -17,12 +17,12 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>{{ order.first_name }}</th>
-                        <th>{{ order.last_name }}</th>
-                        <th>{{ order.email }}</th>
-                        <th>{{ order.address }}</th>
-                        <th>{{ order.postal_code }}</th>
-                        <th>{{ order.city }}</th>
+                        <td>{{ order.first_name }}</td>
+                        <td>{{ order.last_name }}</th>
+                        <td>{{ order.email }}</td>
+                        <td>{{ order.address }}</td>
+                        <td>{{ order.postal_code }}</td>
+                        <td>{{ order.city }}</td>
                     </tr>
                 </tbody>
              </table>
@@ -33,17 +33,21 @@
                         <th>Продукт</th>
                         <th>Цена</th>
                         <th>Колличство</th>
+                        <th>Цвет</th>
+                        <th>Размер</th>
                         <th>Статус</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for order in view.all_items_order %}
                     <tr>
-                        <th>{{ order.order }}</th>
-                        <th>{{ order.product.name }}</th>
-                        <th>{{ order.price }}</th>
-                        <th>{{ order.quantity }}</th>
-                        <th><a href="{% url 'orders:order_update' order.id %}">{{ order.order.paid }}</a></th>
+                        <td>{{ order.order }}</td>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.price }}</td>
+                        <td>{{ order.quantity }}</td>
+                        <td>{{ order.color }}</td>
+                        <td>{{ order.size }}</td>
+                        <td><a href="{% url 'orders:order_update' order.id %}">{{ order.order.paid }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
