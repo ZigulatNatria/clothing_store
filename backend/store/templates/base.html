@@ -12,59 +12,67 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container">
-    <a class="navbar-brand" href="{% url 'categories_global' %}">Я стихия</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Доставка</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Оплата</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Возврат</a>
-        </li>
-          <li class="nav-item">
-          <a class="nav-link disabled">Контакты</a>
-        </li>
-      </ul>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: end">
-        <li>
-            <form class="search-form" action="{% url 'search' %}">
-              <input class="search-input" type="search" placeholder="поиск..." name="search">
-              <i class="fa fa-search"></i>
-            </form>
-        </li>
-        <li style="width: 4%">
-            <a href="/profile/">
-                <img src="/static/img/sign.png" style="width: 100%">
+          <div class="container">
+            <a class="navbar-brand" href="{% url 'categories_global' %}">
+                <img src="/static/ico/logo.png">
             </a>
-        </li>
-        <li style="width: 4%">
-            <a href="{% url 'favorite' %}">
-                <img src="/static/img/favorite.png" style="width: 100%">
-            </a>
-        </li>
-        <li style="width: 4%">
-            {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                    <img src="/static/img/cart_false.png" style="width: 100%">
-                    <a href="{% url 'cart_detail' %}">
-                        {{ cart.get_total_price }} ₽
-                    </a>
-                {% else %}
-                    <img src="/static/img/cart_false.png" style="width: 100%">
-                {% endif %}
-            {% endwith %}
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Доставка</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Оплата</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled">Возврат</a>
+                </li>
+                  <li class="nav-item">
+                  <a class="nav-link disabled">Контакты</a>
+                </li>
+              </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: end;">
+                    <li>
+                        <form class="search-form" action="{% url 'search' %}">
+                          <input class="search-input" type="search" placeholder="поиск..." name="search">
+                          <i class="fa fa-search"></i>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                    <li>
+                        <a href="/profile/">
+                            <img src="/static/ico/profile.png">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                    <li>
+                        <a href="{% url 'favorite' %}">
+                            <img src="/static/ico/favorite.png">
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                    <li>
+                        {% with total_items=cart|length %}
+                            {% if cart|length > 0 %}
+                                <img src="/static/ico/cart.png">
+                                <a href="{% url 'cart_detail' %}">
+                                    {{ cart.get_total_price }} ₽
+                                </a>
+                            {% else %}
+                                <img src="/static/ico/cart.png">
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
         {% block nav %}
         {% endblock nav %}
     {% block content %}
