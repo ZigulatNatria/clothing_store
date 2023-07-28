@@ -18,17 +18,23 @@ def order_create(request):
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
+            try:
+                order.authorUser = request.user
+            except Exception:
+                order.authorUser = None
+            order.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'],
                                          color=item['color'],
-                                         size=item['size']
+                                         size=item['size'],
+                                         user=order.authorUser.username
                                          )
 
             total = cart.get_total_price()
-            print(order.id)
+            print(f'http://127.0.0.1:8000/orders/order_detail/{order.id}/')
             payment = Payment.create({
                 "amount": {
                     "value": f'{total}',
@@ -45,12 +51,6 @@ def order_create(request):
             cart.clear()
             return HttpResponseRedirect(payment.confirmation.confirmation_url)
 
-            # return render(request,
-            #               'orders/pay.html',
-            #               {'order': order,
-            #                'cart': cart,
-            #                }
-            #               )
     else:
         form = OrderCreateForm()
     return render(request,

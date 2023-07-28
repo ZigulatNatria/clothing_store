@@ -13,6 +13,7 @@
                         <th>Адрес</th>
                         <th>Индекс</th>
                         <th>Город</th>
+                        <th>пользователь</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,7 +24,7 @@
                         <td>{{ order.address }}</td>
                         <td>{{ order.postal_code }}</td>
                         <td>{{ order.city }}</td>
-                        <td>{{ order.authorUser.username }}</td>
+                        <td>{{ order.authorUser }}</td>
                     </tr>
                 </tbody>
              </table>

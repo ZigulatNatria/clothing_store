@@ -3,11 +3,35 @@
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-4">
-                <h2>Страница авторизованного пользователя {{request.user.username}}</h2>
-                <p>Здесь может содержаться персональная информация для каждого пользователя</p>
-                <button> <a href="/sign/logout/">Выйти</a> </button>
+            <div class="col-7">
+                <h2>Заказы {{request.user.username}}</h2>
             </div>
         </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Товар</th>
+                <th>Цвет</th>
+                <th>Размер</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for order in view.user_orders %}
+                    <tr>
+                        <td style="width: 10%">
+                            <a href="{% url 'product' order.product.id %}">
+                                <img src="{{MEDIA_URL}}{{order.product.photo_1.url}}" class="d-block w-100" alt="...">
+                            </a>
+                        </td>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.color }}</td>
+                        <td>{{ order.size }}</td>
+                        <td>{{ order.product.id }}</td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button> <a href="/sign/logout/">Выйти</a> </button>
     </div>
 {% endblock %}
