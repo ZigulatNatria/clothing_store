@@ -14,7 +14,7 @@
             </ul>
          </div>
          <div>
-            <img src="/static/img/top_fon.jpg" class="img-fluid" style="width: 100%">
+            <img src="/static/img/banner.jpg" class="img-fluid" style="width: 100%">
          </div>
 
             <div class="row justify-content-center" style="position: absolute; top: 20%; padding-right: 0; padding-left: 0; margin-right: 15vw; margin-left: 15vw;">
@@ -27,19 +27,21 @@
                     </h3>
                     <div class="row justify-content-start">
                         <div class="col">
-                            <a class="btn btn-light" style="border-radius: 20px">ПЕРЕЙТИ -----></a>
+                            <a class="btn btn-light" style="border-radius: 20px">ПЕРЕЙТИ <img src="/static/ico/arrow.png"></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <img src="/static/img/img_top.jpg" style="width: 100%">
+                <div class="col-lg-7" style="margin-bottom: 3rem">
+                    <img src="/static/img/photo.jpg" style="width: 90%">
                 </div>
 
 
                 <div class="row justify-content-start">
                     {% for category, sub_category in all_categories.items %}
                     {% if sub_category %}
+                    <!--
                     <div class="h3 text-bold">{{ category }}</div>
+                    -->
                     {% endif %}
                   {% for sub in sub_category %}
                   <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
