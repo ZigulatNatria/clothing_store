@@ -81,10 +81,11 @@
         </nav>
         {% block nav %}
         {% endblock nav %}
-    {% block content %}
-    {% endblock content %}
-    <footer class="py-2 bg-body-tertiary" style="position: fixed; bottom: 0; left: 0; width: 100%">
-        <div class="container px-4 px-lg-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
-    </footer>
+        {% block content %}
+        {% endblock content %}
+        <footer class="py-2 bg-body-tertiary" style="position: fixed; bottom: 0; left: 0; width: 100%;
+                                                    background-color: #9DA89C!important">
+            <div class="container px-4 px-lg-5"><p class="m-0 text-center">Copyright &copy; Your Website 2022</p></div>
+        </footer>
     </body>
 </html>

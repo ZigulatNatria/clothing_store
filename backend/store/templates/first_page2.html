@@ -63,23 +63,24 @@
                         <h3>Новости бренда</h3>
                     </div>
                     <div class="col-md-4 ms-auto align-self-end">
-                        <h5><a href="#" style="color: rgb(171, 120, 17)">смотреть все</a></h5>
+                        <h5><a href="#" style="color: #825934">Смотреть все</a></h5>
                     </div>
                 </div>
-                <div class="row justify-content-start">
+                <div class="row justify-content-start" style="margin-bottom: 3rem">
                     <div class="col">
                         {% for new in last_news %}
-                            <div class="card" style="max-width: 40vw; min-width: 18rem; padding-top: 12px; padding-bottom: 12px;
-                            border-color: rgb(171, 120, 17); margin-bottom: 3rem">
+                            <div class="card" style="max-width: 40vw; min-width: 18rem; padding-top: 12px;
+                            padding-bottom: 12px; padding-left: 12px; padding-right: 12px; border-color: #825934;
+                            border-width: 2px; margin-bottom: 3rem">
                                 <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <div class="row justify-content-start">
-                                    <div class="col-6 col-sm-3" style="color: rgb(171, 120, 17)">{{ new.author }} </div>
+                                    <div class="col-6 col-sm-3" style="color: #825934">{{ new.author }} </div>
                                         <div class="col-6 col-sm-3">| {{ new.date_add }}</div>
                                     </div>
                                     <h5 class="card-title">{{ new.header }}</h5>
                                     <p class="card-text">{{ new.text }}</p>
-                                    <a href="#" class="btn btn-primary">Подробнее</a>
+                                    <a class="btn" style="border-radius: 20px; border-color: #000000">Подробнее <img src="/static/ico/arrow.png"></a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -90,7 +91,7 @@
                             <div class="card" style="border: 0">
                                 <div class="card-body">
                                     <div class="row justify-content-start">
-                                        <div class="col" style="color: rgb(171, 120, 17)">{{ new.author }}| {{ new.date_add }} </div>
+                                        <div class="col" style="color: #825934">{{ new.author }}| {{ new.date_add }} </div>
                                     </div>
                                     <h5 class="card-title">{{ new.header }}</h5>
                                     <p class="card-text">{{ new.text }}</p>
@@ -103,6 +104,5 @@
         </div>
     </div>
     {% endblock content %}
-
     </body>
 </html>
