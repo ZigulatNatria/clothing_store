@@ -12,80 +12,112 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-          <div class="container">
-            <a class="navbar-brand" href="{% url 'categories_global' %}">
-                <img src="/static/ico/logo.png">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Доставка</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Оплата</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link disabled">Возврат</a>
-                </li>
-              </ul>
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                  <a class="nav-link disabled">Контакты</a>
-                </li>
-              </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: end;">
-                    <li>
-                        <form class="search-form" action="{% url 'search' %}">
-                          <input class="search-input" type="search" placeholder="поиск..." name="search">
-                          <i class="fa fa-search"></i>
-                        </form>
-                    </li>
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
-                    <li>
-                        <a href="/profile/">
-                            <img src="/static/ico/profile.png">
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
-                    <li>
-                        <a href="{% url 'favorite' %}">
-                            <img src="/static/ico/favorite.png">
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
-                    <li>
-                        {% with total_items=cart|length %}
-                            {% if cart|length > 0 %}
-                                <img src="/static/ico/cart.png">
-                                <a href="{% url 'cart_detail' %}">
-                                    {{ cart.get_total_price }} ₽
-                                </a>
-                            {% else %}
-                                <img src="/static/ico/cart.png">
-                            {% endif %}
-                        {% endwith %}
-                    </li>
-              </ul>
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'categories_global' %}">
+                    <img src="/static/ico/logo.png">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Доставка</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Оплата</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link">Возврат</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link">Контакты</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: end;">
+                        <li>
+                            <form class="search-form" action="{% url 'search' %}">
+                              <input class="search-input" type="search" placeholder="поиск..." name="search">
+                              <i class="fa fa-search"></i>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                        <li>
+                            <a href="/profile/">
+                                <img src="/static/ico/profile.png">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                        <li>
+                            <a href="{% url 'favorite' %}">
+                                <img src="/static/ico/favorite.png">
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                        <li>
+                            {% with total_items=cart|length %}
+                                {% if cart|length > 0 %}
+                                    <img src="/static/ico/cart.png">
+                                    <a href="{% url 'cart_detail' %}">
+                                        {{ cart.get_total_price }} ₽
+                                    </a>
+                                {% else %}
+                                    <img src="/static/ico/cart.png">
+                                {% endif %}
+                            {% endwith %}
+                        </li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </nav>
         {% block nav %}
         {% endblock nav %}
         {% block content %}
         {% endblock content %}
         <footer class="py-2 bg-body-tertiary" style="position: fixed; bottom: 0; left: 0; width: 100%;
-                                                    background-color: #9DA89C!important">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center">Copyright &copy; Your Website 2022</p></div>
+                                                    background-color: #9DA89C!important; padding-top: 0!important;
+                                                    padding-bottom: 0!important;">
+            <nav class="navbar navbar-expand-lg" style="background-color: #9DA89C">
+                <div class="container">
+                    <a class="navbar-brand" href="{% url 'categories_global' %}" style="width: 5%; height: 5%; margin-right: 10%">
+                        <img src="/static/ico/logo-2.png" style="width: 100%; height: 100%">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContentBottom">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #FFFFFF">Доставка</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #FFFFFF">Оплата</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #FFFFFF">Возврат</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #FFFFFF">Контакты</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #FFFFFF">Политика конфиденциальности</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" style="color: #FFFFFF">2023 © Все права защищены</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+           </nav>
         </footer>
     </body>
 </html>
