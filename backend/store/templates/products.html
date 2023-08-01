@@ -5,17 +5,17 @@
     {% block content %}
         <div class="container">
             <div class="row">
-              {% for product in products %}
-              <div class="col-md-3 mb-4">
-                  <div class="card h-100" style="width: 100%;">
-                      <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <p class="card-text">{{product.name}}</p>
-                        <p class="card-text">{{product.price}} ₽</p>
-                      </div>
-                  </div>
-              </div>
-              {% endfor %}
+                {% for product in products %}
+                    <div class="col-md-3 mb-4">
+                        <div class="card h-100" style="width: 100%;">
+                            <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <p class="card-text">{{product.name}}</p>
+                                <p class="card-text">{{product.price}} ₽</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     {% endblock content %}

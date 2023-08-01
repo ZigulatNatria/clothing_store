@@ -114,7 +114,6 @@ def category_product_list_view(request, category_clothing_id):
     return render(request, 'categories.html', context)
 
 
-
 class ClothingCategoriesView(ListView):
     model = ClothingCategories
     template_name = 'categories_global.html'

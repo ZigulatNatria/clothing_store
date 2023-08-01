@@ -20,27 +20,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="#">Доставка</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link" href="#">Оплата</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link">Возврат</a>
                         </li>
-                    </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link">Контакты</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: end;">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
                         <li>
                             <form class="search-form" action="{% url 'search' %}">
                               <input class="search-input" type="search" placeholder="поиск..." name="search">
@@ -48,21 +42,21 @@
                             </form>
                         </li>
                     </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
                         <li>
                             <a href="/profile/">
                                 <img src="/static/ico/profile.png">
                             </a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
                         <li>
                             <a href="{% url 'favorite' %}">
                                 <img src="/static/ico/favorite.png">
                             </a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">
                         <li>
                             {% with total_items=cart|length %}
                                 {% if cart|length > 0 %}
