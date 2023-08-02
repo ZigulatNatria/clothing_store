@@ -30,8 +30,14 @@ def product_categories(request, category_product_id):
     category = CategoryProduct.objects.get(pk=category_product_id)
     products = Product.objects.filter(category_product=category.id)
     clothing = ClothingCategories.objects.all()
+    news = News.objects.all()
+    last_news = list(news[:1])
+    next_news = list(news[1:4])
     context = {'products': products,
                'clothing': clothing,
+               'news': news,
+               'last_news': last_news,
+               'next_news': next_news,
                }
     return render(request, 'products_categories.html', context)
 

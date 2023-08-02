@@ -3,6 +3,7 @@
 <html lang="en">
     <body>
     {% block content %}
+    <!--
         <div style="position: relative">
              <div class="bg-body-tertiary" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; font-size: larger">
                  <ul class="nav justify-content-center">
@@ -33,8 +34,26 @@
                  <div class="col-lg-7" style="margin-bottom: 3rem" >
                      <img src="/static/img/photo.jpg" style="width: 90%">
                  </div>
-
-
+                -->
+            <div style="font-size: larger; background-color: #9DA89C; margin-bottom: 3rem">
+                <ul class="nav justify-content-center">
+                    {% for cat in clothing %}
+                        <li class="nav-item" style="z-index:2">
+                           <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}"
+                              style="color: white">
+                               {{cat.name}}
+                               <img src="/static/ico/downmenu.png">
+                           </a>
+                        </li>
+                    {% endfor %}
+                    <li class="nav-item" style="z-index:2">
+                        <a class="nav-link active" aria-current="page" href="#" style="color: white">
+                            Капсулы
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="container">
                  <div class="row justify-content-start">
                      {% for product in products %}
                          <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
@@ -42,20 +61,66 @@
                                  <a href="{% url 'product' product.id %}">
                                      <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">
                                  </a>
-                                 <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
-                                     <center>
-                                         <p class="card-text-center">
-                                             {{product.name}} <br>
-                                             {{product.price}} ₽
-                                         </p>
-                                     </center>
+                                 <div class="card-body" style="position: absolute; bottom: 0; background-color: #FFFFFF; width: 100%">
+                                     <div class="row">
+                                         <div class="col">
+                                             {{product.name}}
+                                             <div style="color: #825934; font-weight: bold">{{product.price}} ₽</div>
+                                         </div>
+                                         <div class="col text-end">
+                                             <img src="/static/ico/favorite.png">
+                                         </div>
+                                     </div>
                                  </div>
                              </div>
                           </div>
                      {% endfor %}
                  </div>
+                <!--
+                 {% if news %}
+                    <div class="row justify-content-start">
+                        <div class="col-md-4 align-self-end">
+                            <h3>Новости бренда</h3>
+                        </div>
+                        <div class="col-md-4 ms-auto align-self-end">
+                            <h5><a href="#" style="color: #825934">Смотреть все</a></h5>
+                        </div>
+                    </div>
+                    <div class="row justify-content-start" style="margin-bottom: 3rem">
+                        <div class="col">
+                            {% for new in last_news %}
+                                <div class="card" style="max-width: 40vw; min-width: 18rem; padding-top: 12px;
+                                padding-bottom: 12px; padding-left: 12px; padding-right: 12px; border-color: #825934;
+                                border-width: 2px; margin-bottom: 3rem">
+                                    <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <div class="row justify-content-start">
+                                        <div class="col-6 col-sm-3" style="color: #825934">{{ new.author }} </div>
+                                            <div class="col-6 col-sm-3">| {{ new.date_add }}</div>
+                                        </div>
+                                        <h5 class="card-title">{{ new.header }}</h5>
+                                        <p class="card-text">{{ new.text }}</p>
+                                        <a class="btn" style="border-radius: 20px; border-color: #000000">Подробнее <img src="/static/ico/arrow.png"></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="col">
+                            {% for new in next_news %}
+                                <div class="card" style="border: 0">
+                                    <div class="card-body">
+                                        <div class="row justify-content-start">
+                                            <div class="col" style="color: #825934">{{ new.author }}| {{ new.date_add }} </div>
+                                        </div>
+                                        <h5 class="card-title">{{ new.header }}</h5>
+                                        <p class="card-text">{{ new.text }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        -->
              </div>
-        </div>
     {% endblock content %}
     </body>
 </html>
