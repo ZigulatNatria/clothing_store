@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Product, CategoryProduct, ClothingCategories, Collection, News, Color, \
     Size, Favorites
+from .filters import ProductFilter
 from django.views.generic import ListView, DetailView, TemplateView
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -28,7 +29,9 @@ from itertools import groupby
 
 def product_categories(request, category_product_id):
     category = CategoryProduct.objects.get(pk=category_product_id)
-    products = Product.objects.filter(category_product=category.id)
+    products = ProductFilter(request.GET, Product.objects.filter(category_product=category.id))
+    # print(products_filter.qs)
+    # products = Product.objects.filter(category_product=category.id)
     clothing = ClothingCategories.objects.all()
     news = News.objects.all()
     last_news = list(news[:1])

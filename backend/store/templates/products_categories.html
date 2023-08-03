@@ -54,8 +54,18 @@
                 </ul>
             </div>
             <div class="container">
+                <form method="GET">
+                    <div class="mb-3">
+                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        {{ products.form.colors }}
+                        {{ products.form.size }}
+                        {{ products.form.price }}
+                    </div>
+                     <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы, придётся делать самому -->
+                    <input type="submit" value="Найти">
+                </form>
                  <div class="row justify-content-start">
-                     {% for product in products %}
+                     {% for product in products.qs %}
                          <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
                              <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                                  <a href="{% url 'product' product.id %}">
