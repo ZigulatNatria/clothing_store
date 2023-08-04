@@ -54,14 +54,9 @@
                 </ul>
             </div>
             <div class="container">
-                <form method="GET">
-                    <div class="mb-3">
-                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        {{ products.form.colors }}
-                        {{ products.form.size }}
-                        {{ products.form.price }}
-                    </div>
-                     <!-- Форму от фильтров за нас сделает django. А вот кнопку, увы, придётся делать самому -->
+                <form>
+                    {% csrf_token %}
+                     {{ products.form }}
                     <input type="submit" value="Найти">
                 </form>
                  <div class="row justify-content-start">
