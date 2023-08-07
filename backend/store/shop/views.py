@@ -30,8 +30,6 @@ from itertools import groupby
 def product_categories(request, category_product_id):
     category = CategoryProduct.objects.get(pk=category_product_id)
     products = ProductFilter(request.GET, Product.objects.filter(category_product=category.id))
-    print(products.qs)
-    # products = Product.objects.filter(category_product=category.id)
     clothing = ClothingCategories.objects.all()
     news = News.objects.all()
     last_news = list(news[:1])

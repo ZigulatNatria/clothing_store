@@ -11,14 +11,12 @@ class CartAddProductForm(forms.Form):
     for col in colors:
         color_list.append(col.name_color)
     PRODUCT_COLOR_CHOICES = [(str(k), str(k)) for k in color_list]
-    print(PRODUCT_COLOR_CHOICES)
 
     sizes = Size.objects.all()
     size_list = []
     for size in sizes:
         size_list.append(size.size)
     PRODUCT_SIZE_CHOICES = [(str(s), str(s)) for s in size_list]
-    print(PRODUCT_SIZE_CHOICES)
 
     quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
     color = forms.TypedChoiceField(label='Цвет', choices=PRODUCT_COLOR_CHOICES, coerce=str)

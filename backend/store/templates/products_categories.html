@@ -56,8 +56,19 @@
             <div class="container">
                 <form>
                     {% csrf_token %}
-                     {{ products.form }}
-                    <input type="submit" value="Найти">
+                    <div class="row" style="margin-bottom: 1rem">
+                        <div class="col-lg-2">
+                             {{ products.form.size.label_tag }}
+                             {{ products.form.size }}
+                        </div>
+                        <div class="col-lg-2">
+                             {{ products.form.colors.label_tag }}
+                             {{ products.form.colors }}
+                        </div>
+                        <div class="col-lg-2 align-self-end">
+                            <input class="btn" type="submit" value="Найти" style="background-color: #825934; color: #FFFFFF">
+                        </div>
+                    </div>
                 </form>
                  <div class="row justify-content-start">
                      {% for product in products.qs %}
