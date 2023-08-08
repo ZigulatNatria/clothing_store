@@ -18,10 +18,13 @@
 		</style>
 
         <div class="bg-body-tertiary">
-            <ul class="nav justify-content-center" style="background-color: silver; margin-bottom: 1rem;">
+            <ul class="nav justify-content-center" style="background-color: #9DA89C; margin-bottom: 1rem;">
                 {% for cat in view.nav %}
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}" style="color: snow;">{{cat.name}}</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}" style="color: snow;">
+                    {{cat.name}}
+                    <img src="/static/ico/downmenu.png">
+                </a>
               </li>
                 {% endfor %}
             </ul>
@@ -170,7 +173,7 @@
                 <div class="col-2">
                     <p>Товары из коллекции</p>
                 </div>
-                <div class="row justify-content-center">
+                <div class="row justify-content-center" style="z-index: 0">
                     <div class="col-6" style="margin-bottom: 10vh">
                         <div id="newsticker-demo">
                             <div class="newsticker-jcarousellite">
