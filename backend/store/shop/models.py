@@ -15,7 +15,7 @@ class ClientCategory(models.Model):
 
 class ClothingCategories(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='название раздела категории одежды')
-    client_category = models.ForeignKey('ClientCategory', on_delete=models.CASCADE)
+    client_category = models.ForeignKey('ClientCategory', on_delete=models.CASCADE, verbose_name='мужская или женская')
     photo = models.ImageField(verbose_name='фото категрии', null=True, blank=True)
 
     class Meta:
@@ -29,7 +29,8 @@ class ClothingCategories(models.Model):
 class CategoryProduct(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='категория одежды')
     photo = models.ImageField(verbose_name='фото категрии', null=True, blank=True)
-    client_category = models.ForeignKey('ClothingCategories', on_delete=models.CASCADE)
+    client_category = models.ForeignKey('ClothingCategories', on_delete=models.CASCADE, verbose_name='раздел категории одежды')
+    popular = models.BooleanField(default=False, verbose_name='популярное')
 
     class Meta:
         verbose_name = 'категория одежды'
@@ -162,10 +163,10 @@ class Product(models.Model):
 
 class News(models.Model):
     header = models.CharField(max_length=100, verbose_name='заголовок новости')
-    text = models.TextField()
+    text = models.TextField(verbose_name='текст новости')
     author = models.CharField(max_length=50, verbose_name='автор новости')
     date_add = models.DateField(auto_now=True)
-    image = models.ImageField()
+    image = models.ImageField(verbose_name='фото новости')
 
     class Meta:
         verbose_name = 'новость'

@@ -52,17 +52,19 @@
                         <div class="h3 text-bold">{{ category }}</div>
                         -->
                         {% endif %}
-                      {% for sub in sub_category %}
-                      <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
-                          <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
-                              <a href="{% url 'products' sub.id %}">
-                                  <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">
-                              </a>
-                              <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
-                                  <center><p class="card-text-center">{{sub.name}}</p></center>
-                              </div>
-                          </div>
-                      </div>
+                        {% for sub in sub_category %}
+                            {% if sub.popular %}
+                                <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
+                                    <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
+                                        <a href="{% url 'products' sub.id %}">
+                                            <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">
+                                        </a>
+                                        <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
+                                            <center><p class="card-text-center">{{sub.name}}</p></center>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                       {% endfor %}
                       {% endfor %}
                     </div>

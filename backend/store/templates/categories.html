@@ -3,27 +3,36 @@
 <html lang="en">
     <body>
     {% block nav %}
-     <div class="bg-body-tertiary">
-            <ul class="nav justify-content-center">
-                {% for cat in clothing %}
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}">{{cat.name}}</a>
-              </li>
-                {% endfor %}
-            </ul>
-        </div>
+     <div style="font-size: larger; background-color: #9DA89C; margin-bottom: 3rem">
+         <ul class="nav justify-content-center">
+             {% for cat in clothing %}
+                 <li class="nav-item" style="z-index:2">
+                     <a class="nav-link active" aria-current="page"
+                        href="{% url 'category_clothing' cat.id %}" style="color: white">
+                        {{cat.name}}
+                        <img src="/static/ico/downmenu.png">
+                     </a>
+                 </li>
+             {% endfor %}
+             <li class="nav-item" style="z-index:2">
+                <a class="nav-link active" aria-current="page" href="#" style="color: white">
+                    Капсулы
+                </a>
+             </li>
+         </ul>
+     </div>
     {% endblock nav %}
     {% block content %}
         <div class="container">
             <div class="row">
               {% for category in category_products %}
-              <div class="col-md-3 mb-4">
-                  <div class="card h-100" style="width: 100%;">
+              <div class="col-md-3 mb-4" style="margin-bottom: 3rem!important;">
+                  <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                       <a href="{% url 'products' category.id %}">
                           <img src="{{MEDIA_URL}}{{category.photo.url}}" class="card-img-top" alt="...">
                       </a>
-                      <div class="card-body">
-                        <p class="card-text">{{category.name}}</p>
+                      <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
+                          <center><p class="card-text-center">{{category.name}}</p></center>
                       </div>
                   </div>
               </div>
