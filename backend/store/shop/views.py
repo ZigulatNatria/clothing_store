@@ -86,8 +86,24 @@ class ProductDetail(DetailView):
             PRODUCT_SIZE_CHOICES = [(str(s), str(s)) for s in size_list]
 
             quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
-            color = forms.TypedChoiceField(label='Цвет', choices=PRODUCT_COLOR_CHOICES, coerce=str)
-            size = forms.TypedChoiceField(label='Размер', choices=PRODUCT_SIZE_CHOICES, coerce=str)
+            color = forms.TypedChoiceField(label='Цвет',
+                                           choices=PRODUCT_COLOR_CHOICES,
+                                           coerce=str,
+                                           widget=forms.Select(
+                                               attrs={
+                                                   "class": "form-select",
+                                               }
+                                           )
+                                           )
+            size = forms.TypedChoiceField(label='Размер',
+                                          choices=PRODUCT_SIZE_CHOICES,
+                                          coerce=str,
+                                          widget=forms.Select(
+                                              attrs={
+                                                  "class": "form-select",
+                                              }
+                                          )
+                                          )
             update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
         return CartAddProductForm()
 

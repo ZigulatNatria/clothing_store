@@ -27,6 +27,11 @@
                 </a>
               </li>
                 {% endfor %}
+                <li class="nav-item" style="z-index:2">
+                  <a class="nav-link active" aria-current="page" href="#" style="color: white">
+                      Капсулы
+                  </a>
+              </li>
             </ul>
         </div>
         <div class="container">
@@ -144,7 +149,20 @@
                     <div class="row align-items-center">
                         <div class="col">
                              <form action="{% url 'cart_add' product.id %}" method="post">
+                                 <!--
                                  <div >{{ view.product_add_cart }}</div>
+                                 -->
+                                 <div class="row">
+                                     <div class="col">
+                                         <div>{{ view.product_add_cart.color.label_tag }}</div>
+                                         <div>{{ view.product_add_cart.color }}</div>
+                                     </div>
+                                     <div class="col">
+                                         <div>{{ view.product_add_cart.size.label_tag }}</div>
+                                         <div>{{ view.product_add_cart.size }}</div>
+                                         <div style="visibility: hidden">{{ view.product_add_cart.quantity }}</div>
+                                      </div>
+                                 </div>
                                 {% csrf_token %}
                                 <button type="submit" class="btn" style="margin-top: 10px;
                                                                          border-radius: 20px;
