@@ -7,13 +7,13 @@
         <table class="table">
             <thead>
             <tr>
-                <th>Фото</th>
-                <th>Товар</th>
+                <th></th>
+                <th>Наименование</th>
                 <th>Колличество</th>
-                <th>Цвет</th>
                 <th>Размер</th>
-                <th>Стоимость</th>
-                <th>Общая стоимость</th>
+                <th>Цвет</th>
+                <th>Цена</th>
+                <th>Сумма</th>
             </tr>
             </thead>
             <tbody>
@@ -23,21 +23,44 @@
                         <td style="width: 10%"><img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."></td>
                         <td>{{ product.name }}</td>
                         <td>{{ item.quantity }}</td>
-                        <td>{{ item.color }}</td>
                         <td>{{ item.size }}</td>
+                        <td>{{ item.color }}</td>
                         <td class="num">₽ {{ item.price }}</td>
                         <td class="num">₽ {{ item.total_price }}</td>
-                        <td><a class="btn btn-primary btn-sm" href="{% url 'cart_remove' product.id %}">Убрать из корзины</a></td>
+                        <td>
+                            <a href="#">
+                                <img src="/static/ico/favorite (2).png">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'cart_remove' product.id %}">
+                                <img src="/static/ico/delete.png">
+                            </a>
+                        </td>
                     </tr>
                 {% endwith %}
             {% endfor %}
+            <!--
             <tr class="total">
-                <td>Всего</td>
+                <td>Итого</td>
                 <td colspan="4"></td>
                 <td class="num">₽ {{ cart.get_total_price }}</td>
             </tr>
+            -->
             </tbody>
         </table>
+        <div class="row justify-content-end">
+            <div class="col-4" style="text-align-last: right;">
+                <div class="row">
+                    <div class="col" style="font-size: x-large">
+                        Итого:
+                    </div>
+                    <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">
+                        {{ cart.get_total_price }} ₽
+                    </div>
+                </div>
+            </div>
+        </div>
         <p class="text-right">
             <a href="{% url 'categories_global' %}" class="button light">Продолжить просмотр товаров</a>
             <a href="{% url 'orders:order_create' %}" class="button">Оплата</a>
