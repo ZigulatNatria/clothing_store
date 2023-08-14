@@ -9,10 +9,10 @@
             <tr>
                 <th></th>
                 <th>Наименование</th>
-                <th>Колличество</th>
                 <th>Размер</th>
                 <th>Цвет</th>
                 <th>Цена</th>
+                <th>Кол-во</th>
                 <th>Сумма</th>
             </tr>
             </thead>
@@ -20,16 +20,19 @@
             {% for item in cart %}
                 {% with product=item.product %}
                     <tr>
-                        <td style="width: 10%"><img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."></td>
+                        <td style="width: 10%">
+                            <img src="{{MEDIA_URL}}{{product.photo_1.url}}"
+                                 class="d-block w-100" alt="..." style="border-radius: 10px">
+                        </td>
                         <td>{{ product.name }}</td>
-                        <td>{{ item.quantity }}</td>
                         <td>{{ item.size }}</td>
                         <td>{{ item.color }}</td>
-                        <td class="num">₽ {{ item.price }}</td>
-                        <td class="num">₽ {{ item.total_price }}</td>
+                        <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>
+                        <td>{{ item.quantity }}</td>
+                        <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>
                         <td>
                             <a href="#">
-                                <img src="/static/ico/favorite (2).png">
+                                <img src="/static/ico/favorite2.png">
                             </a>
                         </td>
                         <td>
