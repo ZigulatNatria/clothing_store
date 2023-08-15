@@ -3,6 +3,7 @@ from django.views.generic import ListView, UpdateView, DetailView
 import uuid
 from django.http import HttpResponseRedirect
 
+from shop.models import ClothingCategories
 from .models import OrderItem, Order
 from .forms import OrderCreateForm, OrderUpdateForm
 from cart.cart import Cart
@@ -13,6 +14,7 @@ Configuration.secret_key = 'test_00aCox20214_yPcvdR8-Gc79fpbkgMyh0ZgdVxH5Y1Y'
 
 
 def order_create(request):
+    clothing = ClothingCategories.objects.all()
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
@@ -55,7 +57,7 @@ def order_create(request):
         form = OrderCreateForm()
     return render(request,
                   'orders/create.html',
-                  {'cart': cart, 'form': form}
+                  {'cart': cart, 'form': form, 'clothing': clothing}
                   )
 
 

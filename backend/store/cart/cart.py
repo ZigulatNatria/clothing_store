@@ -21,7 +21,8 @@ class Cart(object):
         Добавить продукт в корзину или обновить его количество.
         """
         product_id = str(product.id)
-        if product_id not in self.cart:
+        # if product_id not in self.cart:
+        if product_id:
             self.cart[product_id] = {'quantity': 0,
                                      'price': str(product.price),
                                      'color': color,

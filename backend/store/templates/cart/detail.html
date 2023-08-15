@@ -2,8 +2,43 @@
 {% load static %}
 
 {% block content %}
+    <div style="font-size: larger; background-color: #9DA89C; margin-bottom: 1rem">
+        <ul class="nav justify-content-center">
+            {% for cat in clothing %}
+                <li class="nav-item" style="z-index:2">
+                   <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}"
+                      style="color: white">
+                       {{cat.name}}
+                       <img src="/static/ico/downmenu.png">
+                   </a>
+                </li>
+            {% endfor %}
+            <li class="nav-item" style="z-index:2">
+                <a class="nav-link active" aria-current="page" href="#" style="color: white">
+                    Капсулы
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="container">
-        <h1>Ваша корзина</h1>
+        <ul class="nav justify-content-start" style="margin-bottom: 2rem">
+            <li class="nav-item" style="z-index:2">
+               <a class="nav-link active" aria-current="page" href="#" style="padding-left: 0; color: #000000; text-decoration: underline;">
+                   Условия доставки
+               </a>
+            </li>
+            <li class="nav-item" style="z-index:2">
+               <a class="nav-link active" aria-current="page" href="#" style="color: #000000; text-decoration: underline;">
+                   Оплата товара
+               </a>
+            </li>
+            <li class="nav-item" style="z-index:2">
+               <a class="nav-link active" aria-current="page" href="#" style="color: #000000; text-decoration: underline;">
+                   Возврат товара
+               </a>
+            </li>
+        </ul>
+        <h3>Корзина</h3>
         <table class="table">
             <thead>
             <tr>
@@ -65,8 +100,25 @@
             </div>
         </div>
         <p class="text-right">
+            <!--
             <a href="{% url 'categories_global' %}" class="button light">Продолжить просмотр товаров</a>
-            <a href="{% url 'orders:order_create' %}" class="button">Оплата</a>
+            -->
+            <a href="{% url 'orders:order_create' %}" class="btn" style="margin-top: 10px;
+                                                                         border-radius: 20px;
+                                                                                    --bs-btn-color: #FFFFFF;
+                                                                                    --bs-btn-bg: #825934;
+                                                                                    --bs-btn-border-color: #8b4513;
+                                                                                    --bs-btn-hover-color: #fff;
+                                                                                    --bs-btn-hover-bg: #b35c1e;
+                                                                                    --bs-btn-hover-border-color: #8b4513;
+                                                                                    --bs-btn-focus-shadow-rgb: 49,132,253;
+                                                                                    --bs-btn-active-color: #fff;
+                                                                                    --bs-btn-active-bg: #8b4513;
+                                                                                    --bs-btn-active-border-color: #8b4513;
+                                                                                    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                                                                                    --bs-btn-disabled-color: #fff;
+                                                                                    --bs-btn-disabled-bg: #8b4513;
+                                                                                    --bs-btn-disabled-border-color: #8b4513;">Перейти к оформлению</a>
         </p>
     </div>
 {% endblock %}

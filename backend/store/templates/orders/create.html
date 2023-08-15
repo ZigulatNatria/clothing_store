@@ -3,10 +3,29 @@
 {% extends "base.html" %}
     <body>
         {% block content %}
+        <div style="font-size: larger; background-color: #9DA89C; margin-bottom: 1rem">
+            <ul class="nav justify-content-center">
+                {% for cat in clothing %}
+                    <li class="nav-item" style="z-index:2">
+                       <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}"
+                          style="color: white">
+                           {{cat.name}}
+                           <img src="/static/ico/downmenu.png">
+                       </a>
+                    </li>
+                {% endfor %}
+                <li class="nav-item" style="z-index:2">
+                    <a class="nav-link active" aria-current="page" href="#" style="color: white">
+                        Капсулы
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div class="container">
-             <h1>Checkout</h1>
+             <h3>Оформление заказа</h3>
              <div class="order-info">
-                 <h3>Your order</h3>
+                 <h3>Товары</h3>
+                 <!--
                  <ul>
                      {% for item in cart %}
                          <li>
@@ -16,6 +35,67 @@
                      {% endfor %}
                  </ul>
                  <p>Total: ${{ cart.get_total_price }}</p>
+                 -->
+                 <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Наименование</th>
+                <th>Размер</th>
+                <th>Цвет</th>
+                <th>Цена</th>
+                <th>Кол-во</th>
+                <th>Сумма</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in cart %}
+                {% with product=item.product %}
+                    <tr>
+                        <td style="width: 10%">
+                            <img src="{{MEDIA_URL}}{{product.photo_1.url}}"
+                                 class="d-block w-100" alt="..." style="border-radius: 10px">
+                        </td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ item.size }}</td>
+                        <td>{{ item.color }}</td>
+                        <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>
+                        <td>{{ item.quantity }}</td>
+                        <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>
+                        <td>
+                            <a href="#">
+                                <img src="/static/ico/favorite2.png">
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'cart_remove' product.id %}">
+                                <img src="/static/ico/delete.png">
+                            </a>
+                        </td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+            <!--
+            <tr class="total">
+                <td>Итого</td>
+                <td colspan="4"></td>
+                <td class="num">₽ {{ cart.get_total_price }}</td>
+            </tr>
+            -->
+            </tbody>
+        </table>
+                 <div class="row justify-content-end">
+            <div class="col-4" style="text-align-last: right;">
+                <div class="row">
+                    <div class="col" style="font-size: x-large">
+                        Итого:
+                    </div>
+                    <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">
+                        {{ cart.get_total_price }} ₽
+                    </div>
+                </div>
+            </div>
+        </div>
              </div>
              <form method="post" class="order-form">
                  {{ form.as_p }}

@@ -4,13 +4,13 @@ from django.contrib.auth.models import User
 
 
 class Order(models.Model):
-    authorUser = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.EmailField()
-    address = models.CharField(max_length=250)
-    postal_code = models.CharField(max_length=20)
-    city = models.CharField(max_length=100)
+    authorUser = models.ForeignKey(User, verbose_name='клиент', on_delete=models.CASCADE, null=True)
+    name = models.CharField(verbose_name='ФИО', max_length=250)
+    # last_name = models.CharField(max_length=50)
+    email = models.EmailField(verbose_name='эл.почта')
+    address = models.CharField(verbose_name='адрес', max_length=350)
+    postal_code = models.CharField(verbose_name='индекс', max_length=20)
+    city = models.CharField(verbose_name='город', max_length=100)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
