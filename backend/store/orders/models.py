@@ -6,11 +6,13 @@ from django.contrib.auth.models import User
 class Order(models.Model):
     authorUser = models.ForeignKey(User, verbose_name='клиент', on_delete=models.CASCADE, null=True)
     name = models.CharField(verbose_name='ФИО', max_length=250)
+    country = models.CharField(verbose_name='страна', max_length=100, null=True)
     # last_name = models.CharField(max_length=50)
     email = models.EmailField(verbose_name='эл.почта')
     address = models.CharField(verbose_name='адрес', max_length=350)
     postal_code = models.CharField(verbose_name='индекс', max_length=20)
     city = models.CharField(verbose_name='город', max_length=100)
+    phone = models.IntegerField(verbose_name='номер телефона', null=True) #TODO переделать на PhoneNumberField
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)

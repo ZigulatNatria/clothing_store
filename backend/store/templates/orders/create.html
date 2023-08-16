@@ -98,7 +98,13 @@
         </div>
              </div>
              <form method="post" class="order-form">
-                 {{ form.as_p }}
+<!--                 {{ form.as_p }}-->
+                 <div class="row">
+                     <div class="col-4">
+                        {{ form.country.label }}
+                        {{ form.country }}
+                     </div>
+                 </div>
                     <p><input type="submit" value="Place order"></p>
                  {% csrf_token %}
              </form>
