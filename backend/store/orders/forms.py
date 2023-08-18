@@ -9,6 +9,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'Страна',
             }
         )
@@ -19,6 +20,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'Город',
             }
         )
@@ -29,6 +31,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'Индекс',
             }
         )
@@ -39,6 +42,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'Адрес',
             }
         )
@@ -49,6 +53,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'ФИО',
             }
         )
@@ -59,6 +64,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'Email',
 
             }
@@ -70,6 +76,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
                 "placeholder": 'Телефон',
             }
         )
