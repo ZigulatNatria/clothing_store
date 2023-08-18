@@ -9,6 +9,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'Страна',
             }
         )
     )
@@ -18,6 +19,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'Город',
             }
         )
     )
@@ -27,6 +29,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'Индекс',
             }
         )
     )
@@ -36,6 +39,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'Адрес',
             }
         )
     )
@@ -45,6 +49,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'ФИО',
             }
         )
     )
@@ -54,6 +59,8 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'Email',
+
             }
         )
     )
@@ -63,6 +70,7 @@ class OrderCreateForm(forms.ModelForm):
         widget=forms.TextInput(
             attrs={
                 "class": "form-control",
+                "placeholder": 'Телефон',
             }
         )
     )

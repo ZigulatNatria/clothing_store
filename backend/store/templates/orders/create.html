@@ -97,27 +97,39 @@
             </div>
         </div>
              </div>
-             <form method="post" class="order-form">
+             <form method="post" class="order-form" style="margin-bottom: 5rem;">
 <!--                 {{ form.as_p }}-->
-                 <div class="row">
+                 <div class="row"  style="margin-bottom: 1rem;">
                      <div class="col-4">
-                        {{ form.country.label }}
-                        {{ form.country }}
-                        {{ form.city.label }}
-                        {{ form.city }}
-                        {{ form.postal_code.label }}
-                        {{ form.postal_code }}
-                        {{ form.address.label }}
-                        {{ form.address }}
-                        {{ form.name.label }}
-                        {{ form.name }}
-                        {{ form.email.label }}
-                        {{ form.email }}
-                        {{ form.phone.label }}
-                        {{ form.phone }}
+                         <div style="margin-bottom: 1rem">{{ form.country }}</div>
+                         <div style="margin-bottom: 1rem">{{ form.city }}</div>
+                         <div style="margin-bottom: 1rem">{{ form.postal_code }}</div>
+                         <div style="margin-bottom: 1rem">{{ form.address }}</div>
+                         <div style="margin-bottom: 1rem">{{ form.name }}</div>
+                         <div style="margin-bottom: 1rem">{{ form.email }}</div>
+                         <div style="margin-bottom: 1rem">{{ form.phone }}</div>
                      </div>
                  </div>
-                    <p><input type="submit" value="Place order"></p>
+                    <div>
+                        <button type="submit" class="btn" style="margin-top: 10px;
+                                                                         border-radius: 20px;
+                                                                                    --bs-btn-color: #FFFFFF;
+                                                                                    --bs-btn-bg: #825934;
+                                                                                    --bs-btn-border-color: #8b4513;
+                                                                                    --bs-btn-hover-color: #fff;
+                                                                                    --bs-btn-hover-bg: #b35c1e;
+                                                                                    --bs-btn-hover-border-color: #8b4513;
+                                                                                    --bs-btn-focus-shadow-rgb: 49,132,253;
+                                                                                    --bs-btn-active-color: #fff;
+                                                                                    --bs-btn-active-bg: #8b4513;
+                                                                                    --bs-btn-active-border-color: #8b4513;
+                                                                                    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                                                                                    --bs-btn-disabled-color: #fff;
+                                                                                    --bs-btn-disabled-bg: #8b4513;
+                                                                                    --bs-btn-disabled-border-color: #8b4513;">
+                            Оформить заказ
+                        </button>
+                    </div>
                  {% csrf_token %}
              </form>
         </div>
