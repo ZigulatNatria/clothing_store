@@ -82,6 +82,18 @@ class OrderCreateForm(forms.ModelForm):
         )
     )
 
+    DELIVERY = [
+        ('Почтой России', 'Почтой России'),
+        ('Транспортной компанией', 'Транспортной компанией'),
+        ('Самовывоз', 'Самовывоз'),
+    ]
+
+    delivery = forms.MultipleChoiceField(
+        required=False,
+        widget=forms.CheckboxSelectMultiple,
+        choices=DELIVERY,
+    )
+
     class Meta:
         model = Order
         fields = [
