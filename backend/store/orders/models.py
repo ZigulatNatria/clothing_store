@@ -10,6 +10,10 @@ class Order(models.Model):
         ('Самовывоз', 'Самовывоз'),
     ]
 
+    CHOICES_PAY = [
+        ('Оплата картой онилайн', 'Оплата картой онилайн'),
+    ]
+
     authorUser = models.ForeignKey(User, verbose_name='клиент', on_delete=models.CASCADE, null=True)
     name = models.CharField(verbose_name='ФИО', max_length=250)
     country = models.CharField(verbose_name='страна', max_length=100, null=True)
@@ -20,6 +24,7 @@ class Order(models.Model):
     city = models.CharField(verbose_name='город', max_length=100)
     phone = models.IntegerField(verbose_name='номер телефона', null=True) #TODO переделать на PhoneNumberField
     delivery = models.CharField(verbose_name='способ доставки', max_length=100, choices=DELIVERY, null=True)
+    type_pay = models.CharField(verbose_name='способ оплаты', max_length=100, choices=CHOICES_PAY, null=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)

@@ -15,7 +15,8 @@ class OrderCreateForm(forms.ModelForm):
             'name',
             'email',
             'phone',
-            'delivery'
+            'delivery',
+            'type_pay'
         ]
 
         widgets = {
@@ -75,7 +76,9 @@ class OrderCreateForm(forms.ModelForm):
                 }
             ),
 
-            'delivery': forms.RadioSelect
+            'delivery': forms.RadioSelect,
+
+            'type_pay': forms.RadioSelect
 
         }
 
@@ -90,17 +93,17 @@ class OrderCreateForm(forms.ModelForm):
         #     )
         # )
 
-        # DELIVERY = [
-        #     ('Почтой России', 'Почтой России'),
-        #     ('Транспортной компанией', 'Транспортной компанией'),
-        #     ('Самовывоз', 'Самовывоз'),
+        # CHOICES_PAY = [
+        #     ('Оплата картой онилайн', 'Оплата картой онилайн'),
         # ]
         #
-        # delivery = forms.MultipleChoiceField(
+        # type_pay = forms.MultipleChoiceField(
         #     required=False,
-        #     widget=forms.CheckboxSelectMultiple,
-        #     choices=DELIVERY,
+        #     # widget=forms.CheckboxSelectMultiple,
+        #     widget=forms.RadioSelect,
+        #     choices=CHOICES_PAY,
         # )
+
 
 class OrderUpdateForm(forms.ModelForm):
 

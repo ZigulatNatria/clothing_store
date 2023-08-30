@@ -22,83 +22,64 @@
             </ul>
         </div>
         <div class="container">
-             <h3>Оформление заказа</h3>
-             <div class="order-info">
-                 <h3>Товары</h3>
-                 <!--
-                 <ul>
-                     {% for item in cart %}
-                         <li>
-                             {{ item.quantity }}x {{ item.product.name }}
-                             <span>${{ item.total_price }}</span>
-                         </li>
-                     {% endfor %}
-                 </ul>
-                 <p>Total: ${{ cart.get_total_price }}</p>
-                 -->
+             <div class="order-info" style="margin-bottom: 2rem;">
+                 <h3>Корзина</h3>
                  <table class="table">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Наименование</th>
-                <th>Размер</th>
-                <th>Цвет</th>
-                <th>Цена</th>
-                <th>Кол-во</th>
-                <th>Сумма</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for item in cart %}
-                {% with product=item.product %}
+                    <thead>
                     <tr>
-                        <td style="width: 10%">
-                            <img src="{{MEDIA_URL}}{{product.photo_1.url}}"
-                                 class="d-block w-100" alt="..." style="border-radius: 10px">
-                        </td>
-                        <td>{{ product.name }}</td>
-                        <td>{{ item.size }}</td>
-                        <td>{{ item.color }}</td>
-                        <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>
-                        <td>{{ item.quantity }}</td>
-                        <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>
-                        <td>
-                            <a href="#">
-                                <img src="/static/ico/favorite2.png">
-                            </a>
-                        </td>
-                        <td>
-                            <a href="{% url 'cart_remove' product.id %}">
-                                <img src="/static/ico/delete.png">
-                            </a>
-                        </td>
+                        <th></th>
+                        <th>Наименование</th>
+                        <th>Размер</th>
+                        <th>Цвет</th>
+                        <th>Цена</th>
+                        <th>Кол-во</th>
+                        <th>Сумма</th>
                     </tr>
-                {% endwith %}
-            {% endfor %}
-            <!--
-            <tr class="total">
-                <td>Итого</td>
-                <td colspan="4"></td>
-                <td class="num">₽ {{ cart.get_total_price }}</td>
-            </tr>
-            -->
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+                        {% with product=item.product %}
+                            <tr>
+                                <td style="width: 10%">
+                                    <img src="{{MEDIA_URL}}{{product.photo_1.url}}"
+                                         class="d-block w-100" alt="..." style="border-radius: 10px">
+                                </td>
+                                <td>{{ product.name }}</td>
+                                <td>{{ item.size }}</td>
+                                <td>{{ item.color }}</td>
+                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>
+                                <td>{{ item.quantity }}</td>
+                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>
+                                <td>
+                                    <a href="#">
+                                        <img src="/static/ico/favorite2.png">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'cart_remove' product.id %}">
+                                        <img src="/static/ico/delete.png">
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endwith %}
+                    {% endfor %}
+                    </tbody>
+                 </table>
                  <div class="row justify-content-end">
-            <div class="col-4" style="text-align-last: right;">
-                <div class="row">
-                    <div class="col" style="font-size: x-large">
-                        Итого:
-                    </div>
-                    <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">
-                        {{ cart.get_total_price }} ₽
-                    </div>
-                </div>
-            </div>
-        </div>
+                     <div class="col-4" style="text-align-last: right;">
+                         <div class="row">
+                             <div class="col" style="font-size: x-large">
+                                 Итого:
+                             </div>
+                             <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">
+                                 {{ cart.get_total_price }} ₽
+                             </div>
+                         </div>
+                     </div>
+                 </div>
              </div>
+            <h3>Оформление заказа</h3>
              <form method="post" class="order-form" style="margin-bottom: 5rem;">
-<!--                 {{ form.as_p }}-->
                  <div class="row"  style="margin-bottom: 1rem;">
                      <div class="col-4">
                          <div style="padding-top: 0.375rem; padding-right: 0.75rem; padding-bottom: 0.375rem; font-weight: bold">Адрес</div>
@@ -110,11 +91,15 @@
                          <div style="margin-bottom: 1rem">{{ form.name }}</div>
                          <div style="margin-bottom: 1rem">{{ form.email }}</div>
                          <div style="margin-bottom: 1rem">{{ form.phone }}</div>
-                         <div style="margin-bottom: 1rem">{{ form.delivery }}</div>
                      </div>
-                 </div>
-                    <div>
-                        <button type="submit" class="btn" style="margin-top: 10px;
+                     <div class="col-4 mx-auto">
+                         <div style="padding-top: 0.375rem; padding-right: 0.75rem; padding-bottom: 0.375rem; font-weight: bold">Выберите способ оплаты</div>
+                         <div style="margin-bottom: 1rem">{{ form.type_pay }}</div>
+                     </div>
+                     <div class="col-4 mx-auto">
+                         <div style="padding-top: 0.375rem; padding-right: 0.75rem; padding-bottom: 0.375rem; font-weight: bold">Выберите способ доставки</div>
+                         <div style="margin-bottom: 1rem">{{ form.delivery }}</div>
+                         <button type="submit" class="btn" style="margin-top: 10px;
                                                                          border-radius: 20px;
                                                                                     --bs-btn-color: #FFFFFF;
                                                                                     --bs-btn-bg: #825934;
@@ -132,7 +117,8 @@
                                                                                     --bs-btn-disabled-border-color: #8b4513;">
                             Оформить заказ
                         </button>
-                    </div>
+                     </div>
+                 </div>
                  {% csrf_token %}
              </form>
         </div>
