@@ -58,7 +58,6 @@ class ProductDetail(DetailView):
         size_product = Size.objects.filter(vendor_code=product.vendor_code)
         return size_product
 
-
     def favorite(self):
         product = self.get_object()
         favor = Favorites.objects.filter(product=product)
@@ -212,14 +211,14 @@ def add_subscribe(request):
     product = Product.objects.get(pk=request.POST['id_cat'])
     subscribe = Favorites(user=user, product=product)
     subscribe.save()
-    return redirect(f'/shop/product/{product.id}/')
+    return redirect(f'/product/{product.id}/')
 
 
 @login_required
 def delete_subscribe(request):
     favor = Favorites.objects.get(pk=request.POST['id_favor'])
     subscribe = Favorites.objects.filter(id=favor.id).delete()
-    return redirect(f'/shop/product/favorite/')
+    return redirect(f'/product/favorite/')
 
 
 class FavoriteListView(ListView):

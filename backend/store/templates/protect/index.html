@@ -2,18 +2,33 @@
 
 {% block content %}
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-7">
-                <h2>Заказы {{request.user.username}}</h2>
-            </div>
-        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid" style="margin-top: 1rem; margin-bottom: 2rem">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/profile/" style="color: #825934; font-weight: bold; margin-right: 2rem">Мои заказы</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'favorite' %}" style="text-decoration: underline; margin-right: 2rem">Избранное</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" style="text-decoration: underline">Мои данные</a>
+                    </li>
+              </ul>
+          </div>
+        </nav>
+        <h3 style="margin-bottom: 2rem">Ваши заказы</h3>
         <table class="table">
             <thead>
             <tr>
-                <th>Фото</th>
-                <th>Товар</th>
-                <th>Цвет</th>
+                <th></th>
+                <th>Наименование</th>
                 <th>Размер</th>
+                <th>Цвет</th>
+                <th>Цена</th>
+                <th>Дата покупки</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -25,9 +40,34 @@
                             </a>
                         </td>
                         <td>{{ order.product.name }}</td>
-                        <td>{{ order.color }}</td>
                         <td>{{ order.size }}</td>
-                        <td>{{ order.product.id }}</td>
+                        <td>{{ order.color }}</td>
+                        <td style="color: #825934; font-weight: bold">{{ order.price }} ₽</td>
+                        <td>{{ order.created|date:"d.m.Y" }}</td>
+                        <td>
+                            <button type="submit" class="btn" style="                border-radius: 20px;
+                                                                                    --bs-btn-color: #FFFFFF;
+                                                                                    --bs-btn-bg: #825934;
+                                                                                    --bs-btn-border-color: #8b4513;
+                                                                                    --bs-btn-hover-color: #fff;
+                                                                                    --bs-btn-hover-bg: #b35c1e;
+                                                                                    --bs-btn-hover-border-color: #8b4513;
+                                                                                    --bs-btn-focus-shadow-rgb: 49,132,253;
+                                                                                    --bs-btn-active-color: #fff;
+                                                                                    --bs-btn-active-bg: #8b4513;
+                                                                                    --bs-btn-active-border-color: #8b4513;
+                                                                                    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                                                                                    --bs-btn-disabled-color: #fff;
+                                                                                    --bs-btn-disabled-bg: #8b4513;
+                                                                                    --bs-btn-disabled-border-color: #8b4513;">
+                                В корзину
+                            </button>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn" style="background-color: #fff0; border: #fff0;">
+                                <img src="/static/ico/favorite2.png">
+                            </button>
+                        </td>
                     </tr>
             {% endfor %}
             </tbody>
