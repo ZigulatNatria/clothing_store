@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid" style="margin-top: 1rem; margin-bottom: 2rem">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" aria-current="page" href="/profile/" style="text-decoration: underline; margin-right: 2rem">Мои заказы</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'favorite' %}" style="text-decoration: underline; margin-right: 2rem">Избранное</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'my_info' %}" style="color: #825934; font-weight: bold;">Мои данные</a>
+                    </li>
+              </ul>
+          </div>
+        </nav>
+        <h3 style="margin-bottom: 2rem">Мои данные</h3>
+        <div class="row" style="margin-bottom: 2rem">
+            <div class="col-1">
+                Имя
+            </div>
+            <div class="col-4" style="border-bottom: 2px solid #000000;">
+                 {{ request.user.first_name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-1">
+                Email
+            </div>
+            <div class="col-4" style="border-bottom: 2px solid #000000">
+                {{ request.user.email }}
+            </div>
+        </div>
+        <button> <a href="/sign/logout/">Выйти</a> </button>
+    </div>
+{% endblock %}

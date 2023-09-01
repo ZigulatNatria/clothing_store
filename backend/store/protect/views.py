@@ -9,3 +9,9 @@ class IndexView(LoginRequiredMixin, TemplateView):
 
     def user_orders(self):
         return OrderItem.objects.filter(user=self.request.user.username)
+
+
+class ProtectView(LoginRequiredMixin, TemplateView):
+    template_name = 'protect/protect.html'
+
+
