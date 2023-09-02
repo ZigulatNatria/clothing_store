@@ -25,6 +25,13 @@ def order_create(request):
             except Exception:
                 order.authorUser = None
             order.save()
+
+            current_user = order.authorUser
+            if current_user == None:
+                current_user = 'Незарегистрирован'
+            else:
+                current_user = order.authorUser.username
+
             for item in cart:
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
@@ -32,7 +39,7 @@ def order_create(request):
                                          quantity=item['quantity'],
                                          color=item['color'],
                                          size=item['size'],
-                                         user=order.authorUser.username
+                                         user=current_user
                                          )
 
             total = cart.get_total_price()
