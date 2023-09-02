@@ -76,7 +76,7 @@ class OrderList(ListView):
 
 
 class OrderUpdate(UpdateView):
-    template_name = 'orders/create.html'
+    template_name = 'orders/update.html'
     form_class = OrderUpdateForm
 
     def get_object(self, **kwargs):

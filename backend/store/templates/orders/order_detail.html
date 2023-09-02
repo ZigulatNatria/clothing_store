@@ -7,24 +7,28 @@
             <table class="table" style="margin-bottom: 5rem">
                 <thead>
                     <tr>
-                        <th>Имя</th>
-                        <th>Фамилия</th>
+                        <th>ФИО</th>
+                        <th>Страна</th>
                         <th>Эл.почта</th>
                         <th>Адрес</th>
                         <th>Индекс</th>
                         <th>Город</th>
-                        <th>пользователь</th>
+                        <th>Телефон</th>
+                        <th>Пользователь</th>
+                        <th>Дата заказа</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ order.first_name }}</td>
-                        <td>{{ order.last_name }}</th>
+                        <td>{{ order.name }}</td>
+                        <td>{{ order.country }}</th>
                         <td>{{ order.email }}</td>
                         <td>{{ order.address }}</td>
                         <td>{{ order.postal_code }}</td>
                         <td>{{ order.city }}</td>
+                        <td>{{ order.phone }}</td>
                         <td>{{ order.authorUser }}</td>
+                        <td>{{ order.created | date:"d.m.Y" }}</td>
                     </tr>
                 </tbody>
              </table>
