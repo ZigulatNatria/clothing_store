@@ -3,9 +3,6 @@ from django.contrib.auth.views import LoginView, LogoutView
 from .views import BaseRegisterView, LoginViewCustom
 
 urlpatterns = [
-    # path('login/',
-    #      LoginView.as_view(template_name = 'sign/login.html'),
-    #      name='login'),
     path('login/',
          LoginViewCustom.as_view(template_name = 'sign/login.html'),
          name='login'),

@@ -3,12 +3,42 @@
 {% block content %}
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-4">
-                <h2> Регистрация </h2>
+            <div class="col-10" style="text-align: center;">
+                <h4 style="margin-top: 4rem; margin-bottom: 1rem">Регистрация</h4>
+                <h6 style="margin-bottom: 3rem">
+                    Есть аккаунт?
+                    <a href="{% url 'login' %}" style="color: #000000">Войдите</a>
+                </h6>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-4" style="text-align: center;">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="Продолжить">
+                    <p>{{ form.username }}</p>
+                    <p>{{ form.email }}</p>
+                    <p>{{ form.password1 }}</p>
+                    <p>{{ form.password2 }}</p>
+                    <button type="submit" class="btn" style="margin-top: 10px;
+                                                                padding-left: 3rem;
+                                                                padding-right: 3rem;
+                                                                 border-radius: 20px;
+                                                                            --bs-btn-color: #FFFFFF;
+                                                                            --bs-btn-bg: #825934;
+                                                                            --bs-btn-border-color: #8b4513;
+                                                                            --bs-btn-hover-color: #fff;
+                                                                            --bs-btn-hover-bg: #b35c1e;
+                                                                            --bs-btn-hover-border-color: #8b4513;
+                                                                            --bs-btn-focus-shadow-rgb: 49,132,253;
+                                                                            --bs-btn-active-color: #fff;
+                                                                            --bs-btn-active-bg: #8b4513;
+                                                                            --bs-btn-active-border-color: #8b4513;
+                                                                            --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                                                                            --bs-btn-disabled-color: #fff;
+                                                                            --bs-btn-disabled-bg: #8b4513;
+                                                                            --bs-btn-disabled-border-color: #8b4513;">
+                        Зарегистрироваться
+                    </button>
                 </form>
             </div>
         </div>
