@@ -197,10 +197,10 @@
                  </div>
             </div>
             <div class="row">
-                <div class="col-2">
-                    <p>Товары из коллекции</p>
+                <div class="col-4">
+                    <h4>Вам может понравиться</h4>
                 </div>
-                <div class="row justify-content-center" style="z-index: 0">
+                <div class="row justify-content-start" style="z-index: 0">
                     <div class="col-6" style="margin-bottom: 10vh">
                         <div id="newsticker-demo">
                             <div class="newsticker-jcarousellite">
@@ -208,10 +208,21 @@
                                      {% for i in view.all_product_collection %}
                                     <li>
                                         <div class="thumbnail">
-                                            <div class="card h-100" style="width: 100%;">
+                                            <div class="card h-100" style="width: 100%; --bs-card-border-color: 0;">
                                                 <a href="{% url 'product' i.id %}">
                                                     <img src="{{MEDIA_URL}}{{i.photo_1.url}}" class="d-block w-100" alt="...">
                                                 </a>
+                                                <div class="card-body" style="background-color: #FFFFFF; width: 100%">
+                                                    <div class="row">
+                                                         <div class="col-10">
+                                                             {{i.name}}
+                                                             <div style="color: #825934; font-weight: bold">{{i.price}} ₽</div>
+                                                         </div>
+                                                         <div class="col-2" style="text-end">
+                                                             <img src="/static/ico/favorite.png">
+                                                         </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="clear"></div>

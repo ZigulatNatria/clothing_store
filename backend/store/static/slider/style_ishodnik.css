@@ -22,7 +22,7 @@ padding:5px;
 }
 
 .newsticker-jcarousellite { width:115px;}
-.newsticker-jcarousellite ul li{ list-style:none; display:block; padding-bottom:1px; margin-right: 20px; margin-bottom:5px; height:400px; display: flex;}
-.newsticker-jcarousellite .thumbnail { float:left; width:200px; display: flex;}
+.newsticker-jcarousellite ul li{ list-style:none; display:block; padding-bottom:1px; margin-bottom:5px; height:154px; display: flex;}
+.newsticker-jcarousellite .thumbnail { float:left; width:110px; display: flex;}
 
 .clear { clear: both; }
