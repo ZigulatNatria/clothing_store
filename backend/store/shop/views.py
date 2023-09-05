@@ -48,6 +48,21 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
     queryset = Product.objects.all()
 
+    def stock(self):
+        product = self.get_object()
+        product_stock = product.stock_availability.quantity
+
+        if product_stock == 'много':
+            qurrent_stock = 3
+        elif product_stock == 'достаточно':
+            qurrent_stock = 2
+        elif product_stock == 'мало':
+            qurrent_stock = 1
+        elif product_stock == 'нет':
+            qurrent_stock = 0
+
+        return qurrent_stock
+
     def color(self):
         product = self.get_object()
         color_product = Color.objects.filter(vendor_code=product.vendor_code)
