@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 
+
 class CustomUser(AbstractUser):
     username = models.CharField(
         _("username"),
@@ -211,7 +212,8 @@ class News(models.Model):
 
 
 class Favorites(models.Model):
-    user = models.ForeignKey('auth.User', related_name='пользователь', on_delete=models.CASCADE)
+    # user = models.ForeignKey('auth.User', related_name='пользователь', on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, related_name='пользователь', on_delete=models.CASCADE)
     product = models.ForeignKey('Product', related_name='товар', on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 

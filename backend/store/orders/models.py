@@ -1,6 +1,7 @@
 from django.db import models
 from shop.models import Product
 from django.contrib.auth.models import User
+from shop.models import CustomUser
 
 
 class Order(models.Model):
@@ -14,7 +15,8 @@ class Order(models.Model):
         ('Оплата картой онилайн', 'Оплата картой онилайн'),
     ]
 
-    authorUser = models.ForeignKey(User, verbose_name='клиент', on_delete=models.CASCADE, null=True)
+    # authorUser = models.ForeignKey(User, verbose_name='клиент', on_delete=models.CASCADE, null=True)
+    authorUser = models.ForeignKey(CustomUser, verbose_name='клиент', on_delete=models.CASCADE, null=True)
     name = models.CharField(verbose_name='ФИО', max_length=250)
     country = models.CharField(verbose_name='страна', max_length=100, null=True)
     # last_name = models.CharField(max_length=50)
