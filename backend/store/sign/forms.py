@@ -10,7 +10,7 @@ class CustomAuthenticationForm(AuthenticationForm):
                     "autofocus": True,
                     "class": "form-control",
                     "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-                    "placeholder": 'Имя пользователя',
+                    "placeholder": 'Email',
                 }))
     password = forms.CharField(
         label=_("Пароль"),
@@ -52,15 +52,15 @@ class CustomUserCreationForm(UserCreationForm):
         "autofocus": True,
         "class": "form-control",
         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-        "placeholder": 'Имя пользователя',
+        "placeholder": 'Email',
     }))
 
-    email = forms.EmailField(
-        label=_("Email"),
-        max_length=254,
-        widget=forms.EmailInput(attrs={
-            "autocomplete": "email",
-            "class": "form-control",
-            "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-            "placeholder": 'Email',
-    }))
+    # email = forms.EmailField(
+    #     label=_("Email"),
+    #     max_length=254,
+    #     widget=forms.EmailInput(attrs={
+    #         "autocomplete": "email",
+    #         "class": "form-control",
+    #         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+    #         "placeholder": 'Email',
+    # }))
