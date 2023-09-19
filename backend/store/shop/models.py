@@ -32,7 +32,9 @@ class CustomUser(AbstractUser):
     )
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = [
+        # 'username'   #раскомментить при создании суперюзера!!!!
+    ]
 
 
 

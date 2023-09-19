@@ -161,3 +161,5 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 
 CART_SESSION_ID = 'cart'    #Сессия для корзины покупок
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  #для отправки писем в консоль
