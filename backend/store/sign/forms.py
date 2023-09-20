@@ -3,6 +3,7 @@ from django.contrib.auth import password_validation
 from django.forms import EmailField
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
+from shop.models import CustomUser
 
 
 class CustomAuthenticationForm(AuthenticationForm):
@@ -48,19 +49,19 @@ class CustomUserCreationForm(UserCreationForm):
         help_text=_("Enter the same password as before, for verification."),
     )
 
-    username = UsernameField(widget=forms.TextInput(attrs={
-        "autofocus": True,
-        "class": "form-control",
-        "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-        "placeholder": 'Email',
-    }))
-
-    # email = forms.EmailField(
-    #     label=_("Email"),
-    #     max_length=254,
-    #     widget=forms.EmailInput(attrs={
-    #         "autocomplete": "email",
-    #         "class": "form-control",
-    #         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-    #         "placeholder": 'Email',
+    # username = UsernameField(widget=forms.TextInput(attrs={
+    #     "autofocus": True,
+    #     "class": "form-control",
+    #     "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+    #     "placeholder": 'Email',
     # }))
+
+    email = forms.EmailField(
+        label=_("Email"),
+        max_length=254,
+        widget=forms.EmailInput(attrs={
+            "autocomplete": "email",
+            "class": "form-control",
+            "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+            "placeholder": 'Email',
+    }))

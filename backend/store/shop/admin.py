@@ -1,12 +1,13 @@
 from django.contrib import admin
 from .models import ClientCategory, ClothingCategories, CategoryProduct, Stock, \
-    Collection, Product, News, Color, Size, Favorites
+    Collection, Product, News, Color, Size, Favorites, CustomUser
 from django.utils.safestring import mark_safe
 
 
 admin.site.register(ClientCategory)
 admin.site.register(Stock)
 admin.site.register(Favorites)
+admin.site.register(CustomUser)
 
 
 @admin.register(Product)

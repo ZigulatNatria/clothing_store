@@ -20,7 +20,7 @@
                     <p>{{ form.username }}</p>
                     <p>{{ form.password }}</p>
                     <p style="text-align: start;">
-                        <a href="{url 'password_reset'}" style="color: #000000">Я не помню пароль</a>
+                        <a href="{% url 'password_reset' %}" style="color: #000000">Я не помню пароль</a>
                     </p>
                     <button type="submit" class="btn" style="margin-top: 10px;
                                                                 padding-left: 3rem;
