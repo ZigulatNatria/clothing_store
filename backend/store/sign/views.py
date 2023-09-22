@@ -25,3 +25,4 @@ class LoginViewCustom(LoginView):
 
 class PasswordResetCustomView(PasswordResetView):      #Переопределение формы в классе PasswordResetView на кастомную
     form_class = ResetPasswordForm
+    email_template_name = "sign/password_reset_email.html"
