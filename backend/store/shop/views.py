@@ -236,6 +236,24 @@ def delete_subscribe(request):
     return redirect(f'/product/favorite/')
 
 
+@login_required
+def add_favorite(request):
+    user = request.user                                         #получаем текущего пользователя
+    product = Product.objects.get(pk=request.POST['id_cat'])    #получаем объект через форму передаём 'id_cat' из формы
+    user.favorite_products.add(product)                         #в модель текущего пользователя добавляем в поле избранного методом add() полученный продукт
+    user.save()                                                 #сохраняем весь этот бардак
+    return redirect(f'/product/{product.id}/')
+
+
+@login_required
+def delete_favorite(request):
+    user = request.user                                       # получаем текущего пользователя
+    product = Product.objects.get(pk=request.POST['id_cat'])  # получаем объект через форму передаём 'id_cat' из формы
+    user.favorite_products.remove(product)                    # из модели пользователя поля избранное удаляем полученный продукт методом remove()
+    user.save()                                               # сохраняем весь этот бардак
+    return redirect(f'/product/{product.id}/')
+
+
 class FavoriteListView(ListView):
     model = Favorites
     template_name = 'favorites/detail.html'

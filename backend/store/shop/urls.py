@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import category_product_list_view, ProductDetail, product_categories, \
-    ClothingCategoriesView, FirstPage, FavoriteListView, search, user_follow, add_subscribe, delete_subscribe
+    ClothingCategoriesView, FirstPage, FavoriteListView, search, user_follow, add_subscribe, delete_subscribe, \
+    add_favorite, delete_favorite
 from .pay import Pay
 
 
@@ -8,6 +9,8 @@ urlpatterns =[
     # path('products/<int:pk>/', ProductsListView.as_view(), name='products'),
     path('product/follow/', user_follow, name='user_follow'),
     path('product/sub/', add_subscribe, name='add_subscribe'),
+    path('product/add_favorite/', add_favorite, name='add_favorite'),
+    path('product/delete_favorite/', delete_favorite, name='delete_favorite'),
     path('product/delete_favor/', delete_subscribe, name='delete_subscribe'),
     path('product/favorite/', FavoriteListView.as_view(), name='favorite'),
     path('product/<int:pk>/', ProductDetail.as_view(), name='product'),

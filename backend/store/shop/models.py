@@ -5,39 +5,6 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractUser
 
 
-class CustomUser(AbstractUser):
-    username = models.CharField(
-        _("username"),
-        max_length=150,
-        help_text=_(
-            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
-        ),
-        validators=[AbstractUser.username_validator],
-        error_messages={
-            "unique": _("A user with that username already exists."),
-        },
-        null=True,
-        blank=True,
-    )
-
-    email = models.EmailField(_("email address"), unique=True, )
-
-    is_active = models.BooleanField(
-        _("active"),
-        default=True,
-        help_text=_(
-            "Designates whether this user should be treated as active. "
-            "Unselect this instead of deleting accounts."
-        ),
-    )
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = [
-        # 'username'   #раскомментить при создании суперюзера!!!!
-    ]
-
-
-
 class ClientCategory(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='название категории (М/Ж)')
 
@@ -195,6 +162,40 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class CustomUser(AbstractUser):
+    username = models.CharField(
+        _("username"),
+        max_length=150,
+        help_text=_(
+            "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+        ),
+        validators=[AbstractUser.username_validator],
+        error_messages={
+            "unique": _("A user with that username already exists."),
+        },
+        null=True,
+        blank=True,
+    )
+
+    email = models.EmailField(_("email address"), unique=True, )
+
+    is_active = models.BooleanField(
+        _("active"),
+        default=True,
+        help_text=_(
+            "Designates whether this user should be treated as active. "
+            "Unselect this instead of deleting accounts."
+        ),
+    )
+
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = [
+        'username'   #раскомментить при создании суперюзера!!!!
+    ]
+
+    favorite_products = models.ManyToManyField(Product, verbose_name='избранное')
 
 
 class News(models.Model):

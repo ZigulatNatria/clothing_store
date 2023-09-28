@@ -209,7 +209,14 @@
                             </form>
                         </div>
                         <div class="col-4 align-self-end">
-                            <form action="{% url 'add_subscribe' %}" method="post" style="text-align: right">
+                            <form action="{% url 'delete_favorite' %}" method="post" style="text-align: right">
+                                {% csrf_token %}
+                                <input type="hidden" name="id_cat" value={{product.id}}>
+                                <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
+                                        Удалить из избранного <img src="/static/ico/favorite.png">
+                                </button>
+                            </form>
+                            <form action="{% url 'add_favorite' %}" method="post" style="text-align: right">
                                 {% csrf_token %}
                                 <input type="hidden" name="id_cat" value={{product.id}}>
                                 <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
