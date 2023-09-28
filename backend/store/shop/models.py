@@ -192,7 +192,7 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = [
-        'username'   #раскомментить при создании суперюзера!!!!
+        # 'username'   #раскомментить при создании суперюзера!!!!
     ]
 
     favorite_products = models.ManyToManyField(Product, verbose_name='избранное')
