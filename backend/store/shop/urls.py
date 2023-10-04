@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import category_product_list_view, ProductDetail, product_categories, \
     ClothingCategoriesView, FirstPage, FavoriteListView, search, user_follow, add_subscribe, delete_subscribe, \
-    add_favorite, delete_favorite
+    add_favorite, delete_favorite, pay_info, delivery_info
 from .pay import Pay
 
 
@@ -20,4 +20,7 @@ urlpatterns =[
     path('', FirstPage.as_view(), name='categories_global'),
     path('search/', search, name='search'),
     path('pay/', Pay.as_view(), name='pay'),
+    #вкладки меню
+    path('product/pay_info/', pay_info, name='pay_info'),
+    path('product/delivery_info/', delivery_info, name='delivery_info'),
 ]

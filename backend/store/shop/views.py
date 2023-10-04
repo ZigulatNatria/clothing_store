@@ -254,6 +254,14 @@ def delete_favorite(request):
     return redirect(f'/product/{product.id}/')
 
 
+def pay_info(request):
+    return render(request, 'pay_info.html')
+
+
+def delivery_info(request):
+    return render(request, 'delivery_info.html')
+
+
 class FavoriteListView(ListView):
     model = Favorites
     template_name = 'favorites/detail.html'

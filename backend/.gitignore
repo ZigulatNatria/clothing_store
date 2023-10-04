@@ -1,4 +1,5 @@
 ..idea/
+.idea/
 venv/
 store/db.sqlite3
 /store/store/mail.py
