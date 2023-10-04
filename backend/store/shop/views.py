@@ -262,6 +262,14 @@ def delivery_info(request):
     return render(request, 'delivery_info.html')
 
 
+def return_info(request):
+    return render(request, 'return_info.html')
+
+
+def contacts_info(request):
+    return render(request, 'contacts_info.html')
+
+
 class FavoriteListView(ListView):
     model = Favorites
     template_name = 'favorites/detail.html'
