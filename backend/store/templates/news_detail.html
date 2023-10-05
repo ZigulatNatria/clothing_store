@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+<html lang="en">
+    <body>
+        {% block content%}
+        <div class="container" style="margin-top: 2rem">
+            <div class="row" style="margin-bottom: 2rem; margin-top: 4rem; align-items: end;">
+                <div class="col">
+                    <h2>{{ news.header }}</h2>
+                </div>
+                <div class="col">
+                    <h6 style="text-align: right;">
+                        <span style="color: #825934">{{ news.author }}</span> | {{ news.date_add }}
+                    </h6>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom: 2rem">
+                <img src="{{MEDIA_URL}}{{news.image.url}}">
+            </div>
+            <div class="row" style="margin-bottom: 2rem">
+                <p>{{ news.text }}</p>
+            </div>
+            <div class="row" style="margin-bottom: 20rem">
+                <div class="col-2">
+                    <a href="{% url  'news_list' %}" style="font-size: larger; color: #825934">Вернуться к новостям</a>
+                </div>
+            </div>
+        </div>
+        {% endblock content %}
+    </body>
+</html>

@@ -159,7 +159,7 @@ class ClothingCategoriesView(ListView):
 
 
 class FirstPage(TemplateView):
-    template_name = 'first_page2.html'
+    template_name = 'first_page.html'
 
     def get_context_data(self, **kwargs):
         set_categories_clothing = {client_category: client_category.categoryproduct_set.all() for client_category in ClothingCategories.objects.filter()}
@@ -268,6 +268,18 @@ def return_info(request):
 
 def contacts_info(request):
     return render(request, 'contacts_info.html')
+
+
+class NewsDetail(DetailView):
+    template_name = 'news_detail.html'
+    context_object_name = 'news'
+    queryset = News.objects.all()
+
+
+class NewsList(ListView):
+    template_name = 'news_list.html'
+    context_object_name = 'news'
+    queryset = News.objects.all()
 
 
 class FavoriteListView(ListView):
