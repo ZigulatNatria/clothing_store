@@ -14,8 +14,10 @@
                     </h6>
                 </div>
             </div>
-            <div class="row" style="margin-bottom: 2rem">
-                <img src="{{MEDIA_URL}}{{news.image.url}}">
+            <div class="row" style="margin-bottom: 2rem; text-align: center">
+                <div class="col" style="margin-left: 30%; margin-right: 30%;">
+                    <img src="{{MEDIA_URL}}{{news.image.url}}" style="width: 100%">
+                </div>
             </div>
             <div class="row" style="margin-bottom: 2rem">
                 <p>{{ news.text }}</p>

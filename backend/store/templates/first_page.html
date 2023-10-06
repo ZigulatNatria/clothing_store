@@ -73,7 +73,7 @@
                         <div class="col-md-4 align-self-end">
                             <h3>Новости бренда</h3>
                         </div>
-                        <div class="col-md-4 ms-auto align-self-end">
+                        <div class="col-md-4 ms-auto align-self-end" style="text-align: end">
                             <h5><a href="{% url 'news_list' %}" style="color: #825934">Смотреть все</a></h5>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                                             <div class="col-6 col-sm-3">| {{ new.date_add }}</div>
                                         </div>
                                         <h5 class="card-title">{{ new.header }}</h5>
-                                        <p class="card-text">{{ new.text }}</p>
+                                        <p class="card-text">{{ new.text | truncatewords:15 }}</p>
                                         <a class="btn" style="border-radius: 20px; border-color: #000000" href="{% url 'news_detail' new.id %}">Подробнее <img src="/static/ico/arrow.png"></a>
                                     </div>
                                 </div>
@@ -100,12 +100,19 @@
                         <div class="col">
                             {% for new in next_news %}
                                 <div class="card" style="border: 0">
-                                    <div class="card-body">
+                                    <div class="card-body" style="margin-bottom: 2rem">
                                         <div class="row justify-content-start">
-                                            <div class="col" style="color: #825934">{{ new.author }}| {{ new.date_add }} </div>
+                                            <div class="col" style="margin-bottom: 1rem">
+                                                <span style="color: #825934;">
+                                                    {{ new.author }}
+                                                </span>
+                                                | {{ new.date_add }}
+                                            </div>
                                         </div>
-                                        <h5 class="card-title">{{ new.header }}</h5>
-                                        <p class="card-text">{{ new.text }}</p>
+                                        <a href="{% url 'news_detail' new.id %}" style="text-decoration: none; color: #000000">
+                                            <h5 class="card-title" style="margin-bottom: 1rem">{{ new.header }}</h5>
+                                        </a>
+                                        <p class="card-text">{{ new.text | truncatewords:15 }}</p>
                                     </div>
                                 </div>
                             {% endfor %}
