@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from .models import Product, CategoryProduct, ClothingCategories, Collection, News, Color, \
-    Size, Favorites
+    Size, Favorites, CustomUser
 from .filters import ProductFilter
 from django.views.generic import ListView, DetailView, TemplateView
 from django.http import JsonResponse
@@ -282,8 +282,12 @@ class NewsList(ListView):
     queryset = News.objects.all()
 
 
-class FavoriteListView(ListView):
-    model = Favorites
-    template_name = 'favorites/detail.html'
-    context_object_name = 'products'
-    queryset = Favorites.objects.all()
+@login_required
+def favorite_list(request):
+    user = request.user
+    products = user.favorite_products.all()
+    context = {
+        'products': products
+    }
+
+    return render(request, 'favorites/detail.html', context)
