@@ -254,6 +254,24 @@ def delete_favorite(request):
     return redirect(f'/product/{product.id}/')
 
 
+@login_required
+def delete_favorite_in_list(request):
+    user = request.user
+    product = Product.objects.get(pk=request.POST['id_cat'])
+    user.favorite_products.remove(product)
+    user.save()
+    return redirect(f'/products/{product.category_product.id}/')
+
+
+@login_required
+def add_favorite_in_list(request):
+    user = request.user
+    product = Product.objects.get(pk=request.POST['id_cat'])
+    user.favorite_products.add(product)
+    user.save()
+    return redirect(f'/products/{product.category_product.id}/')
+
+
 def pay_info(request):
     return render(request, 'pay_info.html')
 
