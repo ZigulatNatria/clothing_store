@@ -105,11 +105,12 @@ class Color(models.Model):
         verbose_name_plural = 'цвета'
 
     def __str__(self):
-        return '{}'.format(self.name_color) + 'цвет товара с артикулом' + ' ' + '{}'.format(self.vendor_code)
+        # return '{}'.format(self.name_color) + 'цвет товара с артикулом' + ' ' + '{}'.format(self.vendor_code)
+        return self.name_color
 
 
 class Size(models.Model):
-    vendor_code = models.CharField(max_length=100, verbose_name='артикул товара')
+    vendor_code = models.CharField(max_length=100, verbose_name='артикул товара') #TODO убрать артикул товара
     size = models.CharField(max_length=100, unique=True, verbose_name='размер')
 
     class Meta:
@@ -117,7 +118,8 @@ class Size(models.Model):
         verbose_name_plural = 'размеры'
 
     def __str__(self):
-        return 'Размер товара с артикулом' + ' ' + '{}'.format(self.vendor_code)
+        # return 'Размер товара с артикулом' + ' ' + '{}'.format(self.vendor_code)
+        return self.size
 
 
 class Product(models.Model):
