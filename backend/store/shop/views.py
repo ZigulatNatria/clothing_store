@@ -70,7 +70,6 @@ class ProductDetail(DetailView):
 
     def size(self):
         product = self.get_object()
-        # size_product = Size.objects.filter(vendor_code=product.vendor_code)
         size_product = product.size.all()
         return size_product
 

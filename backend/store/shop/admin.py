@@ -70,12 +70,10 @@ class ColorAdmin(admin.ModelAdmin):
 class SizeAdmin(admin.ModelAdmin):
     list_display = [
         'size',
-        'vendor_code',
     ]
 
     list_filter = [
         'size',
-        'vendor_code',
     ]
 
 

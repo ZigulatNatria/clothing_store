@@ -110,7 +110,6 @@ class Color(models.Model):
 
 
 class Size(models.Model):
-    vendor_code = models.CharField(max_length=100, verbose_name='артикул товара') #TODO убрать артикул товара
     size = models.CharField(max_length=100, unique=True, verbose_name='размер')
 
     class Meta:
