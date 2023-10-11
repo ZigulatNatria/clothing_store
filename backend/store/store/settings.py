@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 from .mail import short_email, password
-from basesettings import base
-from base_set import base_lite
+from .basesettings import base
+# from .base_set import base_lite
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'shop',
     'rest_framework',
     'api',
@@ -53,6 +54,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -85,6 +87,7 @@ WSGI_APPLICATION = 'store.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = base
 DATABASES = base
 
 
@@ -167,3 +170,9 @@ EMAIL_HOST_PASSWORD = password  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  #для отправки писем в консоль
+
+"""Для решения проблемы с Cors"""
+# SECURE_CROSS_ORIGIN_OPENER_POLICY=None
+# SESSION_COOKIE_SECURE=False
+
+# CORS_ORIGIN_WHITELIST = ['*']
