@@ -19,7 +19,7 @@ class ClientCategory(models.Model):
 class ClothingCategories(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='название раздела категории одежды')
     client_category = models.ForeignKey('ClientCategory', on_delete=models.CASCADE, verbose_name='мужская или женская')
-    photo = models.ImageField(verbose_name='фото категрии', null=True, blank=True)
+    photo = models.ImageField(verbose_name='фото категрии')
 
     class Meta:
         verbose_name = 'раздел категории одежды'
@@ -31,7 +31,7 @@ class ClothingCategories(models.Model):
 
 class CategoryProduct(models.Model):
     name = models.CharField(max_length=100, unique=True, verbose_name='категория одежды')
-    photo = models.ImageField(verbose_name='фото категрии', null=True, blank=True)
+    photo = models.ImageField(verbose_name='фото категрии')
     client_category = models.ForeignKey('ClothingCategories', on_delete=models.CASCADE, verbose_name='раздел категории одежды')
     popular = models.BooleanField(default=False, verbose_name='популярное')
 
