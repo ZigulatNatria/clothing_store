@@ -61,7 +61,7 @@
                             {% with total_items=cart|length %}
                                 {% if cart|length > 0 %}
                                     <img src="/static/ico/cart.png">
-                                    <a href="{% url 'cart_detail' %}">
+                                    <a href="{% url 'cart_detail' %}" style="text-decoration: none; color: #825934; font-weight: bold;">
                                         {{ cart.get_total_price }} ₽
                                     </a>
                                 {% else %}

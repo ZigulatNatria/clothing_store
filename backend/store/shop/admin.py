@@ -19,6 +19,8 @@ class ProductAdmin(admin.ModelAdmin):
         'price',
         'collection',
         'category_product',
+        'number_for_color',
+        'colors',
     ]
 
     list_filter = [
@@ -26,6 +28,8 @@ class ProductAdmin(admin.ModelAdmin):
         'vendor_code',
         'category_product',
         'collection',
+        'number_for_color',
+        'colors',
     ]
 
     def get_image(self, obj):

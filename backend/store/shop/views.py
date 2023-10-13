@@ -12,20 +12,6 @@ from django import forms
 from django.db.models import Q
 from itertools import groupby
 
-# class ProductsListView(ListView):
-#     model = Product
-#     template_name = 'products_categories.html'
-#     context_object_name = 'pro'
-#     queryset = Product.objects.all()
-#
-#     def get_object(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         id = self.get(**kwargs)
-#         category = CategoryProduct.objects.get(pk=id)
-#         # products = Product.objects.filter(category_product=category.id)
-#         context['products'] = Product.objects.filter(category_product=category.id)
-#         return context
-
 
 def product_categories(request, category_product_id):
     category = CategoryProduct.objects.get(pk=category_product_id)
@@ -85,13 +71,6 @@ class ProductDetail(DetailView):
         class CartAddProductForm(forms.Form):
             PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 2)]
 
-            # colors_product = self.color()
-            # color_list = []
-            # for col in colors_product:
-            #     color_list.append(col.name_color)
-            #
-            # PRODUCT_COLOR_CHOICES = [(str(k), str(k)) for k in color_list]
-
             size_product = self.size()
             size_list = []
             for size in size_product:
@@ -100,15 +79,6 @@ class ProductDetail(DetailView):
             PRODUCT_SIZE_CHOICES = [(str(s), str(s)) for s in size_list]
 
             quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
-            # color = forms.TypedChoiceField(label='Цвет',
-            #                                choices=PRODUCT_COLOR_CHOICES,
-            #                                coerce=str,
-            #                                widget=forms.Select(
-            #                                    attrs={
-            #                                        "class": "form-select",
-            #                                    }
-            #                                )
-            #                                )
             size = forms.TypedChoiceField(label='Размер',
                                           choices=PRODUCT_SIZE_CHOICES,
                                           coerce=str,
@@ -132,13 +102,6 @@ class ProductDetail(DetailView):
     def nav(self):
         clothing = ClothingCategories.objects.all()
         return clothing
-
-
-# class CategoryProductListView(ListView):
-#     model = CategoryProduct
-#     template_name = 'categories.html'
-#     context_object_name = 'categories'
-#     queryset = CategoryProduct.objects.all()
 
 
 def category_product_list_view(request, category_clothing_id):
