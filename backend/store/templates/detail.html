@@ -82,18 +82,20 @@
                          Цвет:
                      </div>
                      <div class="row" style="margin-bottom: 1rem">
-                     {% for color in view.color %}
-                        {% if color %}
+                     {% for colors_product in view.color %}
+                        {% if colors_product %}
+                         {% if colors_product.id != product.id %}
                      <div class="col-2 align-self-end">
                          <div class="row">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#{{color.id}}">
-                                <img style="width: 100%" src="{{MEDIA_URL}} {{color.photo_1.url}}">
+                            <a href="{% url 'product' colors_product.id %}">
+                                <img style="width: 100%" src="{{MEDIA_URL}} {{colors_product.photo_1.url}}">
                             </a>
                          </div>
-                         <div class="row" style="padding: 0; margin-left: 0">
-                            {{ color.name_color }}
-                         </div>
+<!--                         <div class="row" style="padding: 0; margin-left: 0">-->
+<!--                            {{ colors_product.name }}-->
+<!--                         </div>-->
                      </div>
+                         {% endif %}
                         {% endif %}
                      {% endfor %}
                      </div>

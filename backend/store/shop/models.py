@@ -65,50 +65,6 @@ class Collection(models.Model):
         return self.name
 
 
-# class Product(models.Model):
-#     photo_1 = models.ImageField(verbose_name='Фото 1', blank=True, null=True)
-#     photo_2 = models.ImageField(verbose_name='Фото 2', blank=True, null=True)
-#     photo_3 = models.ImageField(verbose_name='Фото 3', blank=True, null=True)
-#     photo_4 = models.ImageField(verbose_name='Фото 4', blank=True, null=True)
-#     photo_5 = models.ImageField(verbose_name='Фото 5', blank=True, null=True)
-#     name = models.CharField(max_length=100, verbose_name='Наименование товара')
-#     vendor_code = models.CharField(max_length=100, unique=True, verbose_name='Артикул')
-#     price = models.FloatField(verbose_name='цена')
-#     colors = models.TextField(verbose_name='цвет')
-#     size = models.TextField(verbose_name='размер')
-#     stock_availability = models.ForeignKey('Stock', on_delete=models.CASCADE, verbose_name='Наличие на складе', null=True, blank=True)
-#     description = models.TextField(verbose_name='Описание товара')
-#     compound = models.TextField(verbose_name='Состав и уход')
-#     size_on_model = models.TextField(verbose_name='Размер модели\размер на модели')
-#     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, verbose_name='Коллекция', null=True, blank=True)
-#     category_product = models.ForeignKey('CategoryProduct', on_delete=models.CASCADE, null=True, blank=True, verbose_name='Категория одежды')
-#     #TODO возможно докинуть поля связанные с категриями ClothingCategories, ClientCategory
-#
-#     class Meta:
-#         verbose_name = 'Товар'
-#
-#     def __str__(self):
-#         return self.name
-
-
-class Color(models.Model):
-    vendor_code = models.CharField(max_length=100, verbose_name='артикул товара')
-    name_color = models.CharField(max_length=100, verbose_name='название цвета')
-    photo_1 = models.ImageField(verbose_name='фото 1')
-    photo_2 = models.ImageField(verbose_name='фото 2')
-    photo_3 = models.ImageField(verbose_name='фото 3')
-    photo_4 = models.ImageField(verbose_name='фото 4')
-    photo_5 = models.ImageField(verbose_name='фото 5')
-
-    class Meta:
-        verbose_name = 'цвет'
-        verbose_name_plural = 'цвета'
-
-    def __str__(self):
-        # return '{}'.format(self.name_color) + 'цвет товара с артикулом' + ' ' + '{}'.format(self.vendor_code)
-        return self.name_color
-
-
 class Size(models.Model):
     size = models.CharField(max_length=100, unique=True, verbose_name='размер')
 
@@ -121,6 +77,17 @@ class Size(models.Model):
         return self.size
 
 
+class Color(models.Model):
+    color = models.CharField(max_length=100, unique=True, verbose_name='цвет')
+
+    class Meta:
+        verbose_name = 'цвет'
+        verbose_name_plural = 'цвета'
+
+    def __str__(self):
+        return self.color
+
+
 class Product(models.Model):
     photo_1 = models.ImageField(verbose_name='фото 1')
     photo_2 = models.ImageField(verbose_name='фото 2')
@@ -130,7 +97,15 @@ class Product(models.Model):
     name = models.CharField(max_length=100, verbose_name='наименование товара')
     vendor_code = models.CharField(max_length=100, unique=True, verbose_name='артикул')
     price = models.FloatField(verbose_name='цена')
-    colors = models.ManyToManyField(Color, verbose_name='цвета', blank=True)
+    colors = models.ForeignKey(
+        Color,
+        on_delete=models.PROTECT,
+        verbose_name='цвет',
+        null=True,
+        blank=True,
+        default=None
+    )
+    number_for_color = models.CharField(max_length=100, verbose_name='код для привязки цвета', blank=True)
     size = models.ManyToManyField(Size, verbose_name='размеры', blank=True)
     stock_availability = models.ForeignKey(
         'Stock',

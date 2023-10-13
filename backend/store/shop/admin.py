@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import ClientCategory, ClothingCategories, CategoryProduct, Stock, \
-    Collection, Product, News, Color, Size, Favorites, CustomUser
+    Collection, Product, News, Size, Favorites, CustomUser, Color
 from django.utils.safestring import mark_safe
 
 
@@ -50,20 +50,12 @@ class CollectionAdmin(admin.ModelAdmin):
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
     list_display = [
-        'name_color',
-        'get_image',
-        'vendor_code',
+        'color',
     ]
 
     list_filter = [
-        'name_color',
-        'vendor_code',
+        'color',
     ]
-
-    def get_image(self, obj):
-        return mark_safe(f'<img src={obj.photo_1.url} width="50" height="70"')
-
-    get_image.short_description = 'Изображение'
 
 
 @admin.register(Size)

@@ -14,7 +14,6 @@ def cart_add(request, product_id):
         cd = form.cleaned_data
         cart.add(product=product,
                  quantity=cd['quantity'],
-                 color=cd['color'],
                  size=cd['size'],
                  update_quantity=cd['update']
                  )

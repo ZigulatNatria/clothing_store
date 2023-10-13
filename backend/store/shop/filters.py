@@ -1,7 +1,7 @@
 from django import forms
 from django_filters import FilterSet, CharFilter, ChoiceFilter, MultipleChoiceFilter, \
     ModelChoiceFilter  # импортируем filterset, чем-то напоминающий знакомые дженерики
-from .models import Product, Color, Size
+from .models import Product, Size, Color
 
 
 class ProductFilter(FilterSet):

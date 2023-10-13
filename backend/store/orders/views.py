@@ -31,13 +31,12 @@ def order_create(request):
                 current_user = 'Незарегистрирован'
             else:
                 current_user = order.authorUser.username
-
             for item in cart:
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'],
-                                         color=item['color'],
+                                         color=item['product'].colors,      #Берём продукт и обращаемся к полю его цвета
                                          size=item['size'],
                                          user=current_user
                                          )

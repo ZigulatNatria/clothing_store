@@ -1,8 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from .models import Product, CategoryProduct, ClothingCategories, Collection, News, Color, \
-    Size, Favorites, CustomUser
+from .models import Product, CategoryProduct, ClothingCategories, Collection, News,\
+    Size, Favorites, CustomUser, Color
 from .filters import ProductFilter
 from django.views.generic import ListView, DetailView, TemplateView
 from django.http import JsonResponse
@@ -65,8 +65,8 @@ class ProductDetail(DetailView):
 
     def color(self):
         product = self.get_object()
-        color_product = Color.objects.filter(vendor_code=product.vendor_code)
-        return color_product
+        other_colors_product = Product.objects.filter(number_for_color=product.number_for_color)
+        return other_colors_product
 
     def size(self):
         product = self.get_object()
@@ -85,12 +85,12 @@ class ProductDetail(DetailView):
         class CartAddProductForm(forms.Form):
             PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 2)]
 
-            colors_product = self.color()
-            color_list = []
-            for col in colors_product:
-                color_list.append(col.name_color)
-
-            PRODUCT_COLOR_CHOICES = [(str(k), str(k)) for k in color_list]
+            # colors_product = self.color()
+            # color_list = []
+            # for col in colors_product:
+            #     color_list.append(col.name_color)
+            #
+            # PRODUCT_COLOR_CHOICES = [(str(k), str(k)) for k in color_list]
 
             size_product = self.size()
             size_list = []
@@ -100,15 +100,15 @@ class ProductDetail(DetailView):
             PRODUCT_SIZE_CHOICES = [(str(s), str(s)) for s in size_list]
 
             quantity = forms.TypedChoiceField(label='Колличество', choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
-            color = forms.TypedChoiceField(label='Цвет',
-                                           choices=PRODUCT_COLOR_CHOICES,
-                                           coerce=str,
-                                           widget=forms.Select(
-                                               attrs={
-                                                   "class": "form-select",
-                                               }
-                                           )
-                                           )
+            # color = forms.TypedChoiceField(label='Цвет',
+            #                                choices=PRODUCT_COLOR_CHOICES,
+            #                                coerce=str,
+            #                                widget=forms.Select(
+            #                                    attrs={
+            #                                        "class": "form-select",
+            #                                    }
+            #                                )
+            #                                )
             size = forms.TypedChoiceField(label='Размер',
                                           choices=PRODUCT_SIZE_CHOICES,
                                           coerce=str,
