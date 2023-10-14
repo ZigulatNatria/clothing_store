@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{% url 'delivery_info' %}">Доставка</a>
+                            <a class="nav-link" aria-current="page" href="{% url 'delivery_info' %}">Доставка</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'pay_info' %}">Оплата</a>
@@ -91,16 +91,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContentBottom">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: #FFFFFF">Доставка</a>
+                                <a class="nav-link" href="{% url 'delivery_info' %}" style="color: #FFFFFF">Доставка</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: #FFFFFF">Оплата</a>
+                                <a class="nav-link" href="{% url 'pay_info' %}" style="color: #FFFFFF">Оплата</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: #FFFFFF">Возврат</a>
+                                <a class="nav-link" href="{% url 'return_info' %}" style="color: #FFFFFF">Возврат</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: #FFFFFF">Контакты</a>
+                                <a class="nav-link" href="{% url 'contacts_info' %}" style="color: #FFFFFF">Контакты</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#" style="color: #FFFFFF">Политика конфиденциальности</a>
@@ -113,5 +113,16 @@
                 </div>
            </nav>
         </footer>
+    <script>
+            const navLinkEls = document.querySelectorAll('.nav-link');
+            const windowPathname = window.location.href;
+            const windowPathnameSecond = window.location.pathname;
+
+            navLinkEls.forEach(navLinkEl => {
+                if (navLinkEl.href == windowPathname) {
+                    navLinkEl.classList.add('active');
+                }
+            });
+        </script>
     </body>
 </html>
