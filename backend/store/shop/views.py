@@ -123,7 +123,7 @@ class ClothingCategoriesView(ListView):
 
 
 class FirstPage(TemplateView):
-    template_name = 'first_page.html'
+    template_name = 'first_page_2.html'
 
     def get_context_data(self, **kwargs):
         set_categories_clothing = {client_category: client_category.categoryproduct_set.all() for client_category in ClothingCategories.objects.filter()}
