@@ -26,12 +26,12 @@ def product_categories(request, category_product_id):
                'last_news': last_news,
                'next_news': next_news,
                }
-    return render(request, 'products_categories.html', context)
+    return render(request, 'products_categories_new.html', context)    #TODO products_categories.html
 
 
 class ProductDetail(DetailView):
     # template_name = 'detail.html'
-    template_name = 'detail_new.html'
+    template_name = 'detail_new.html'    #TODO удалить detail.html
     context_object_name = 'product'
     queryset = Product.objects.all()
 
@@ -123,7 +123,7 @@ class ClothingCategoriesView(ListView):
 
 
 class FirstPage(TemplateView):
-    template_name = 'first_page_2.html'
+    template_name = 'first_page_new.html'    #TODO Удалить first_page.html
 
     def get_context_data(self, **kwargs):
         set_categories_clothing = {client_category: client_category.categoryproduct_set.all() for client_category in ClothingCategories.objects.filter()}
