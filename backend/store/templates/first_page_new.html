@@ -30,7 +30,7 @@
             <!-- картинки -->
     <div class="container" style="position: relative; z-index: 1020; margin-top: 0rem; margin-bottom: 5rem">
             <div class="row">
-                <div class="row" style="z-index: 1030; margin-top: 5vh; padding-right: 0">
+                <div class="row" style="z-index: 1030; margin-top: 7.5vh; padding-right: 0">
                     <div class="col-lg-4 align-self-center" style="text-align: center">
                         <h4>
                             <p style="color: #FFFFFF; margin-top: 1rem">
@@ -45,10 +45,10 @@
                         </div>
                     </div>
                     <div class="col" style="margin-bottom: 3rem; text-align: center">
-                        <img src="/static/img/photo.jpg" style="width: 80%">
+                        <img src="/static/img/photo.jpg" style="width: 65%">
                     </div>
                 </div>
-                <div class="row" style="margin-left: 1.25rem">
+                <div class="row">
                     {% for category, sub_category in all_categories.items %}
                         {% if sub_category %}
                         <!--
@@ -57,7 +57,7 @@
                         {% endif %}
                         {% for sub in sub_category %}
                             {% if sub.popular %}
-                                <div class="col-5 align-self-center" style="margin-bottom: 3rem!important; text-align: -webkit-center;">
+                                <div class="col-5 align-self-center" style="margin-bottom: 3rem!important;">
                                     <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                                         <a href="{% url 'products' sub.id %}">
                                             <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">

@@ -39,40 +39,40 @@
                 <div class="col">
                     <div class="row">
                         <div class="col-2" style="margin-right: 1rem"> <!-- Для иконок слайдера -->
-                            <div class="row justify-content-start" id="thumbs" style="padding-top: 0">
-                            <div class="row" style="margin-bottom: 0.5rem;">
-                                <div class="card h-100" style="width: 100%; max-width: 100px; min-width: 80px">
+                            <div class="row justify-content-end" id="thumbs" style="padding-top: 0">
+                            <div class="row" style="margin-bottom: 0.5rem; justify-content: end;">
+                                <div class="card h-100" style="width: 100%; max-width: 100px; min-width: 80px;">
                                     <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 0.5rem;">
+                            <div class="row" style="margin-bottom: 0.5rem; justify-content: end;">
                                 <div class="card h-100" style="width: 100%; max-width: 100px; min-width: 80px">
                                     <img src="{{MEDIA_URL}}{{product.photo_2.url}}" class="card-img-top" alt="...">
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 0.5rem;">
+                            <div class="row" style="margin-bottom: 0.5rem; justify-content: end;">
                                 <div class="card h-100" style="width: 100%; max-width: 100px; min-width: 80px">
                                     <img src="{{MEDIA_URL}}{{product.photo_3.url}}" class="card-img-top" alt="...">
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 0.5rem;">
+                            <div class="row" style="margin-bottom: 0.5rem; justify-content: end;">
                                 <div class="card h-100" style="width: 100%; max-width: 100px; min-width: 80px">
                                     <img src="{{MEDIA_URL}}{{product.photo_4.url}}" class="card-img-top" alt="...">
                                 </div>
                             </div>
-                            <div class="row" style="margin-bottom: 0.5rem;">
+                            <div class="row" style="margin-bottom: 0.5rem; justify-content: end;">
                                 <div class="card h-100" style="width: 100%; max-width: 100px; min-width: 80px">
                                     <img src="{{MEDIA_URL}}{{product.photo_5.url}}" class="card-img-top" alt="...">
                                 </div>
                             </div>
                         </div>
                         </div>
-                        <div class="col" style="margin-bottom: 1rem"> <!-- Для окна слайдера -->
+                        <div class="col" style="margin-bottom: 1rem; margin-right: 1.25rem"> <!-- Для окна слайдера -->
                             <div id="panel" style="display: flex; align-items: center; justify-content: center;">
-                                <img id="largeImage" style="max-width: 100%; flex: 0 0 auto; display: flex;" src="{{MEDIA_URL}} {{product.photo_1.url}}" />
+                                <img id="largeImage" style="width: 100%; flex: 0 0 auto; display: flex;" src="{{MEDIA_URL}} {{product.photo_1.url}}" />
                             </div>
                         </div>
-                        <div class="col" style="margin-left: 2rem"> <!-- Для информации о товаре --->
+                        <div class="col"> <!-- Для информации о товаре --->
                             <h3 style="padding: 0; margin: 0">{{ product.name }}</h3>
                             <div class="row" style="margin-bottom: 1rem; color: darkgrey; padding: 0; margin-left: 0">
                                 Арт.{{ product.vendor_code }}
