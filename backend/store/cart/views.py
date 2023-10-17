@@ -30,4 +30,4 @@ def cart_remove(request, product_id):
 def cart_detail(request):
     cart = Cart(request)
     clothing = ClothingCategories.objects.all()
-    return render(request, 'cart/detail.html', {'cart': cart, 'clothing': clothing})
+    return render(request, 'cart/detail_new.html', {'cart': cart, 'clothing': clothing})

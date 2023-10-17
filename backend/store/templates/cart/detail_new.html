@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div style="font-size: larger; background-color: #9DA89C; margin-bottom: 1rem">
+        <ul class="nav justify-content-center">
+            {% for cat in clothing %}
+                <li class="nav-item" style="z-index:2">
+                   <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}"
+                      style="color: white">
+                       {{cat.name}}
+                       <img src="/static/ico/downmenu.png">
+                   </a>
+                </li>
+            {% endfor %}
+            <li class="nav-item" style="z-index:2">
+                <a class="nav-link active" aria-current="page" href="#" style="color: white">
+                    Капсулы
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="container">
+        <ul class="nav justify-content-start" style="margin-bottom: 2rem">
+            <li class="nav-item" style="z-index:2">
+               <a class="nav-link active" aria-current="page" href="#" style="padding-left: 0; color: #000000; text-decoration: underline;">
+                   Условия доставки
+               </a>
+            </li>
+            <li class="nav-item" style="z-index:2">
+               <a class="nav-link active" aria-current="page" href="#" style="color: #000000; text-decoration: underline;">
+                   Оплата товара
+               </a>
+            </li>
+            <li class="nav-item" style="z-index:2">
+               <a class="nav-link active" aria-current="page" href="#" style="color: #000000; text-decoration: underline;">
+                   Возврат товара
+               </a>
+            </li>
+        </ul>
+        <h3>Корзина</h3>
+        {% for item in cart %}
+                {% with product=item.product %}
+        <div class="row">
+            <div class="col">         <!-- Для фото -->
+                <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."
+                     style="border-radius: 10px; max-width: 100px; min-width: 10vw;">
+            </div>
+            <div class="col">         <!-- для имени размера и цвета -->
+                <div class="row">
+                    <div class="col">     <!-- имя -->
+                        {{ product.name }}
+                    </div>
+                    <div class="col">     <!-- размер -->
+                        {{ item.size }}
+                    </div>
+                    <div class="col">     <!-- цвета -->
+                        {{ product.colors }}
+                    </div>
+                </div>
+            </div>
+            <div class="col">         <!-- для избранного удаления колличества и цены -->
+                <div class="row">
+                    <div class="col">     <!-- избранное -->
+                        <a href="#">
+                            <img src="/static/ico/favorite2.png">
+                        </a>
+                    </div>
+                    <div class="col">     <!-- удаление -->
+                        <a href="{% url 'cart_remove' product.id %}">
+                            <img src="/static/ico/delete.png">
+                        </a>
+                    </div>
+                    <div class="col">     <!-- колличество -->
+                        {{ item.quantity }}
+                    </div>
+                    <div class="col">     <!-- цена -->
+                        {{ item.total_price }} ₽
+                    </div>
+                </div>
+            </div>
+        </div>
+             {% endwith %}
+        {% endfor %}
+        <div class="row justify-content-end">
+            <div class="col-4" style="text-align-last: right;">
+                <div class="row">
+                    <div class="col" style="font-size: x-large">
+                        Итого:
+                    </div>
+                    <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">
+                        {{ cart.get_total_price }} ₽
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-right">
+            <!--
+            <a href="{% url 'categories_global' %}" class="button light">Продолжить просмотр товаров</a>
+            -->
+            <a href="{% url 'orders:order_create' %}" class="btn" style="margin-top: 10px;
+                                                                         border-radius: 20px;
+                                                                                    --bs-btn-color: #FFFFFF;
+                                                                                    --bs-btn-bg: #825934;
+                                                                                    --bs-btn-border-color: #8b4513;
+                                                                                    --bs-btn-hover-color: #fff;
+                                                                                    --bs-btn-hover-bg: #b35c1e;
+                                                                                    --bs-btn-hover-border-color: #8b4513;
+                                                                                    --bs-btn-focus-shadow-rgb: 49,132,253;
+                                                                                    --bs-btn-active-color: #fff;
+                                                                                    --bs-btn-active-bg: #8b4513;
+                                                                                    --bs-btn-active-border-color: #8b4513;
+                                                                                    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+                                                                                    --bs-btn-disabled-color: #fff;
+                                                                                    --bs-btn-disabled-bg: #8b4513;
+                                                                                    --bs-btn-disabled-border-color: #8b4513;">Перейти к оформлению</a>
+        </p>
+    </div>
+{% endblock %}
