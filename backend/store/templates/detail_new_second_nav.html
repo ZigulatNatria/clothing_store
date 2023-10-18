@@ -16,24 +16,33 @@
 			 #panel { position: relative; }
 			 #imgphoto { width: 30%; }
 		</style>
-
-        <div class="bg-body-tertiary">
-            <ul class="nav justify-content-center"
-                style="background-color: #9DA89C; margin-bottom: 2rem; height: 4rem; align-content: center;">
-                {% for cat in view.nav %}
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}" style="color: snow;">
-                    {{cat.name}}
-                    <img src="/static/ico/downmenu.png">
-                </a>
-              </li>
-                {% endfor %}
-                <li class="nav-item" style="z-index:2">
-                  <a class="nav-link active" aria-current="page" href="#" style="color: white">
-                      Капсулы
-                  </a>
-              </li>
-            </ul>
+        <div class="row align-items-center" style="background-color: #9DA89C; margin-bottom: 2rem; height: 4rem; z-index: 1030; position: relative;">
+            <nav class="navbar navbar-expand-lg" style="background-color: #9DA89C;">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSecond" aria-controls="navbarSecond" aria-expanded="false"
+                            aria-label="Переключатель навигации" style="margin-left: 1rem">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSecond">
+                        <ul class="navbar-nav w-100 justify-content-center">
+                            {% for cat in view.nav %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}" style="color: snow; padding-left: 10px;">
+                                        {{cat.name}}
+                                        <img src="/static/ico/downmenu.png">
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" style="color: white; padding-left: 10px;">
+                                    Капсулы
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
         </div>
         <div class="container">
             <div class="row align-items-start" style="margin-bottom: 2rem">

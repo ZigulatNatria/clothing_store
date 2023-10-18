@@ -25,13 +25,14 @@ def product_categories(request, category_product_id):
                'news': news,
                'last_news': last_news,
                'next_news': next_news,
+               'category': category,
                }
     return render(request, 'products_categories_new.html', context)    #TODO products_categories.html
 
 
 class ProductDetail(DetailView):
     # template_name = 'detail.html'
-    template_name = 'detail_new.html'    #TODO удалить detail.html
+    template_name = 'detail_new_second_nav.html'    #TODO удалить detail.html
     context_object_name = 'product'
     queryset = Product.objects.all()
 
@@ -111,6 +112,7 @@ def category_product_list_view(request, category_clothing_id):
     clothing = ClothingCategories.objects.all()
     context = {'category_products': category_products,
                'clothing': clothing,
+               'category_clothing': category_clothing,
                }
     return render(request, 'categories.html', context)
 

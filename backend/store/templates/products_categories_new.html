@@ -3,7 +3,7 @@
 <html lang="en">
     <body>
     {% block content %}
-            <div style="font-size: larger; background-color: #9DA89C; margin-bottom: 3rem">
+            <div style="background-color: #9DA89C; margin-bottom: 3rem; height: 4rem; align-content: center; display: grid;">
                 <ul class="nav justify-content-center">
                     {% for cat in clothing %}
                         <li class="nav-item" style="z-index:2">
@@ -22,6 +22,16 @@
                 </ul>
             </div>
             <div class="container" style="margin-bottom: 5rem;">
+                <div class="row" style="margin-bottom: 3rem">
+                    <div class="col">
+                        <span style="color: darkgrey;">
+                            Главная/{{ category.client_category }}/
+                        </span>
+                        <span>
+                            {{ category.name }}
+                        </span>
+                    </div>
+                </div>
                 <form>
                     {% csrf_token %}
                     <div class="row" style="margin-bottom: 1rem">
@@ -38,9 +48,9 @@
                         </div>
                     </div>
                 </form>
-                 <div class="row justify-content-center">
+                 <div class="row justify-content-start">
                      {% for product in products.qs %}
-                         <div class="col-5" style="margin-bottom: 3rem!important; text-align: -webkit-center;">
+                         <div class="col-5" style="margin-bottom: 3rem!important;">
                              <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                                  <a href="{% url 'product' product.id %}">
                                      <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">

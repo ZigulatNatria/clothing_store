@@ -3,9 +3,8 @@
 <html lang="en">
     <body>
     {% block content %}
-
             <div class="row" style="position: absolute; width: 110%">
-                 <div class="bg-body-tertiary" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; font-size: larger; z-index: 1030">
+                 <div class="bg-body-tertiary" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; z-index: 1030">
                      <ul class="nav justify-content-center">
                          {% for category in all_categories %}
                              <li class="nav-item" style="z-index:2">
@@ -26,6 +25,7 @@
                  <div>
                     <img src="/static/img/banner.jpg" class="img-fluid" style="width: 100%; max-height: 42vh; min-height: 30vh">
                  </div>
+            </div>
             </div>
             <!-- картинки -->
     <div class="container" style="position: relative; z-index: 1020; margin-top: 0rem; margin-bottom: 5rem">
