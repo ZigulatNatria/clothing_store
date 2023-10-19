@@ -3,24 +3,56 @@
 <html lang="en">
     <body>
     {% block content %}
-            <div style="background-color: #9DA89C; margin-bottom: 3rem; height: 4rem; align-content: center; display: grid;">
-                <ul class="nav justify-content-center">
-                    {% for cat in clothing %}
-                        <li class="nav-item" style="z-index:2">
-                           <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}"
-                              style="color: white">
-                               {{cat.name}}
-                               <img src="/static/ico/downmenu.png">
-                           </a>
-                        </li>
-                    {% endfor %}
-                    <li class="nav-item" style="z-index:2">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: white">
-                            Капсулы
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <div class="row align-items-center" style="background-color: #9DA89C; margin-bottom: 2rem; height: 4rem; z-index: 1030; position: relative;">
+            <nav class="navbar navbar-expand-lg" style="background-color: #9DA89C;">
+                <div class="container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarSecond" aria-controls="navbarSecond" aria-expanded="false"
+                            aria-label="Переключатель навигации" style="margin-left: 1rem; border: 0; color: #FFFFFF">
+                        <span>
+                            Каталог <img src="/static/ico/downmenu_second_nav.png">
+                        </span>
+                    </button>
+                    <div class="navbar-toggler" data-bs-toggle="collapse"
+                         style="margin-left: 1rem; border: 0; color: #FFFFFF;">
+                         <div class="row">
+                             <div class="col-3">
+                                 <a href="/profile/">
+                                     <img src="/static/ico/profile_white.png">
+                                 </a>
+                             </div>
+                             <div class="col-3">
+                                 <a href="{% url 'favorite' %}">
+                                    <img src="/static/ico/favorite_white.png">
+                                 </a>
+                             </div>
+                             <div class="col-3">
+                                 <a href="{% url 'cart_detail' %}" style="text-decoration: none; color: #825934; font-weight: bold;">
+                                    <img src="/static/ico/cart_white.png">
+                                 </a>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarSecond">
+                        <ul class="navbar-nav w-100 justify-content-center">
+                            {% for cat in clothing %}
+                                <li class="nav-item" style="margin-right: 2rem;">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'category_clothing' cat.id %}" style="color: snow; padding-left: 10px;">
+                                        {{cat.name}}
+                                        <img src="/static/ico/downmenu.png">
+                                    </a>
+                                </li>
+                            {% endfor %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#" style="color: white; padding-left: 10px;">
+                                    Капсулы
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
             <div class="container" style="margin-bottom: 5rem;">
                 <div class="row" style="margin-bottom: 3rem">
                     <div class="col">
