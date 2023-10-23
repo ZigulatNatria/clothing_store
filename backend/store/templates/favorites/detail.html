@@ -19,23 +19,29 @@
           </div>
         </nav>
         <h3 style="margin-bottom: 2rem">Избранное</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Наименование</th>
-                <th>Цена</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-                {% if products %}
-                    {% for product in products %}
-                        <tr>
-                            <td style="width: 10%"><img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."></td>
-                            <td>{{ product.name }}</td>
-                            <td style="color: #825934; font-weight: bold">{{ product.price }}</td>
-                            <td>
+        {% if products %}
+            {% for product in products %}
+                <div class="row">
+                    <div class="col">           <!-- Для изображения -->
+                        <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="col">           <!-- Для основной информации -->
+                        <div class="col">       <!-- name -->
+                            {{ product.name }}
+                        </div>
+                        <div class="col">       <!-- size -->
+                            {{ product.size.all|join:" &nbsp " }}
+                        </div>
+                        <div class="col">       <!-- color -->
+                            {{ product.colors }}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col" style="width: 18px">       <!-- cart -->
+                                <img src="/static/ico/cart_brown.png">
+                            </div>
+                            <div class="col">       <!-- delete -->
                                 <form action="{% url 'delete_favorite' %}" method="post">
                                     {% csrf_token %}
                                     <input type="hidden" name="id_cat" value={{product.id}}>
@@ -43,14 +49,15 @@
                                         <img src="/static/ico/delete.png">
                                     </button>
                                 </form>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
-                    Нет товаров
-                {% endif %}
-            </tbody>
-        </table>
+                            </div>
+                        </div>
+                        <div class="col" style="color: #825934; font-weight: bold">       <!-- price -->
+                            {{ product.price }} ₽
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
         <p class="text-right">
             <a href="{% url 'categories_global' %}" class="button light">Continue shopping</a>
         </p>
