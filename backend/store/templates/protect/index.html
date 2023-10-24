@@ -18,60 +18,41 @@
           </div>
         </nav>
         <h3 style="margin-bottom: 2rem">Ваши заказы</h3>
-        <table class="table">
-            <thead>
-            <tr>
-                <th></th>
-                <th>Наименование</th>
-                <th>Размер</th>
-                <th>Цвет</th>
-                <th>Цена</th>
-                <th>Дата покупки</th>
-                <th></th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for order in view.user_orders %}
-                    <tr>
-                        <td style="width: 10%">
-                            <a href="{% url 'product' order.product.id %}">
-                                <img src="{{MEDIA_URL}}{{order.product.photo_1.url}}" class="d-block w-100" alt="...">
-                            </a>
-                        </td>
-                        <td>{{ order.product.name }}</td>
-                        <td>{{ order.size }}</td>
-                        <td>{{ order.color }}</td>
-                        <td style="color: #825934; font-weight: bold">{{ order.price }} ₽</td>
-                        <td>{{ order.created|date:"d.m.Y" }}</td>
-                        <td>
-                            <button type="submit" class="btn" style="                border-radius: 20px;
-                                                                                    --bs-btn-color: #FFFFFF;
-                                                                                    --bs-btn-bg: #825934;
-                                                                                    --bs-btn-border-color: #8b4513;
-                                                                                    --bs-btn-hover-color: #fff;
-                                                                                    --bs-btn-hover-bg: #b35c1e;
-                                                                                    --bs-btn-hover-border-color: #8b4513;
-                                                                                    --bs-btn-focus-shadow-rgb: 49,132,253;
-                                                                                    --bs-btn-active-color: #fff;
-                                                                                    --bs-btn-active-bg: #8b4513;
-                                                                                    --bs-btn-active-border-color: #8b4513;
-                                                                                    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-                                                                                    --bs-btn-disabled-color: #fff;
-                                                                                    --bs-btn-disabled-bg: #8b4513;
-                                                                                    --bs-btn-disabled-border-color: #8b4513;">
-                                В корзину
+        {% for order in view.user_orders %}
+            <div class="row" style="margin-bottom: 2rem">
+                <div class="col">               <!-- for imagine -->
+                    <img src="{{MEDIA_URL}}{{order.product.photo_1.url}}" class="d-block w-100" alt="...">
+                </div>
+                <div class="col">               <!-- for base information -->
+                    <div class="col" style="margin-bottom: 0.5rem">            <!-- for name -->
+                        {{ order.product.name }}
+                    </div>
+                    <div class="col" style="margin-bottom: 0.5rem; color: darkgrey;">            <!-- for size -->
+                        {{ order.size }}
+                    </div>
+                    <div class="col" style="color: darkgrey;">           <!-- for color -->
+                        {{ order.color }}
+                    </div>
+                </div>
+                <div class="col">               <!-- for ico and price -->
+                    <div class="row">
+                        <div class="col" style="width: 18px">           <!-- for cart ico -->
+                            <button type="submit" class="btn" style="background-color: #fff0; border: #fff0;">
+                                <img src="/static/ico/cart_brown.png">
                             </button>
-                        </td>
-                        <td>
+                        </div>
+                        <div class="col" style="width: 18px">           <!-- for favorite ico -->
                             <button type="submit" class="btn" style="background-color: #fff0; border: #fff0;">
                                 <img src="/static/ico/favorite2.png">
                             </button>
-                        </td>
-                    </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                        </div>
+                        </div>
+                    <div class="col" style="color: #825934; font-weight: bold">           <!-- for price -->
+                        {{ order.price }} ₽
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
         <button> <a href="/sign/logout/">Выйти</a> </button>
     </div>
 {% endblock %}
