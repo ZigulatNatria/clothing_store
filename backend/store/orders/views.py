@@ -9,8 +9,10 @@ from .forms import OrderCreateForm, OrderUpdateForm
 from cart.cart import Cart
 from yookassa import Configuration, Payment
 
-Configuration.account_id = '232354'
-Configuration.secret_key = 'test_00aCox20214_yPcvdR8-Gc79fpbkgMyh0ZgdVxH5Y1Y'
+# Configuration.account_id = '232354'    #OLD
+Configuration.account_id = '272258'
+# Configuration.secret_key = 'test_00aCox20214_yPcvdR8-Gc79fpbkgMyh0ZgdVxH5Y1Y'    #OLD
+Configuration.secret_key = 'test_SHwUbP0Q5bXVFrJr8WB7K3Qf-qNJLbH7cJjfHaVDufA'
 
 
 def order_create(request):
@@ -56,9 +58,12 @@ def order_create(request):
                 "description": f'http://127.0.0.1:8000/orders/order_detail/{order.id}/'
             }, uuid.uuid4())
             # очистить корзину
+            print(payment)
             cart.clear()
             return HttpResponseRedirect(payment.confirmation.confirmation_url)
-
+        else:
+            zero = 0
+            return render(request, 'categories.html', {'zero': zero})
     else:
         form = OrderCreateForm()
     return render(request,

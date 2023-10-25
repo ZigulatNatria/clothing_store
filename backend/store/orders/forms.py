@@ -3,7 +3,6 @@ from .models import Order
 
 
 class OrderCreateForm(forms.ModelForm):
-    # Order.authorUser = request.user.username TODO доделать привязку автора
 
     class Meta:
         model = Order
@@ -15,8 +14,8 @@ class OrderCreateForm(forms.ModelForm):
             'name',
             'email',
             'phone',
-            'delivery',
-            'type_pay'
+            # 'delivery',           #TODO добавить или оставить
+            # 'type_pay'            #TODO добавить или оставить
         ]
 
         widgets = {
@@ -60,21 +59,21 @@ class OrderCreateForm(forms.ModelForm):
                 }
             ),
 
-            'email': forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                    "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-                    "placeholder": 'Email',
-                }
-            ),
-
-            'phone': forms.TextInput(
-                attrs={
-                    "class": "form-control",
-                    "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-                    "placeholder": 'Телефон',
-                }
-            ),
+            # 'email': forms.TextInput(
+            #     attrs={
+            #         "class": "form-control",
+            #         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+            #         "placeholder": 'Email',
+            #     }
+            # ),
+            #
+            # 'phone': forms.TextInput(
+            #     attrs={
+            #         "class": "form-control",
+            #         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+            #         "placeholder": 'Телефон',
+            #     }
+            # ),
 
             'delivery': forms.RadioSelect,
 
