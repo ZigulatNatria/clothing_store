@@ -54,62 +54,120 @@
             </nav>
         </div>
         <div class="container">
-             <div class="order-info" style="margin-bottom: 2rem;">
-                 <h3>Корзина</h3>
-                 <table class="table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Наименование</th>
-                        <th>Размер</th>
-                        <th>Цвет</th>
-                        <th>Цена</th>
-                        <th>Кол-во</th>
-                        <th>Сумма</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for item in cart %}
-                        {% with product=item.product %}
-                            <tr>
-                                <td style="width: 10%">
-                                    <img src="{{MEDIA_URL}}{{product.photo_1.url}}"
-                                         class="d-block w-100" alt="..." style="border-radius: 10px">
-                                </td>
-                                <td>{{ product.name }}</td>
-                                <td>{{ item.size }}</td>
-                                <td>{{ product.colors }}</td>
-                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>
-                                <td>{{ item.quantity }}</td>
-                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>
-                                <td>
-                                    <a href="#">
-                                        <img src="/static/ico/favorite2.png">
-                                    </a>
-                                </td>
-                                <td>
+            <h3>Корзина</h3>
+            {% for item in cart %}
+                {% with product=item.product %}
+                    <div class="row">
+                        <div class="col">           <!-- for imagine -->
+                            <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="d-block w-100" alt="..."
+                                 style="border-radius: 10px; max-width: 100px; min-width: 10vw;">
+                        </div>
+                        <div class="col">           <!-- for info -->
+                            <div class="row">
+                                <div class="col">       <!-- for name -->
+                                    {{ product.name }}
+                                </div>
+                                <div class="col">       <!-- for size -->
+                                    {{ item.size }}
+                                </div>
+                                <div class="col">       <!-- for color -->
+                                    {{ product.colors }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">           <!-- for other -->
+                            <div class="row" style="align-items: center; text-align: center;">
+                                <div class="col">       <!-- for favorite -->
+                                    {% if product.name in request.user.favorite_products.all|join:", " %}
+                                        <form action="{% url 'delete_favorite' %}" method="post" style="text-align: right">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="id_cat" value={{product.id}}>
+                                            <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
+                                                <img src="/static/ico/favorite3.png">
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <form action="{% url 'add_favorite' %}" method="post" style="text-align: right">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="id_cat" value={{product.id}}>
+                                            <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
+                                                <img src="/static/ico/favorite.png">
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                                <div class="col">       <!-- for delete -->
                                     <a href="{% url 'cart_remove' product.id %}">
                                         <img src="/static/ico/delete.png">
                                     </a>
-                                </td>
-                            </tr>
-                        {% endwith %}
-                    {% endfor %}
-                    </tbody>
-                 </table>
-                 <div class="row justify-content-end">
-                     <div class="col-4" style="text-align-last: right;">
-                         <div class="row">
-                             <div class="col" style="font-size: x-large">
-                                 Итого:
-                             </div>
-                             <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">
-                                 {{ cart.get_total_price }} ₽
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+                                </div>
+                                <div class="col">       <!-- for quantity -->
+                                    {{ item.quantity }}
+                                </div>
+                                <div class="col" style="color: #825934; font-weight: bold;">       <!-- for price -->
+                                    {{ item.total_price }}₽
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+<!--             <div class="order-info" style="margin-bottom: 2rem;">-->
+<!--                 <h3>Корзина</h3>-->
+<!--                 <table class="table">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th></th>-->
+<!--                        <th>Наименование</th>-->
+<!--                        <th>Размер</th>-->
+<!--                        <th>Цвет</th>-->
+<!--                        <th>Цена</th>-->
+<!--                        <th>Кол-во</th>-->
+<!--                        <th>Сумма</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    {% for item in cart %}-->
+<!--                        {% with product=item.product %}-->
+<!--                            <tr>-->
+<!--                                <td style="width: 10%">-->
+<!--                                    <img src="{{MEDIA_URL}}{{product.photo_1.url}}"-->
+<!--                                         class="d-block w-100" alt="..." style="border-radius: 10px">-->
+<!--                                </td>-->
+<!--                                <td>{{ product.name }}</td>-->
+<!--                                <td>{{ item.size }}</td>-->
+<!--                                <td>{{ product.colors }}</td>-->
+<!--                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>-->
+<!--                                <td>{{ item.quantity }}</td>-->
+<!--                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>-->
+<!--                                <td>-->
+<!--                                    <a href="#">-->
+<!--                                        <img src="/static/ico/favorite2.png">-->
+<!--                                    </a>-->
+<!--                                </td>-->
+<!--                                <td>-->
+<!--                                    <a href="{% url 'cart_remove' product.id %}">-->
+<!--                                        <img src="/static/ico/delete.png">-->
+<!--                                    </a>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        {% endwith %}-->
+<!--                    {% endfor %}-->
+<!--                    </tbody>-->
+<!--                 </table>-->
+<!--                 <div class="row justify-content-end">-->
+<!--                     <div class="col-4" style="text-align-last: right;">-->
+<!--                         <div class="row">-->
+<!--                             <div class="col" style="font-size: x-large">-->
+<!--                                 Итого:-->
+<!--                             </div>-->
+<!--                             <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">-->
+<!--                                 {{ cart.get_total_price }} ₽-->
+<!--                             </div>-->
+<!--                         </div>-->
+<!--                     </div>-->
+<!--                 </div>-->
+<!--             </div>-->
             <h3>Оформление заказа</h3>
              <form method="post" class="order-form" style="margin-bottom: 5rem;">
                  <div class="row"  style="margin-bottom: 1rem;">
