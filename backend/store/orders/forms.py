@@ -14,8 +14,8 @@ class OrderCreateForm(forms.ModelForm):
             'name',
             'email',
             'phone',
-            # 'delivery',           #TODO добавить или оставить
-            # 'type_pay'            #TODO добавить или оставить
+            'delivery',
+            'type_pay'
         ]
 
         widgets = {
@@ -59,21 +59,21 @@ class OrderCreateForm(forms.ModelForm):
                 }
             ),
 
-            # 'email': forms.TextInput(
-            #     attrs={
-            #         "class": "form-control",
-            #         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-            #         "placeholder": 'Email',
-            #     }
-            # ),
-            #
-            # 'phone': forms.TextInput(
-            #     attrs={
-            #         "class": "form-control",
-            #         "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
-            #         "placeholder": 'Телефон',
-            #     }
-            # ),
+            'email': forms.EmailInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+                    "placeholder": 'Email',
+                }
+            ),
+
+            'phone': forms.NumberInput(
+                attrs={
+                    "class": "form-control",
+                    "style": "border-left: 0; border-top: 0; border-right: 0; padding-left: 0; border-radius: 0",
+                    "placeholder": 'Телефон',
+                }
+            ),
 
             'delivery': forms.RadioSelect,
 
