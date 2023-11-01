@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
-from .mail import short_email, password
+from .mail import short_email, password, email
 # from .basesettings import base
 from .base_set import base_lite
 
@@ -163,11 +163,17 @@ LOGIN_REDIRECT_URL = '/profile/'
 
 CART_SESSION_ID = 'cart'    #Сессия для корзины покупок
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
 EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
 EMAIL_HOST_USER = short_email  # ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user, иными словами, это всё то что идёт до собаки
+EMAIL_USE_TLS = False
 EMAIL_HOST_PASSWORD = password  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
+
+EMAIL_SERVER = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  #для отправки писем в консоль
 
