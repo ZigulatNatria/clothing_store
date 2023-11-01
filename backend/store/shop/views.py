@@ -83,9 +83,10 @@ class ProductDetail(DetailView):
             size = forms.TypedChoiceField(label='Размер',
                                           choices=PRODUCT_SIZE_CHOICES,
                                           coerce=str,
-                                          widget=forms.Select(
+                                          widget=forms.RadioSelect(      #ранее тут был просто селект
                                               attrs={
-                                                  "class": "form-select",
+                                                  # "class": "form-select",
+                                                  # "class": "btn-check btn btn-secondary",
                                               }
                                           )
                                           )
