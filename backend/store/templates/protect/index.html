@@ -21,7 +21,7 @@
         {% for order in view.user_orders %}
             <div class="row" style="margin-bottom: 2rem">
                 <div class="col">               <!-- for imagine -->
-                    <img src="{{MEDIA_URL}}{{order.product.photo_1.url}}" class="d-block w-100" alt="...">
+                    <img src="{{MEDIA_URL}}{{order.product.photo_1.url}}" class="d-block w-100" alt="..." style="max-width: 100px; min-width: 10vw;">
                 </div>
                 <div class="col">               <!-- for base information -->
                     <div class="col" style="margin-bottom: 0.5rem">            <!-- for name -->
