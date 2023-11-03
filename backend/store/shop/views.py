@@ -87,6 +87,7 @@ class ProductDetail(DetailView):
                                               attrs={
                                                   # "class": "form-select",
                                                   # "class": "btn-check btn btn-secondary",
+                                                  "class": "radio-toolbar prod_checbox",
                                               }
                                           )
                                           )
