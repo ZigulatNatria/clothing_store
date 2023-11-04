@@ -2,22 +2,16 @@
     color: #333;
     display: inline-block;
     margin-right: 10px;
-    letter-spacing: 0.5px;}
-
-.radio-toolbar input[type="radio"] {
-    display: none;
-}
+    letter-spacing: 0.5px;
+    }
 
 .radio-toolbar label {
     display: inline-block;
-    padding: 2px 9px;
     cursor: pointer;
-    border: 1px solid #DAD0FF;
 }
 
 .radio-toolbar input[type="radio"]:checked+label {
     background-color: #FFEEDE;
-    border: 1px solid #1CA92E;
 }
 
 .radio-toolbar label:hover {

@@ -12,7 +12,7 @@ class Order(models.Model):
     ]
 
     CHOICES_PAY = [
-        ('credit_card', 'Оплата картой онилайн'),
+        ('credit_card', 'Оплата картой онлайн'),
     ]
 
     # authorUser = models.ForeignKey(User, verbose_name='клиент', on_delete=models.CASCADE, null=True)
