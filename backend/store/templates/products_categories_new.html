@@ -89,10 +89,12 @@
                                  </a>
                                  <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
                                      <div class="row">
-                                         <div class="col">
-                                             {{product.name}}
-                                             <div style="color: #825934; font-weight: bold">{{product.price}} ₽</div>
-                                         </div>
+                                         <a href="{% url 'product' product.id %}" style="text-decoration: none">
+                                             <div class="col">
+                                                 <span style="color: #000000">{{product.name}}</span>
+                                                 <div style="color: #825934; font-weight: bold">{{product.price}} ₽</div>
+                                             </div>
+                                         </a>
                                          <div class="col text-end">
                                              {% if product.name in request.user.favorite_products.all|join:", " %}
                                                 <form action="{% url 'delete_favorite_in_list' %}" method="post" style="text-align: right">
