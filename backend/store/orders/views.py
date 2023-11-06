@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, UpdateView, DetailView
 import uuid
@@ -72,14 +73,20 @@ def order_create(request):
                   )
 
 
-class OrderList(ListView):
+class OrderList(PermissionRequiredMixin, ListView):
+    permission_required = (
+        'orders.order_item.view_order_item',
+    )
     model = OrderItem
     context_object_name = 'orders'
     template_name = 'orders/order_list.html'
     queryset = OrderItem.objects.all()
 
 
-class OrderUpdate(UpdateView):
+class OrderUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = (
+        'orders.order_item.change_order',
+    )
     template_name = 'orders/update.html'
     form_class = OrderUpdateForm
 
@@ -88,7 +95,10 @@ class OrderUpdate(UpdateView):
         return Order.objects.get(pk=id)
 
 
-class OrderDetail(DetailView):
+class OrderDetail(PermissionRequiredMixin, DetailView):
+    permission_required = (
+        'orders.order_item.view_order',
+    )
     template_name = 'orders/order_detail.html'
     context_object_name = 'order'
     queryset = Order.objects.all()

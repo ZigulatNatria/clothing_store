@@ -150,7 +150,7 @@
                                              <div>{{ view.product_add_cart.size.label_tag }}</div>
                                              <div class="row">
                                              {% for size in view.product_add_cart.size %}
-                                             <div class="col radio-toolbar">
+                                             <div class="col radio-toolbar" style="white-space: nowrap; max-width: 90px">
                                                      {{ size.tag }}
                                                 <label for="{{ size.id_for_label }}">
                                                     {{ size.choice_label }}
