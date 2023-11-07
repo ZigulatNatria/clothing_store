@@ -188,41 +188,104 @@
                                      {% endif %}
                                      </div>
                                  </div>
-                                 <div class="row" style="padding: 0; margin-left: 0">
-                                    <div class="list-group list-group-horizontal" id="list-tab" role="tablist">
-                                      <a class="list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#list-home" role="tab" aria-controls="list-home">Описание</a>
-                                      <a class="list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile" style="text-align: center">Характеристики</a>
-                                      <a class="list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages" style="text-align: right">Состав и уход</a>
-                                    </div>
-                                  </div>
-                                 <div class="row" style="margin-bottom: 1rem">
-                                     <div class="tab-content" id="nav-tabContent">
-                                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">{{ product.description }}</div>
-                                     <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                                         <div class="row">
-                                             <table class="table">
-                                                 <tbody style="border-style: none">
-                                                     <tr style="border-style: none">
-                                                         <td style="border-style: none">
-                                                             Размер товара на модели:
-                                                         </td>
-                                                         <td style="border-style: none; text-align: right">
-                                                             {{ product.size_on_model }}
-                                                         </td>
-                                                     </tr>
-                                                     <tr style="border-style: none">
-                                                         <td style="border-style: none">
-                                                             Коллекция:
-                                                         </td>
-                                                         <td style="border-style: none; text-align: right">
-                                                             {{ product.collection }}
-                                                         </td>
-                                                     </tr>
-                                                 </tbody>
-                                             </table>
+                                 <div class="row">
+                                     <div class="row" style="min-width: 300px; margin-bottom: 0.5rem">
+                                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription"
+                                         style="
+                                            --bs-btn-bg: #FFEEDE;
+                                            --bs-btn-hover-bg: #FFEEDE;
+                                            --bs-btn-border-color: #FFEEDE;
+                                            --bs-btn-hover-border-color: #FFEEDE;
+                                            --bs-btn-active-bg: #FFEEDE;
+                                            --bs-btn-active-border-color: #825934;
+                                            color: #825934;">
+                                             <div class="row">
+                                                 <div class="col" style="text-align: start">
+                                                    Описание
+                                                 </div>
+                                                 <div class="col" style="text-align: end">
+                                                     <img src="/static/ico/downmenu_4.png">
+                                                 </div>
+                                             </div>
+                                         </a>
+                                         <div class="collapse" id="collapseDescription">
+                                             <div class="card card-body" style="min-width: 300px;">
+                                                 {{ product.description }}
+                                             </div>
                                          </div>
                                      </div>
-                                     <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">{{ product.compound }}</div>
+                                     <div class="row" style="min-width: 300px; margin-bottom: 0.5rem">
+                                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCharacters" role="button" aria-expanded="false" aria-controls="collapseCharacters"
+                                         style="
+                                            --bs-btn-bg: #FFEEDE;
+                                            --bs-btn-hover-bg: #FFEEDE;
+                                            --bs-btn-border-color: #FFEEDE;
+                                            --bs-btn-hover-border-color: #FFEEDE;
+                                            --bs-btn-active-bg: #FFEEDE;
+                                            --bs-btn-active-border-color: #825934;
+                                            color: #825934;
+                                            text-align: start;">
+                                            <div class="row">
+                                                 <div class="col" style="text-align: start">
+                                                    Характеристики
+                                                 </div>
+                                                 <div class="col" style="text-align: end">
+                                                     <img src="/static/ico/downmenu_4.png">
+                                                 </div>
+                                             </div>
+                                         </a>
+                                         <div class="collapse" id="collapseCharacters">
+                                             <div class="card card-body" style="min-width: 300px;">
+                                                 <div class="row">
+                                                     <table class="table">
+                                                         <tbody style="border-style: none">
+                                                             <tr style="border-style: none">
+                                                                 <td style="border-style: none">
+                                                                     Размер товара на модели:
+                                                                 </td>
+                                                                 <td style="border-style: none; text-align: right">
+                                                                     {{ product.size_on_model }}
+                                                                 </td>
+                                                             </tr>
+                                                             <tr style="border-style: none">
+                                                                 <td style="border-style: none">
+                                                                     Коллекция:
+                                                                 </td>
+                                                                 <td style="border-style: none; text-align: right">
+                                                                     {{ product.collection }}
+                                                                 </td>
+                                                             </tr>
+                                                         </tbody>
+                                                     </table>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                     <div class="row" style="min-width: 300px; margin-bottom: 0.5rem">
+                                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCompound" role="button" aria-expanded="false" aria-controls="collapseCompound"
+                                         style="
+                                            --bs-btn-bg: #FFEEDE;
+                                            --bs-btn-hover-bg: #FFEEDE;
+                                            --bs-btn-border-color: #FFEEDE;
+                                            --bs-btn-hover-border-color: #FFEEDE;
+                                            --bs-btn-active-bg: #FFEEDE;
+                                            --bs-btn-active-border-color: #825934;
+                                            color: #825934;
+                                            text-align: start;">
+                                             <div class="row">
+                                                 <div class="col" style="text-align: start">
+                                                    Состав и уход
+                                                 </div>
+                                                 <div class="col" style="text-align: end">
+                                                     <img src="/static/ico/downmenu_4.png">
+                                                 </div>
+                                             </div>
+                                         </a>
+                                         <div class="collapse" id="collapseCompound">
+                                             <div class="card card-body" style="min-width: 300px;">
+                                                 {{ product.compound }}
+                                             </div>
+                                         </div>
                                      </div>
                                  </div>
                                 <div class="row align-items-center">
