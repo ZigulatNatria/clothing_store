@@ -73,7 +73,15 @@
                 <div class="row" style="margin-bottom: 3rem">
                     <div class="col">
                         <span style="color: darkgrey;">
-                            Главная/{{ product.category_product.client_category }}/{{ product.category_product }}/
+                            <a class="navbar-brand" href="{% url 'categories_global' %}">
+                                Главная /
+                            </a>
+                            <a class="navbar-brand" href="{% url 'category_clothing' product.category_product.client_category.id %}">
+                                {{ product.category_product.client_category }} /
+                            </a>
+                            <a class="navbar-brand" href="{% url 'products' product.category_product.id %}">
+                                {{ product.category_product }} /
+                            </a>
                         </span>
                         <span>
                             {{ product.name }}

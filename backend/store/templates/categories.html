@@ -59,7 +59,9 @@
             <div class="row" style="margin-bottom: 3rem">
                     <div class="col">
                         <span style="color: darkgrey;">
-                            Главная/
+                            <a class="navbar-brand" href="{% url 'categories_global' %}">
+                                 Главная /
+                            </a>
                         </span>
                         <span>
                             {{ category_clothing.name }}

@@ -31,9 +31,8 @@ def product_categories(request, category_product_id):
 
 
 class ProductDetail(DetailView):
-    template_name = 'detail_new_second_nav.html'
     template_name = 'new_detail.html'
-    # context_object_name = 'product'
+    context_object_name = 'product'
     queryset = Product.objects.all()
 
     def stock(self):
