@@ -13,6 +13,14 @@
         {% load static %}
         <link href="{% static 'search/search.css' %}" rel="stylesheet" />
         <link rel="icon" href="/static/ico/ico_bold_32.png" type="image/x-icon">
+        <!-- Медиазапрос на сокрытие элемнта при достижении заданной ширины экрана устройства -->
+        <style>
+             @media screen and (min-width: 0px) and (max-width: 765px)
+            {
+              .rowHide { display: none; }
+             }
+
+        </style>
     </head>
     <body style="font-family: 'Montserrat';">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -24,58 +32,6 @@
                 style="border: none; box-shadow: none">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-<!--                <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" aria-current="page" href="{% url 'delivery_info' %}">Доставка</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" href="{% url 'pay_info' %}">Оплата</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" href="{% url 'return_info' %}">Возврат</a>-->
-<!--                        </li>-->
-<!--                        <li class="nav-item">-->
-<!--                            <a class="nav-link" href="{% url 'contacts_info' %}">Контакты</a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">-->
-<!--                        <li>-->
-<!--                            <form class="search-form" action="{% url 'search' %}">-->
-<!--                              <input class="search-input" type="search" placeholder="поиск..." name="search">-->
-<!--                              <i class="fa fa-search"></i>-->
-<!--                            </form>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">-->
-<!--                        <li>-->
-<!--                            <a href="/profile/">-->
-<!--                                <img src="/static/ico/profile.png">-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">-->
-<!--                        <li>-->
-<!--                            <a href="{% url 'favorite' %}">-->
-<!--                                <img src="/static/ico/favorite.png">-->
-<!--                            </a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: start; align-items: center;">-->
-<!--                        <li>-->
-<!--                            {% with total_items=cart|length %}-->
-<!--                                {% if cart|length > 0 %}-->
-<!--                                    <img src="/static/ico/cart.png">-->
-<!--                                    <a href="{% url 'cart_detail' %}" style="text-decoration: none; color: #825934; font-weight: bold;">-->
-<!--                                        {{ cart.get_total_price }} ₽-->
-<!--                                    </a>-->
-<!--                                {% else %}-->
-<!--                                    <img src="/static/ico/cart.png">-->
-<!--                                {% endif %}-->
-<!--                            {% endwith %}-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -91,7 +47,7 @@
                             <a class="nav-link" href="{% url 'contacts_info' %}">Контакты</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end; align-items: center;">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 rowHide" style="justify-content: end; align-items: center;">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="justify-content: end;">
                             <li style="margin-right: 2rem;">
                                 <form class="search-form" action="{% url 'search' %}">
@@ -123,7 +79,6 @@
                             {% endwith %}
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -168,6 +123,7 @@
                 </div>
            </nav>
         </footer>
+
     <script>
             const navLinkEls = document.querySelectorAll('.nav-link');
             const windowPathname = window.location.href;

@@ -130,177 +130,49 @@
                                 Арт.{{ product.vendor_code }}
                             </div>
                             <h3 style="color: #825934; margin-bottom: 1rem;">{{ product.price }} ₽</h3>
-                            <div class="row" style="padding: 0; margin: 0">
-                                 Цвет:
-                             </div>
-                            <div class="row" style="margin-bottom: 1rem">
-                             {% for colors_product in view.color %}
-                                 {% if colors_product %}
-                                    {% if colors_product.id != product.id %}
-                                    <div class="col-2 align-self-end" style="margin-right: 1rem">
+                            <form action="{% url 'cart_add' product.id %}" method="post">
+                                {% csrf_token %}
+                                <div class="row" style="margin-bottom: 1rem">
+                                    <div class="col">
+                                        <div style="font-weight: bold;">{{ view.product_add_cart.size.label_tag }}</div>
                                         <div class="row">
-                                           <a href="{% url 'product' colors_product.id %}">
-                                               <img style="width: 100%" src="{{MEDIA_URL}} {{colors_product.photo_1.url}}">
-                                           </a>
+                                        {% for size in view.product_add_cart.size %}
+                                        <div class="col radio-toolbar" style="white-space: nowrap; max-width: 90px">
+                                                {{ size.tag }}
+                                           <label for="{{ size.id_for_label }}">
+                                               {{ size.choice_label }}
+                                             </label>
                                         </div>
-                                        <div class="row" style="padding: 0; margin-left: 0">
-                                           {{ colors_product.colors.color }}
+                                        {% endfor %}
                                         </div>
                                     </div>
-                                    {% endif %}
-                                {% endif %}
-                             {% endfor %}
-                             </div>
-                             <form action="{% url 'cart_add' product.id %}" method="post">
-                                      {% csrf_token %}
-                                     <div class="row" style="margin-bottom: 1rem">
-                                         <div class="col">
-                                             <div>{{ view.product_add_cart.size.label_tag }}</div>
-                                             <div class="row">
-                                             {% for size in view.product_add_cart.size %}
-                                             <div class="col radio-toolbar" style="white-space: nowrap; max-width: 90px">
-                                                     {{ size.tag }}
-                                                <label for="{{ size.id_for_label }}">
-                                                    {{ size.choice_label }}
-                                                  </label>
-                                             </div>
-                                             {% endfor %}
-                                             </div>
-                                          </div>
-                                     </div>
-
-                                 <div class="row" style="margin-bottom: 1rem">
+                                 </div>
+                                <div class="row" style="margin-bottom: 1rem">
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #000000">Как выбрать размер?</a>
-                                 </div>
-                                 <div class="row" style="margin-bottom: 1rem; padding: 0; margin-left: 0">
-                                     <div class="col" style="padding: 0; margin-left: 0;">
-                                         Наличие на складе:
-                                     </div>
-                                     <div class="col" style="text-align: right">
-                                     {% if view.stock == 3 %}
-                                        <img src="/static/ico/empty_dot.png">
-                                        <img src="/static/ico/empty_dot.png">
-                                        <img src="/static/ico/empty_dot.png">
-                                     {% elif view.stock == 2 %}
-                                        <img src="/static/ico/empty_dot.png">
-                                        <img src="/static/ico/empty_dot.png">
-                                        <img src="/static/ico/filled_dot.png">
-                                     {% elif view.stock == 1 %}
-                                        <img src="/static/ico/empty_dot.png">
-                                        <img src="/static/ico/filled_dot.png">
-                                        <img src="/static/ico/filled_dot.png">
-                                     {% elif view.stock == 0 %}
-                                        <img src="/static/ico/filled_dot.png">
-                                        <img src="/static/ico/filled_dot.png">
-                                        <img src="/static/ico/filled_dot.png">
-                                     {% endif %}
-                                     </div>
-                                 </div>
-                                 <div class="row">
-                                     <div class="row" style="min-width: 360px; margin-bottom: 0.5rem">
-                                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription"
-                                         style="
-                                            --bs-btn-bg: #FFEEDE;
-                                            --bs-btn-hover-bg: #FFEEDE;
-                                            --bs-btn-border-color: #FFEEDE;
-                                            --bs-btn-hover-border-color: #FFEEDE;
-                                            --bs-btn-active-bg: #FFEEDE;
-                                            --bs-btn-active-border-color: #825934;
-                                            color: #825934;">
-                                             <div class="row">
-                                                 <div class="col" style="text-align: start">
-                                                    Описание
-                                                 </div>
-                                                 <div class="col" style="text-align: end">
-                                                     <img src="/static/ico/downmenu_4.png">
-                                                 </div>
-                                             </div>
-                                         </a>
-                                         <div class="collapse" id="collapseDescription">
-                                             <div class="card card-body" style="min-width: 300px; border: none">
-                                                 {{ product.description }}
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <div class="row" style="min-width: 360px; margin-bottom: 0.5rem">
-                                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCharacters" role="button" aria-expanded="false" aria-controls="collapseCharacters"
-                                         style="
-                                            --bs-btn-bg: #FFEEDE;
-                                            --bs-btn-hover-bg: #FFEEDE;
-                                            --bs-btn-border-color: #FFEEDE;
-                                            --bs-btn-hover-border-color: #FFEEDE;
-                                            --bs-btn-active-bg: #FFEEDE;
-                                            --bs-btn-active-border-color: #825934;
-                                            color: #825934;
-                                            text-align: start;">
-                                            <div class="row">
-                                                 <div class="col" style="text-align: start">
-                                                    Характеристики
-                                                 </div>
-                                                 <div class="col" style="text-align: end">
-                                                     <img src="/static/ico/downmenu_4.png">
-                                                 </div>
-                                             </div>
-                                         </a>
-                                         <div class="collapse" id="collapseCharacters">
-                                             <div class="card card-body" style="min-width: 300px; border: none">
-                                                 <div class="row">
-                                                     <table class="table">
-                                                         <tbody style="border-style: none">
-                                                             <tr style="border-style: none">
-                                                                 <td style="border-style: none">
-                                                                     Размер товара на модели:
-                                                                 </td>
-                                                                 <td style="border-style: none; text-align: right">
-                                                                     {{ product.size_on_model }}
-                                                                 </td>
-                                                             </tr>
-                                                             <tr style="border-style: none">
-                                                                 <td style="border-style: none">
-                                                                     Коллекция:
-                                                                 </td>
-                                                                 <td style="border-style: none; text-align: right">
-                                                                     {{ product.collection }}
-                                                                 </td>
-                                                             </tr>
-                                                         </tbody>
-                                                     </table>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                     </div>
-                                     <div class="row" style="min-width: 360px; margin-bottom: 0.5rem">
-                                         <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCompound" role="button" aria-expanded="false" aria-controls="collapseCompound"
-                                         style="
-                                            --bs-btn-bg: #FFEEDE;
-                                            --bs-btn-hover-bg: #FFEEDE;
-                                            --bs-btn-border-color: #FFEEDE;
-                                            --bs-btn-hover-border-color: #FFEEDE;
-                                            --bs-btn-active-bg: #FFEEDE;
-                                            --bs-btn-active-border-color: #825934;
-                                            color: #825934;
-                                            text-align: start;">
-                                             <div class="row">
-                                                 <div class="col" style="text-align: start">
-                                                    Состав и уход
-                                                 </div>
-                                                 <div class="col" style="text-align: end">
-                                                     <img src="/static/ico/downmenu_4.png">
-                                                 </div>
-                                             </div>
-                                         </a>
-                                         <div class="collapse" id="collapseCompound">
-                                             <div class="card card-body" style="min-width: 300px; border: none">
-                                                 {{ product.compound }}
-                                             </div>
-                                         </div>
-                                     </div>
-                                 </div>
-                                <div class="row align-items-center">
+                                </div>
+                                <div class="row" style="padding: 0; margin: 0; font-weight: bold;">
+                                 Цвет:
+                                </div>
+                                <div class="row">
+                                    {% for colors_product in view.color %}
+                                        {% if colors_product %}
+                                            {% if colors_product.id != product.id %}
+                                                <div class="col-2 align-self-end" style="margin-right: 1rem">
+                                                    <div class="row">
+                                                       <a href="{% url 'product' colors_product.id %}">
+                                                           <img style="width: 100%" src="{{MEDIA_URL}} {{colors_product.photo_1.url}}">
+                                                       </a>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="row" style="margin-bottom: 1rem">
                                 <div class="col">
-                                         <div style="visibility: hidden">{{ view.product_add_cart.quantity }}</div>
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn" style="margin-top: 10px;
+                                   <div style="visibility: hidden">{{ view.product_add_cart.quantity }}</div>
+                                   {% csrf_token %}
+                                   <button type="submit" class="btn" style="margin-top: 10px;
                                                                              border-radius: 20px;
                                                                                         --bs-btn-color: #FFFFFF;
                                                                                         --bs-btn-bg: #825934;
@@ -316,28 +188,166 @@
                                                                                         --bs-btn-disabled-color: #fff;
                                                                                         --bs-btn-disabled-bg: #8b4513;
                                                                                         --bs-btn-disabled-border-color: #8b4513;">
-                                        Добавить в корзину
-                                    </button>
+                                       Добавить в корзину
+                                   </button>
+                                </div>
                             </form>
-                        </div>
-                        <div class="col-4 align-self-end">
-                            {% if product.name in request.user.favorite_products.all|join:", " %}
-                                <form action="{% url 'delete_favorite' %}" method="post" style="text-align: right">
+                             <div class="col-4 align-self-end">
+                             {% if product.name in request.user.favorite_products.all|join:", " %}
+                                 <form action="{% url 'delete_favorite' %}" method="post" style="text-align: right">
                                     {% csrf_token %}
                                     <input type="hidden" name="id_cat" value={{product.id}}>
                                     <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
                                         <img src="/static/ico/favorite3.png">
                                     </button>
-                                </form>
-                            {% else %}
-                                <form action="{% url 'add_favorite' %}" method="post" style="text-align: right">
+                                 </form>
+                             {% else %}
+                                 <form action="{% url 'add_favorite' %}" method="post" style="text-align: right">
                                     {% csrf_token %}
                                     <input type="hidden" name="id_cat" value={{product.id}}>
                                     <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
                                         <img src="/static/ico/favorite.png">
                                     </button>
-                                </form>
-                            {% endif %}
+                                 </form>
+                             {% endif %}
+                             </div>
+                        </div>
+                             <div class="row" style="margin-bottom: 1rem; padding: 0; margin-left: 0">
+                                 <div class="col" style="padding: 0; margin-left: 0;">
+                                     Наличие на складе:
+                                 </div>
+                                 <div class="col" style="text-align: right">
+                                 {% if view.stock == 3 %}
+                                    <img src="/static/ico/empty_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/empty_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/empty_dot.png">
+                                 {% elif view.stock == 2 %}
+                                    <img src="/static/ico/empty_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/empty_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/filled_dot.png">
+                                 {% elif view.stock == 1 %}
+                                    <img src="/static/ico/empty_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/filled_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/filled_dot.png">
+                                 {% elif view.stock == 0 %}
+                                    <img src="/static/ico/filled_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/filled_dot.png" style="padding-right: 0.2rem">
+                                    <img src="/static/ico/filled_dot.png">
+                                 {% endif %}
+                                 </div>
+                             </div>
+                             <div class="row" style="margin: 0;">
+                                 <div class="row" style="min-width: 360px; padding-left: 0; padding-right: 0;">
+                                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseDescription" role="button" aria-expanded="false" aria-controls="collapseDescription"
+                                     style="
+                                        --bs-btn-bg: #FFEEDE;
+                                        --bs-btn-hover-bg: #FFEEDE;
+                                        --bs-btn-border-color: #FFEEDE;
+                                        --bs-btn-hover-border-color: #FFEEDE;
+                                        --bs-btn-active-bg: #FFEEDE;
+                                        --bs-btn-active-border-color: #825934;
+                                        color: #825934;
+                                        padding-bottom: 1rem;
+                                        padding-top: 1rem;
+                                        border-radius: 0;
+                                        border-bottom-color: #825934;">
+                                         <div class="row">
+                                             <div class="col" style="text-align: start">
+                                                Описание
+                                             </div>
+                                             <div class="col" style="text-align: end">
+                                                 <img src="/static/ico/downmenu_4.png">
+                                             </div>
+                                         </div>
+                                     </a>
+                                     <div class="collapse" id="collapseDescription">
+                                         <div class="card card-body" style="min-width: 300px; border: none">
+                                             {{ product.description }}
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="row" style="min-width: 360px; padding-left: 0; padding-right: 0;">
+                                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCharacters" role="button" aria-expanded="false" aria-controls="collapseCharacters"
+                                     style="
+                                        --bs-btn-bg: #FFEEDE;
+                                        --bs-btn-hover-bg: #FFEEDE;
+                                        --bs-btn-border-color: #FFEEDE;
+                                        --bs-btn-hover-border-color: #FFEEDE;
+                                        --bs-btn-active-bg: #FFEEDE;
+                                        --bs-btn-active-border-color: #825934;
+                                        color: #825934;
+                                        text-align: start;
+                                        padding-bottom: 1rem;
+                                        padding-top: 1rem;
+                                        border-radius: 0;
+                                        border-bottom-color: #825934;">
+                                        <div class="row">
+                                             <div class="col" style="text-align: start">
+                                                Характеристики
+                                             </div>
+                                             <div class="col" style="text-align: end">
+                                                 <img src="/static/ico/downmenu_4.png">
+                                             </div>
+                                         </div>
+                                     </a>
+                                     <div class="collapse" id="collapseCharacters">
+                                         <div class="card card-body" style="min-width: 300px; border: none">
+                                             <div class="row">
+                                                 <table class="table">
+                                                     <tbody style="border-style: none">
+                                                         <tr style="border-style: none">
+                                                             <td style="border-style: none">
+                                                                 Размер товара на модели:
+                                                             </td>
+                                                             <td style="border-style: none; text-align: right">
+                                                                 {{ product.size_on_model }}
+                                                             </td>
+                                                         </tr>
+                                                         <tr style="border-style: none">
+                                                             <td style="border-style: none">
+                                                                 Коллекция:
+                                                             </td>
+                                                             <td style="border-style: none; text-align: right">
+                                                                 {{ product.collection }}
+                                                             </td>
+                                                         </tr>
+                                                     </tbody>
+                                                 </table>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="row" style="min-width: 360px; padding-left: 0; padding-right: 0;">
+                                     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseCompound" role="button" aria-expanded="false" aria-controls="collapseCompound"
+                                     style="
+                                        --bs-btn-bg: #FFEEDE;
+                                        --bs-btn-hover-bg: #FFEEDE;
+                                        --bs-btn-border-color: #FFEEDE;
+                                        --bs-btn-hover-border-color: #FFEEDE;
+                                        --bs-btn-active-bg: #FFEEDE;
+                                        --bs-btn-active-border-color: #825934;
+                                        color: #825934;
+                                        text-align: start;
+                                        padding-bottom: 1rem;
+                                        padding-top: 1rem;
+                                        border-radius: 0;">
+                                         <div class="row">
+                                             <div class="col" style="text-align: start">
+                                                Состав и уход
+                                             </div>
+                                             <div class="col" style="text-align: end">
+                                                 <img src="/static/ico/downmenu_4.png">
+                                             </div>
+                                         </div>
+                                     </a>
+                                     <div class="collapse" id="collapseCompound">
+                                         <div class="card card-body" style="min-width: 300px; border: none">
+                                             {{ product.compound }}
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row align-items-center">
                         </div>
                     </div>
                         </div>
