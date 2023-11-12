@@ -137,13 +137,13 @@
                                 <div class="row" style="margin-bottom: 1rem">
                                     <div class="col">
                                         <div style="font-weight: bold;">{{ view.product_add_cart.size.label_tag }}</div>
-                                        <div class="row">
+                                        <div class="row" style="height: 2rem">
                                         {% for size in view.product_add_cart.size %}
                                         <div class="col radio-toolbar" style="white-space: nowrap; max-width: 90px">
                                                 {{ size.tag }}
-                                           <label for="{{ size.id_for_label }}">
+                                           <label for="{{ size.id_for_label }}" style="height: 100%; display: flex; justify-content: center; align-items: center;">
                                                {{ size.choice_label }}
-                                             </label>
+                                           </label>
                                         </div>
                                         {% endfor %}
                                         </div>
