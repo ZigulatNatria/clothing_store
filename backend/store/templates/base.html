@@ -33,6 +33,51 @@
                     display: none;
                 }
         </style>
+<!--        для выравнивания кнопки и надписи поверх баннера на главной странице-->
+        <style>
+            @media screen and (min-width: 765px)
+            {
+              .positionDesktop {
+                    text-align: center;
+                    margin-left: 20vw;
+                    margin-top: 5vw;
+              }
+             }
+             @media screen and (min-width: 0px) and (max-width: 765px)
+             {
+              .positionDesktop {
+                    text-align: left !important;
+              }
+             }
+        </style>
+<!--        размер шрифта на главной странице в мобильной версии-->
+        <style>
+             @media screen and (min-width: 0px) and (max-width: 765px)
+            {
+              .textSize {
+                    margin-top: 0 !important;
+                    font-size: small;
+              }
+             }
+        </style>
+<!--        уменьшение отступа то текста с кнопкой на главной странице-->
+        <style>
+            @media screen and (min-width: 0px) and (max-width: 765px)
+            {
+              .marginTopFP {
+                    margin-top: 7vh !important;
+              }
+             }
+        </style>
+        <style>
+            @media screen and (min-width: 0px) and (max-width: 765px)
+            {
+              .secondTopMenuMobile {
+                    position: relative !important;
+                    background-color: #9DA89C !important;
+              }
+             }
+        </style>
     </head>
     <body style="font-family: 'Montserrat';">
         <nav class="navbar navbar-expand-lg bg-body-tertiary" style="height: 5rem;">

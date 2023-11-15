@@ -3,39 +3,39 @@
 <html lang="en">
     <body>
     {% block content %}
-    <div class="container" style="position: absolute; z-index: 1020; margin-top: 10vh; margin-bottom: 5rem">
-        <div class="row">
-            <div class="row" style="z-index: 1030; padding-right: 0">
-                <div class="col-lg-4 align-self-center" style="text-align: center">
-                    <h4>
-                        <p style="color: #FFFFFF; margin-top: 1rem">
-                            Бренд нижнего белья<br>
-                            и домашней одежды
-                        </p>
-                    </h4>
-                    <div class="row justify-content-start">
-                        <div class="col" style="margin-bottom: 1rem">
-                            <a class="btn btn-light" style="border-radius: 20px">Перейти <img src="/static/ico/arrow.png"></a>
+        <div class="container marginTopFP" style="position: absolute; z-index: 1020; margin-top: 10vh; margin-bottom: 5rem">
+            <div class="row">
+                <div class="row" style="z-index: 1030; padding-right: 0">
+                    <div class="col-lg-4 align-self-center positionDesktop" style="text-align: center">
+                        <h4>
+                            <p class="textSize" style="color: #FFFFFF; margin-top: 1rem">
+                                Бренд нижнего белья<br>
+                                и домашней одежды
+                            </p>
+                        </h4>
+                        <div class="row justify-content-start">
+                            <div class="col" style="margin-bottom: 1rem">
+                                <a class="btn btn-light" style="border-radius: 20px; --bs-btn-bg: #f8f9fa88; --bs-btn-border-color: none;">Перейти <img src="/static/ico/arrow.png"></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
             <div class="row" style="margin: 0; margin-bottom: 3rem">
-                 <div class="bg-body-tertiary" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; z-index: 1030">
+                 <div class="bg-body-tertiary secondTopMenuMobile" style="--bs-bg-opacity: 0; position: absolute; left: 0; right: 0; margin: 0 auto; z-index: 1030">
                     <nav class="navbar navbar-expand-lg">
-                        <div class="container">
+                        <div class="container" style="padding-left: 0; padding-right: 0;">
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#navbarSecond" aria-controls="navbarSecond" aria-expanded="false"
-                                    aria-label="Переключатель навигации" style="margin-left: 1rem; border: 0; color: #FFFFFF; box-shadow: none;">
+                                    aria-label="Переключатель навигации" style="margin-left: 0; padding-left: 0; border: 0; color: #FFFFFF; box-shadow: none;">
                                 <span>
                                     Каталог <img src="/static/ico/downmenu_second_nav.png">
                                 </span>
                             </button>
                             <div class="navbar-toggler" data-bs-toggle="collapse"
-                                 style="margin-left: 1rem; border: 0; color: #FFFFFF;">
-                                 <div class="row">
+                                 style="margin-left: 1rem; padding-right: 0; border: 0; color: #FFFFFF;">
+                                 <div class="row" style="justify-content: center;">
                                      <div class="col-3">
                                          <a href="/profile/">
                                              <img src="/static/ico/profile_white.png">
@@ -103,8 +103,8 @@
                                     <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                                         <a href="{% url 'products' sub.id %}">
                                             <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">
-                                            <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
-                                                <center><p class="card-text-center" style="color: #000000">{{sub.name}}</p></center>
+                                            <div class="card-body" style="position: absolute; padding: 0; bottom: 0; background-color: #ffffff77; width: 100%">
+                                                <center><p class="card-text-center" style="color: #000000; margin-top: 0.5rem; margin-bottom: 0.5rem">{{sub.name}}</p></center>
                                             </div>
                                         </a>
                                     </div>
