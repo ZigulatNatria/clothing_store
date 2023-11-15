@@ -4,3 +4,4 @@ venv/
 store/db.sqlite3
 /store/store/mail.py
 /store/store/basesettings.py
+/store/db2.sqlite3

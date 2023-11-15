@@ -15,9 +15,9 @@
         <link rel="icon" href="/static/ico/ico_logo_new.png" type="image/x-icon">
         <!-- Медиазапрос на сокрытие элемнта при достижении заданной ширины экрана устройства -->
         <style>
-             @media screen and (min-width: 0px) and (max-width: 765px)
+             @media screen and (min-width: 0px) and (max-width: 991px)
             {
-              .rowHide { display: none; }
+              .rowHide { display: none !important; }
              }
         </style>
 <!--        Выравнивание по всей ширине вкладок характеристик-->
@@ -78,9 +78,17 @@
               }
              }
         </style>
+        <style>
+             @media screen and (min-width: 765px)
+            {
+              .elementHideDesktop {
+                    display: none !important;
+              }
+             }
+        </style>
     </head>
     <body style="font-family: 'Montserrat';">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="height: 5rem;">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="min-height: 5rem;">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'categories_global' %}">
                     <img src="/static/ico/logo.png">

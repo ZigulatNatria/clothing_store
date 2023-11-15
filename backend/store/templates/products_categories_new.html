@@ -5,17 +5,17 @@
     {% block content %}
             <div class="row align-items-center" style="background-color: #9DA89C; margin-bottom: 2rem; height: 4rem; z-index: 1030; position: relative; margin-left: 0; margin-right: 0;">
             <nav class="navbar navbar-expand-lg" style="background-color: #9DA89C;">
-                <div class="container">
+                <div class="container" style="padding-right: 0;">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSecond" aria-controls="navbarSecond" aria-expanded="false"
-                            aria-label="Переключатель навигации" style="margin-left: 1rem; border: 0; color: #FFFFFF; box-shadow: none;">
+                            aria-label="Переключатель навигации" style="margin-left: 0; padding-left: 0; border: 0; color: #FFFFFF; box-shadow: none;">
                         <span>
                             Каталог <img src="/static/ico/downmenu_second_nav.png">
                         </span>
                     </button>
                     <div class="navbar-toggler" data-bs-toggle="collapse"
                          style="margin-left: 1rem; border: 0; color: #FFFFFF;">
-                         <div class="row">
+                         <div class="row" style="justify-content: center;">
                              <div class="col-3">
                                  <a href="/profile/">
                                      <img src="/static/ico/profile_white.png">
@@ -92,15 +92,15 @@
                                  <a href="{% url 'product' product.id %}">
                                      <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">
                                  </a>
-                                 <div class="card-body" style="position: absolute; bottom: 0; background-color: rgba(255, 253, 208,0.5); width: 100%">
+                                 <div class="card-body" style="position: absolute; padding: 0; bottom: 0; background-color: #ffffff77; width: 100%">
                                      <div class="row">
                                          <a href="{% url 'product' product.id %}" style="text-decoration: none">
-                                             <div class="col">
-                                                 <span style="color: #000000">{{product.name}}</span>
+                                             <div class="col text-center">
+                                                 <span style="color: #000000; margin-top: 0.5rem; margin-bottom: 0.5rem">{{product.name}}</span>
                                                  <div style="color: #825934; font-weight: bold">{{product.price}} ₽</div>
                                              </div>
                                          </a>
-                                         <div class="col text-end">
+                                         <div class="col text-center">
                                              {% if product.name in request.user.favorite_products.all|join:", " %}
                                                 <form action="{% url 'delete_favorite_in_list' %}" method="post" style="text-align: right">
                                                     {% csrf_token %}

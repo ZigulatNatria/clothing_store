@@ -120,7 +120,7 @@
                         {% for new in last_news %}
                             <div class="card" style="max-width: 40vw; min-width: 18rem; padding-top: 12px;
                             padding-bottom: 12px; padding-left: 12px; padding-right: 12px; border-color: #825934;
-                            border-width: 2px; margin-bottom: 3rem">
+                            border-width: 2px; margin-bottom: 5rem">
                                 <img src="{{MEDIA_URL}}{{new.image.url}}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <div class="row justify-content-start">
@@ -135,7 +135,7 @@
                         {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="col"> <!-- Для остальных новостей -->
+                    <div class="col" style="margin-bottom: 10rem"> <!-- Для остальных новостей -->
                         <h5><a href="{% url 'news_list' %}" style="color: #825934">Смотреть все</a></h5>
                         {% for new in next_news %}
                             <div class="card" style="border: 0">
