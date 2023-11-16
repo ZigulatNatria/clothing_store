@@ -33,6 +33,44 @@
                     display: none;
                 }
         </style>
+<!--        изменение цвета радиокнопки-->
+        <style>
+              .radio-color input[type='radio'] {
+                    position: relative;
+                    height: 15px;
+                    width: 15px;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
+                    outline: none;
+                }
+
+              .radio-color input[type='radio']::before {
+                    content: '';
+                    position: absolute;
+                    top: 65%;
+                    left: 50%;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    background-color: white;
+                    border: 2px solid #825934;
+                }
+
+              .radio-color input[type='radio']:checked::after {
+                    content: '';
+                    position: absolute;
+                    top: 65%;
+                    left: 50%;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    background-color: #825934;
+                    transform: translate(-50%, -50%);
+                    visibility: visible;
+                }
+        </style>
 <!--        для выравнивания кнопки и надписи поверх баннера на главной странице-->
         <style>
             @media screen and (min-width: 765px)
@@ -69,6 +107,7 @@
               }
              }
         </style>
+<!--        изменение цвета меню в мобильной версии главной страницы -->
         <style>
             @media screen and (min-width: 0px) and (max-width: 765px)
             {
@@ -78,11 +117,21 @@
               }
              }
         </style>
+<!--        сокрытие меню в десктопной версии-->
         <style>
              @media screen and (min-width: 765px)
             {
               .elementHideDesktop {
                     display: none !important;
+              }
+             }
+        </style>
+<!--        изменение маржина выбора типа оплаты в окне формирования заказа-->
+        <style>
+            @media screen and (min-width: 0px) and (max-width: 765px)
+            {
+              .formOrderCreate {
+                    margin-right: 40vw !important;
               }
              }
         </style>

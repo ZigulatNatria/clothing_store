@@ -5,17 +5,17 @@
         {% block content %}
         <div class="row align-items-center" style="background-color: #9DA89C; margin-bottom: 2rem; height: 4rem; z-index: 1030; position: relative; margin-left: 0; margin-right: 0;">
             <nav class="navbar navbar-expand-lg" style="background-color: #9DA89C;">
-                <div class="container">
+                <div class="container" style="padding-right: 0;">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSecond" aria-controls="navbarSecond" aria-expanded="false"
-                            aria-label="Переключатель навигации" style="margin-left: 1rem; border: 0; color: #FFFFFF; box-shadow: none;">
+                            aria-label="Переключатель навигации" style="margin-left: 0; padding-left: 0; border: 0; color: #FFFFFF; box-shadow: none;">
                         <span>
                             Каталог <img src="/static/ico/downmenu_second_nav.png">
                         </span>
                     </button>
                     <div class="navbar-toggler" data-bs-toggle="collapse"
                          style="margin-left: 1rem; border: 0; color: #FFFFFF;">
-                         <div class="row">
+                         <div class="row" style="justify-content: center;">
                              <div class="col-3">
                                  <a href="/profile/">
                                      <img src="/static/ico/profile_white.png">
@@ -112,62 +112,6 @@
                     </div>
                 {% endwith %}
             {% endfor %}
-<!--             <div class="order-info" style="margin-bottom: 2rem;">-->
-<!--                 <h3>Корзина</h3>-->
-<!--                 <table class="table">-->
-<!--                    <thead>-->
-<!--                    <tr>-->
-<!--                        <th></th>-->
-<!--                        <th>Наименование</th>-->
-<!--                        <th>Размер</th>-->
-<!--                        <th>Цвет</th>-->
-<!--                        <th>Цена</th>-->
-<!--                        <th>Кол-во</th>-->
-<!--                        <th>Сумма</th>-->
-<!--                    </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--                    {% for item in cart %}-->
-<!--                        {% with product=item.product %}-->
-<!--                            <tr>-->
-<!--                                <td style="width: 10%">-->
-<!--                                    <img src="{{MEDIA_URL}}{{product.photo_1.url}}"-->
-<!--                                         class="d-block w-100" alt="..." style="border-radius: 10px">-->
-<!--                                </td>-->
-<!--                                <td>{{ product.name }}</td>-->
-<!--                                <td>{{ item.size }}</td>-->
-<!--                                <td>{{ product.colors }}</td>-->
-<!--                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.price }} ₽</td>-->
-<!--                                <td>{{ item.quantity }}</td>-->
-<!--                                <td class="num" style="color: #825934; font-weight: bold"> {{ item.total_price }} ₽</td>-->
-<!--                                <td>-->
-<!--                                    <a href="#">-->
-<!--                                        <img src="/static/ico/favorite2.png">-->
-<!--                                    </a>-->
-<!--                                </td>-->
-<!--                                <td>-->
-<!--                                    <a href="{% url 'cart_remove' product.id %}">-->
-<!--                                        <img src="/static/ico/delete.png">-->
-<!--                                    </a>-->
-<!--                                </td>-->
-<!--                            </tr>-->
-<!--                        {% endwith %}-->
-<!--                    {% endfor %}-->
-<!--                    </tbody>-->
-<!--                 </table>-->
-<!--                 <div class="row justify-content-end">-->
-<!--                     <div class="col-4" style="text-align-last: right;">-->
-<!--                         <div class="row">-->
-<!--                             <div class="col" style="font-size: x-large">-->
-<!--                                 Итого:-->
-<!--                             </div>-->
-<!--                             <div class="col" style="color: #825934; font-size: x-large; font-weight: bold">-->
-<!--                                 {{ cart.get_total_price }} ₽-->
-<!--                             </div>-->
-<!--                         </div>-->
-<!--                     </div>-->
-<!--                 </div>-->
-<!--             </div>-->
             <h3>Оформление заказа</h3>
              <form method="post" class="order-form" style="margin-bottom: 5rem;">
                  <div class="row"  style="margin-bottom: 1rem;">
@@ -182,13 +126,25 @@
                          <div style="margin-bottom: 1rem">{{ form.email }}</div>
                          <div style="margin-bottom: 1rem">{{ form.phone }}</div>
                      </div>
-                     <div class="col" style="margin-right: 7rem">
+                     <div class="col formOrderCreate">
                          <div style="padding-top: 0.375rem; padding-right: 0.75rem; padding-bottom: 0.375rem; font-weight: bold">Выберите способ оплаты</div>
-                         <div style="margin-bottom: 1rem">{{ form.type_pay }}</div>
+<!--                         <div style="margin-bottom: 1rem">{{ form.type_pay }}</div>-->
+                         <div style="margin-bottom: 1rem">
+                             {% for type in form.type_pay %}
+                             <span class="radio-color">{{ type.tag }}</span>
+                                {{ type.choice_label }}<br>
+                             {% endfor %}
+                         </div>
                      </div>
                      <div class="col">
                          <div style="padding-top: 0.375rem; padding-right: 0.75rem; padding-bottom: 0.375rem; font-weight: bold">Выберите способ доставки</div>
-                         <div style="margin-bottom: 1rem">{{ form.delivery }}</div>
+<!--                         <div style="margin-bottom: 1rem">{{ form.delivery }}</div>-->
+                         <div style="margin-bottom: 1rem">
+                             {% for delivery in form.delivery %}
+                             <span class="radio-color">{{ delivery.tag }}</span>
+                                {{ delivery.choice_label }}<br>
+                             {% endfor %}
+                         </div>
                          <button type="submit" class="btn" style="margin-top: 10px;
                                                                          border-radius: 20px;
                                                                                     --bs-btn-color: #FFFFFF;
