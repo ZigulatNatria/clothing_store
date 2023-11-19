@@ -99,7 +99,7 @@
                         {% endif %}
                         {% for sub in sub_category %}
                             {% if sub.popular %}
-                                <div class="col-5 align-self-center" style="margin-bottom: 3rem!important;">
+                                <div class="col colMobile align-self-center" style="margin-bottom: 3rem!important;">
                                     <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                                         <a href="{% url 'products' sub.id %}">
                                             <img src="{{MEDIA_URL}}{{sub.photo.url}}" class="card-img-top" alt="...">

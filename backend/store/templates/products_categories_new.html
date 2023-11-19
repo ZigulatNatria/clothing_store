@@ -76,50 +76,54 @@
                              {{ products.form.size.label_tag }}
                              {{ products.form.size }}
                         </div>
-                        <div class="col-lg-2" style="margin-bottom: 1rem">
+                        <div class="col-lg-2">
                              {{ products.form.colors.label_tag }}
                              {{ products.form.colors }}
                         </div>
-                        <div class="col-lg-2 align-self-end">
+                        <div class="col-lg-2 align-self-end" style="margin-top: 1rem;">
                             <input class="btn" type="submit" value="Найти" style="background-color: #825934; color: #FFFFFF">
                         </div>
                     </div>
                 </form>
                  <div class="row justify-content-start">
                      {% for product in products.qs %}
-                         <div class="col-5" style="margin-bottom: 3rem!important;">
+                         <div class="col colMobile" style="margin-bottom: 3rem!important;">
                              <div class="card h-100" style="width: 100%; --bs-card-border-color: 0; max-width: 18rem">
                                  <a href="{% url 'product' product.id %}">
                                      <img src="{{MEDIA_URL}}{{product.photo_1.url}}" class="card-img-top" alt="...">
                                  </a>
                                  <div class="card-body" style="position: absolute; padding: 0; bottom: 0; background-color: #ffffff77; width: 100%">
-                                     <div class="row">
-                                         <a href="{% url 'product' product.id %}" style="text-decoration: none">
-                                             <div class="col text-center">
-                                                 <span style="color: #000000; margin-top: 0.5rem; margin-bottom: 0.5rem">{{product.name}}</span>
-                                                 <div style="color: #825934; font-weight: bold">{{product.price}} ₽</div>
+                                     <a href="{% url 'product' product.id %}" style="text-decoration: none">
+                                         <div class="row" style="align-items: center;">
+                                             <div class="row" style="padding-right: 0;">
+                                                 <div class="col text-center" style="color: #000000; margin-top: 0.5rem; margin-bottom: 0.5rem; padding-right: 0">
+                                                     {{product.name}}
+                                                 </div>
                                              </div>
-                                         </a>
-                                         <div class="col text-center">
-                                             {% if product.name in request.user.favorite_products.all|join:", " %}
-                                                <form action="{% url 'delete_favorite_in_list' %}" method="post" style="text-align: right">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="id_cat" value={{product.id}}>
-                                                    <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
+                                                 <div class="col text-start" style="padding-right: 0;">
+                                                     <div style="color: #825934; font-weight: bold">{{product.price}} ₽</div>
+                                                 </div>
+                                             <div class="col text-center" style="max-width: 50px; padding-left: 0;">
+                                                 {% if product.name in request.user.favorite_products.all|join:", " %}
+                                                    <form action="{% url 'delete_favorite_in_list' %}" method="post" style="text-align: right">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="id_cat" value={{product.id}}>
+                                                        <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
                                                             <img src="/static/ico/favorite3.png">
-                                                    </button>
-                                                </form>
-                                            {% else %}
-                                                <form action="{% url 'add_favorite_in_list' %}" method="post" style="text-align: right">
-                                                    {% csrf_token %}
-                                                    <input type="hidden" name="id_cat" value={{product.id}}>
-                                                    <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
+                                                        </button>
+                                                    </form>
+                                                {% else %}
+                                                    <form action="{% url 'add_favorite_in_list' %}" method="post" style="text-align: right">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="id_cat" value={{product.id}}>
+                                                        <button type="submit" class="btn" style="background-color: #fff0; border: #fff0; padding-right:0">
                                                             <img src="/static/ico/favorite.png">
-                                                    </button>
-                                                </form>
-                                            {% endif %}
+                                                        </button>
+                                                    </form>
+                                                {% endif %}
+                                             </div>
                                          </div>
-                                     </div>
+                                     </a>
                                  </div>
                              </div>
                           </div>
